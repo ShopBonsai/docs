@@ -30,13 +30,13 @@ The feed columns are:
 - **sale_price**: The "original" price of the product if it's now on sale.
 - **availability**: The availability of the product.
 
-To see more details, head over to the [feed format docs](/docs/product-feeds)
+To see more details, head over to the [feed format docs](/docs/product-feeds/format)
 
 #### Feed Rows
 
 Each of the rows of a feed represents a product variant. For example, if you have a product with 3 colors and 2 sizes, you'll have 6 rows. Each row will have the same `item_group_id` and `affiliate_item_group_id` but different `id` and `availability`. The `availability` column will be `in_stock` for the available variants and `out_of_stock` for the unavailable ones.
 
-To see more details, head over to the [feed format docs](/docs/product-feeds).
+To see more details, head over to the [feed format docs](/docs/product-feeds/format).
 
 ### API
 

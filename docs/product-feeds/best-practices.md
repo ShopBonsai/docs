@@ -1,6 +1,6 @@
 ---
-title: Feed Format
-description: Learn how product feeds are formatted at Bonsai.
+title: Best Practices
+description: Best practices for product feeds.
 ---
 
 # Best Practices

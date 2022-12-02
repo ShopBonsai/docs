@@ -59,8 +59,9 @@ const config = {
       navbar: {
         title: 'Bonsai Docs',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'Bonsai Logo',
           src: 'img/logo.svg',
+          srcDark: 'img/logo-dark.svg',
         },
         items: [
           {
