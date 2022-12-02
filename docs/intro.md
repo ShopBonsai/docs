@@ -4,44 +4,44 @@ sidebar_position: 1
 
 # Tutorial Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Let's discover **Bonsai in less than 5 minutes**.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+Get started by [downloading a sample feed](https://shopbonsai/sample-feed.csv).
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+### Feed Format
 
-### What you'll need
+Once the feed is downloaded, open it in a spreadsheet editor like Excel or Google Sheets.
+<!-- TODO: add a note on Modern CSV and q -->
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+#### Feed Columns
 
-## Generate a new site
+The feed columns are:
 
-Generate a new Docusaurus site using the **classic template**.
+- **name**: The name of the product.
+- **description**: The description of the product.
+- **id**: The unique identifier of the variant.
+- **item_group_id**: The unique identifier of the product.
+- **affiliate_item_group_id**: The unique identifier of the product.
+- **link**: The link to the product.
+- **image_link**: The link to the product image.
+- **price**: The price of the product.
+- **sale_price**: The "original" price of the product if it's now on sale.
+- **availability**: The availability of the product.
 
-The classic template will automatically be added to your project after you run the command:
+To see more details, head over to the [feed format docs](/docs/product-feeds)
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+#### Feed Rows
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+Each of the rows of a feed represents a product variant. For example, if you have a product with 3 colors and 2 sizes, you'll have 6 rows. Each row will have the same `item_group_id` and `affiliate_item_group_id` but different `id` and `availability`. The `availability` column will be `in_stock` for the available variants and `out_of_stock` for the unavailable ones.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+To see more details, head over to the [feed format docs](/docs/product-feeds).
 
-## Start your site
+### API
 
-Run the development server:
+Some quick notes on API
 
-```bash
-cd my-website
-npm run start
-```
+### Product Collections
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Some quick notes on product collections
