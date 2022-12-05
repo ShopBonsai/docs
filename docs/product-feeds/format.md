@@ -1,6 +1,7 @@
 ---
 title: Feed Format
 description: Learn how product feeds are formatted at Bonsai.
+sidebar_position: 3
 ---
 
 # Format
