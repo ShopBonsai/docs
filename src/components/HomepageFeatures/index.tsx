@@ -11,31 +11,34 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Product Feeds',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    Svg: require('@site/static/img/undraw_spreadsheet_re_cn18.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Product Feeds are the main way to get products from Bonsai into your platform.
+        They are updated every 30 minutes and contain all the information you need to
+        sell products.
       </>
     ),
   },
   {
     title: 'API',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    Svg: require('@site/static/img/undraw_programmer_re_owql.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        The Bonsai API is a RESTful API that allows you to get up-to-date product information,
+        generate checkout totals and place orders. It is the most flexible way to integrate with
+        Bonsai.
       </>
     ),
   },
   {
     title: 'Product Collections',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    Svg: require('@site/static/img/undraw_window_shopping_re_0kbm.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Product Collections allow you to show products on a page with product display page,
+        product listing page, and checkout flow. They are a great way to start selling products
+        with 0 coding.
       </>
     ),
   },
