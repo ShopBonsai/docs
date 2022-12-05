@@ -32,13 +32,12 @@ const FeatureList: FeatureItem[] = [
     ),
   },
   {
-    title: 'Product Collections',
+    title: 'Images',
     Svg: require('@site/static/img/undraw_window_shopping_re_0kbm.svg').default,
     description: (
       <>
-        Product Collections allow you to show products on a page with product display page,
-        product listing page, and checkout flow. They are a great way to start selling products
-        with 0 coding.
+        Images service allows you to fetch product images of various sizes. You can either display
+        them on your website or reupload them to your own CDN.
       </>
     ),
   },
