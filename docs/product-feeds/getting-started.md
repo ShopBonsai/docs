@@ -1,10 +1,10 @@
 ---
-title: Intro
+title: Getting Started
 description: Product feed introduction.
 sidebar_position: 1
 ---
 
-# Product Feed Intro
+# Getting Started
 
 Bonsai product feeds are CSV files that contain product information. We used [Google's product feed specification](https://support.google.com/merchants/answer/7052112?hl=en) as an inspiration for our product feed format.
 
