@@ -1,7 +1,7 @@
 ---
 title: Feed Format Reference
 description: Learn how product feeds are formatted at Bonsai.
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Feed Format Reference

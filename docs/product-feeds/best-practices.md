@@ -1,6 +1,6 @@
 ---
 title: Best Practices
-description: Best practices for product feeds.
+description: Learn about best practices for ingesting Bonsai's product feeds.
 sidebar_position: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: Product feed introduction.
+description: Learn how to download and use product feeds.
 sidebar_position: 1
 ---
 
