@@ -12,6 +12,53 @@ Bonsai product feeds are CSV files that contain product information. We used [Go
 Feeds are provided as-is. Please get in touch with your account manager if you have specific questions/requirements, and we can guide you through the ingestion.
 :::
 
+## Downloading a feed
+
+Feeds are hosted on AWS as CSV files. Before you download a feed, you need to set up AWS
+credentials and AWS CLI.
+
+### Prerequisites
+
+:::info
+Your AWS credentials will be shared with you via your account manager.
+:::
+
+:::tip
+If you’re new to AWS, please [install AWS CLI first](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+:::
+
+Once you received AWS credentials, you should have the following information:
+
+- access_id
+- secret
+- bucket_name
+
+### Configuration
+
+Now that you have the credentials and AWS CLI installed, you can configure it to get access to the
+feeds. Please configure AWS CLI with the credentials you received from your account manager:
+
+```bash
+aws configure # use `access_id` and `secret`
+```
+
+### Bucket access
+
+You should now have access to the bucket. You can list the contents of the bucket to see the feeds,
+and download one of the feeds.
+
+```bash
+# List contents of the bucket
+aws s3 ls s3://<bucket_name>
+
+# Copy one of the feeds
+# Downloading the file through CLI will pull a gzipped version, you'll need to `gunzip` the result.
+aws s3 cp 's3://<bucket_name>/<file_name>.csv' - | gunzip > <file_name>.csv
+
+# For example:
+aws s3 cp 's3://prod-feed-exports/verishop.csv' - | gunzip > verishop.csv
+```
+
 ## Format
 
 The CSV data is:
