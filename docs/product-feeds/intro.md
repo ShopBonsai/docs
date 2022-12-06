@@ -12,13 +12,24 @@ Bonsai product feeds are CSV files that contain product information. We used [Go
 Feeds are provided as-is. Please get in touch with your account manager if you have specific questions/requirements, and we can guide you through the ingestion.
 :::
 
+## Format
+
+The CSV data is:
+
+- **comma separated**
+- the **first row contains the column names**
+- some columns are **optional**, and some are **required**
+- values that contain **multiple lines of text, commas, or double quotes are enclosed in double quotes**
+
+To see more details, head over to the [feed format docs](/docs/product-feeds/format).
+
 ## Example
 
 Each row of a feed represents a product variant. For example, if you have a product with 2 colors
 and 4 sizes, you'll have 8 rows:
 
 <details>
-  <summary>CSV Table Example</summary>
+  <summary>CSV table example</summary>
   <div>
 
 id | title | link | description | image_link | additional_image_link | availability | quantity | price | sale_price | google_product_category | brand | color | gender | size | size_type | item_group_id | affiliate_item_group_id | option1 | option2 | option3 | option4 | option5 | option6 | option7 | option8 | option9 | total_ratings | star_rating | created_at | updated_at
@@ -37,7 +48,7 @@ M00679529896908 | Joelle Sweater Dress | https://verishop.sjv.io/c/2970856/14936
 
 <details>
   <summary>
-    CSV Text Example
+    CSV text example
   </summary>
 
   <div>
