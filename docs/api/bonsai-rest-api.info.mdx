@@ -1,0 +1,69 @@
+---
+id: bonsai-rest-api
+title: "Bonsai REST API"
+description: "Explore Bonsai's API reference documentation."
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+---
+
+import ApiLogo from "@theme/ApiLogo";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import Export from "@theme/ApiDemoPanel/Export";
+
+<span className={"theme-doc-version-badge badge badge--secondary"}>Version: 1.0.0</span>
+
+# Bonsai REST API
+
+
+
+Explore Bonsai's API reference documentation.
+
+# Overview
+
+In order for the API to accept your requests, a few headers are required, as well as using the correct content type.
+
+| Domain | Path | Protocol | Environment | Template name |
+| --- | --- | --- | --- | --- |
+| api.shopbonsai.ca | / | SSL | Production | {BonsaiEndpoint} |
+
+Making requests without SSL is not allowed.
+
+# Authentication
+
+All requests are required to contain the following headers.
+
+| Header | Value |
+| --- | --- |
+| Content-Type | application/json |
+| API-Key |  |
+
+**About authentication**  
+Requests are authenticated and authorized by passing along an API Key using HTTP headers. Requests that don’t contain these required headers will return a `401 Unauthorized response.`.
+
+These credentials will be **supplied to you** in a separate document by your **account manager**
+
+# Testing
+
+In order to test the **end to end flow**, all requests should be toward the staging environment. You can use [Stripe test tokens](https://stripe.com/docs/testing#testing-interactively) to test the different cases.
+
+Please contact your account manager to provide you with:
+
+- Test Stripe API public key
+- An API key
+- A Product Partner Feed
+    
+
+Please let your account manager know about the testing as we actively update our API, and that might impact your testing. We are working on keeping our API backwards-compatible at all times but do not have versioning enabled yet.
+
+# Content-Type
+
+All request bodies are required to be valid JSON. The API does not accept other formats.
+
+# Rate limiting
+
+No information at the moment.
+
+
+      
