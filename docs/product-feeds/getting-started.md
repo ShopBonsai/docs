@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Getting Started
 
-Bonsai product feeds are CSV files that contain product information. We used [Google's product feed specification](https://support.google.com/merchants/answer/7052112?hl=en) as an inspiration for our product feed format.
+Bonsai product feeds are CSV files that contain product information. We use [Google's product feed specification](https://support.google.com/merchants/answer/7052112?hl=en) as an inspiration for our product feed format.
 
 :::info
 Feeds are provided as-is. Please get in touch with your account manager if you have specific questions/requirements, and we can guide you through the ingestion.
