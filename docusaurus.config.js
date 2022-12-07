@@ -127,9 +127,16 @@ const config = {
         id: "openapi",
         docsPluginId: "plugin-content-docs",
         config: {
-          bonsai: {
-            specPath: "spec/api.yml",
-            outputDir: "docs/api",
+          products: {
+            specPath: "spec/products.json",
+            outputDir: "docs/api/products",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+            },
+          },
+          orders: {
+            specPath: "spec/orders.json",
+            outputDir: "docs/api/orders",
             sidebarOptions: {
               groupPathsBy: "tag",
             },

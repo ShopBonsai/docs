@@ -1,0 +1,14 @@
+{
+  "servers": [
+    {
+        "url": "https://api.shopbonsai.ca",
+        "description": "Production environment"
+    },
+    {
+        "url": "https://api.staging.shopbonsai.ca",
+        "description": "Staging environment"
+    }
+  ],
+  "replaceVars": true
+}
+

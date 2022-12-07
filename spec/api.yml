@@ -2,24 +2,7 @@ openapi: 3.0.0
 info:
   title: Bonsai REST API
   description: >-
-    Explore Bonsai's API reference documentation.
-
-
-    # Overview
-
-
-    In order for the API to accept your requests, a few headers are required, as
-    well as using the correct content type.
-
-
-    | Domain | Path | Protocol | Environment | Template name |
-
-    | --- | --- | --- | --- | --- |
-
-    | api.shopbonsai.ca | / | SSL | Production | {BonsaiEndpoint} |
-
-
-    Making requests without SSL is not allowed.
+    Bonsai API requires you to provide the following headers:
 
 
     # Authentication
@@ -39,13 +22,12 @@ info:
 
     **About authentication**  
 
-    Requests are authenticated and authorized by passing along an API Key using
-    HTTP headers. Requests that don’t contain these required headers will return
-    a `401 Unauthorized response.`.
+    All API requests are authorized by passing along an API Key using HTTP
+    header `API-Key`. Requests that don’t contain that header will return a `401
+    Unauthorized response.`.
 
 
-    These credentials will be **supplied to you** in a separate document by your
-    **account manager**
+    These credentials will be **provided to you** by your **account manager.**
 
 
     # Testing
@@ -63,31 +45,18 @@ info:
     - Test Stripe API public key
 
     - An API key
-
-    - A Product Partner Feed
         
 
     Please let your account manager know about the testing as we actively update
-    our API, and that might impact your testing. We are working on keeping our
-    API backwards-compatible at all times but do not have versioning enabled
+    our API, and that might impact your testing. We are aiming to keep our APIs
+    backwards-compatible at all times, but we do not have versioning enabled
     yet.
-
-
-    # Content-Type
-
-
-    All request bodies are required to be valid JSON. The API does not accept
-    other formats.
-
-
-    # Rate limiting
-
-
-    No information at the moment.
   version: 1.0.0
 servers:
-  - url: http://{{url}}
-  - url: https://sharpener.shopbonsai.ca
+  - url: https://api.shopbonsai.ca
+    description: Production environment
+  - url: https://api.staging.shopbonsai.ca
+    description: Staging environment
 tags:
   - name: Products
   - name: Order
@@ -167,7 +136,7 @@ tags:
 
       ```
 paths:
-  /{RootPathProducts}:
+  /products:
     get:
       tags:
         - Products
@@ -194,23 +163,18 @@ paths:
           schema:
             type: string
           description: API key provided by your account manager
-          example: '{{API Key}}'
+          example: <secret>
         - name: ids
           in: query
           schema:
             type: string
           description: List of product IDs separated by comma
-          example: <product IDs>
+          example: clad6pg5z00eu012gfz7hfm92,cl636eezq000f014yb0dk98vv
         - name: currency
           in: query
           schema:
             type: string
           example: USD
-        - name: RootPathProducts
-          in: path
-          schema:
-            type: string
-          required: true
       responses:
         '200':
           description: OK
@@ -280,7 +244,7 @@ paths:
                     merchant:
                       publicId: ck1icomas001vdrs55hl95uou
                       name: Whimsy and Row
-  /{RootPathOrders}/checkout:
+  /orders/checkout:
     post:
       tags:
         - Order
@@ -329,12 +293,7 @@ paths:
           schema:
             type: string
           description: API key provided by your account manager
-          example: '{{API Key}}'
-        - name: RootPathOrders
-          in: path
-          schema:
-            type: string
-          required: true
+          example: <secret>
       responses:
         '200':
           description: OK
@@ -387,7 +346,7 @@ paths:
                       currency: USD
                       shipping_total: 0
                     errors: []
-  /{RootPathOrders}/submit:
+  /orders/submit:
     post:
       tags:
         - Order
@@ -480,12 +439,7 @@ paths:
           schema:
             type: string
           description: API key provided by your account manager
-          example: '{{API Key}}'
-        - name: RootPathOrders
-          in: path
-          schema:
-            type: string
-          required: true
+          example: <secret>
       responses:
         '200':
           description: OK
@@ -529,7 +483,7 @@ paths:
                   orderNumber: 210631
                   stripeClientSecrets: null
                 errors: []
-  /{RootPathOrders}/V1/submit:
+  /orders/V1/submit:
     post:
       tags:
         - Order
@@ -641,12 +595,7 @@ paths:
           schema:
             type: string
           description: API key provided by your account manager
-          example: '{{API Key}}'
-        - name: RootPathOrders
-          in: path
-          schema:
-            type: string
-          required: true
+          example: <secret>
       responses:
         '200':
           description: OK
@@ -690,7 +639,7 @@ paths:
                   orderNumber: 210631
                   stripeClientSecrets: null
                 errors: []
-  /{RootPathProducts}/collections/{handle}:
+  /products/collections/{handle}:
     get:
       tags:
         - Product collections
@@ -708,12 +657,7 @@ paths:
           schema:
             type: string
           description: API key provided by your account manager
-          example: '{{API Key}}'
-        - name: RootPathProducts
-          in: path
-          schema:
-            type: string
-          required: true
+          example: <secret>
         - name: handle
           in: path
           schema:
