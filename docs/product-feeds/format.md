@@ -72,7 +72,7 @@ than `0`.
 > **required**
 
 Number of the inventory available to sell. This number is an estimate and may not be accurate. To get
-the most accurate inventory, use the [Checkout API](/docs/api/checkout).
+the most accurate inventory, use the [Checkout API](/docs/api/orders/checkout-totals).
 
 ## `price`
 
