@@ -135,11 +135,17 @@ const config = {
           products: {
             specPath: "spec/products.json",
             outputDir: "docs/api/products",
+            sidebarOptions: {
+              categoryLinkSource: "info",
+            },
             downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/products.json",
           },
           orders: {
             specPath: "spec/orders.json",
             outputDir: "docs/api/orders",
+            sidebarOptions: {
+              categoryLinkSource: "info",
+            },
             downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json",
           },
         },
