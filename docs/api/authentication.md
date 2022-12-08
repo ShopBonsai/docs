@@ -16,5 +16,5 @@ You can provide your API key in the URL as a request header:
 
 <!-- TODO: make this script accurate -->
 ```bash
-curl https://api.shopbonsai.ca/products/ -H "X-API-Key: <API_KEY>"
+curl https://api.shopbonsai.ca/products/ -H "API-Key: <API_KEY>"
 ```
