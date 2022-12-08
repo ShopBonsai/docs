@@ -1,8 +1,0 @@
-{
-  "label": "Product Feeds",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "Product Feeds require development work to be implemented. This section provides information on best practices and how to implement product feeds."
-  }
-}
