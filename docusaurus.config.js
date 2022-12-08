@@ -57,6 +57,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
+      },
       navbar: {
         title: 'Bonsai Docs',
         logo: {
@@ -130,16 +135,12 @@ const config = {
           products: {
             specPath: "spec/products.json",
             outputDir: "docs/api/products",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
+            downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/products.json",
           },
           orders: {
             specPath: "spec/orders.json",
             outputDir: "docs/api/orders",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
+            downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json",
           },
         },
       },

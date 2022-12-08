@@ -1,0 +1,8 @@
+{
+  "label": "/orders",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to use the Orders API to calculate checkout totals and create orders."
+  }
+}
