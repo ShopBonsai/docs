@@ -69,6 +69,30 @@ The provided CSV feeds are:
 
 To see more details, head over to the [feed format reference](/docs/product-feeds/format).
 
+## Feed ingestion
+
+So what do you need to do with this data? You can use it to create and update products in your application. Existing CSV ingestion services can import products depending on your technology to avoid manually integrating with our feeds.
+
+For example, if you're using Shopify, you can use a 3rd part service such as [Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export) to import a feed into your application automatically. 
+
+Using a custom-built application, you can use a service like [Feedonomics](https://feedonomics.com/) to import your feeds. If these are not an option, you can write a service to import a feed into your application since CSV is a widely supported format.
+
+:::note
+We don't endorse any specific service, but we do recommend using a service that can automatically import your feed into your store.
+:::
+
+### Parsing the feed
+
+The feed is a CSV file, so you'll need to parse the file to read out the data. If you're not using a 3rd party service and writing one yourself, you can use a library like [Papa Parse](https://www.papaparse.com/). Once you have the data, you can create and update your application's products.
+
+Depending on your use case, you may want to:
+
+1. create a new product for each variant, or
+2. create a new product for each variant color, but grouping sizes, or
+3. create a single product grouping colors and sizes
+
+This mainly depends on how your customers are used to viewing and purchasing products. We recommend either option 2 or 3. You can use the `item_group_id` column to group variants into a single product, as it's a unique identifier per product.
+
 ## Example
 
 Each row of a feed represents a product variant. For example, if you have a product with 2 colors
@@ -218,37 +242,3 @@ Model Measurement:
 
   </div>
 </details>
-
-## Feed ingestion
-
-So what do you need to do with this data? Well, you can use it to create and update products in your
-store. Feed ingestion is the process of importing product data from a feed into your store. Depending
-on the technology you use to build your store, you can use a feed ingestion service to import.
-
-For example, if you're using Shopify, you can use a 3rd part service,
-[like Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export), to
-automatically import a feed into your store. If you're using a custom built store, you can use
-a service like [Feedonomics](https://feedonomics.com/) to import your feed into your store. Lastly,
-you can write your own service to import a feed into your store.
-
-:::note
-We don't endorse any specific service, but we do recommend using a service that can automatically
-import your feed into your store.
-:::
-
-### Parsing the feed
-
-The feed is a CSV file, so you'll need to parse the file to get the data. If you're not using a 3rd
-party service, and writing one yourself instead, you can use a library, like
-[Papa Parse](https://www.papaparse.com/), to parse the feed. Once you have the data, you can
-use it to create and update products in your store.
-
-Depending on your use case, you may want to:
-
-1. create a new product for each variant, or
-2. create a new product for each variant color, but grouping sizes, or
-3. create a single product grouping colors and sizes
-
-This mainly depends on how your customers are used to shop. We recommend either option 2 or 3. To
-group variants into a single product, you can use the `item_group_id` column. This column is a unique
-identifier for a product.
