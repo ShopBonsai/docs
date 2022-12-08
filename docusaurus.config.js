@@ -89,7 +89,7 @@ const config = {
                 to: '/docs/intro',
               },
               {
-                label: 'Product Feeds',
+                label: 'Product feeds',
                 to: '/docs/category/product-feeds',
               },
               {
