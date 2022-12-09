@@ -32,10 +32,8 @@ const sidebars = {
       type: "category",
       label: "Bonsai API",
       link: {
-        type: "generated-index",
-        title: "Bonsai API",
-        description: "dfdf",
-        slug: "/category/api",
+        type: "doc",
+        id: "api/index",
       },
       items: [
         {
@@ -43,7 +41,7 @@ const sidebars = {
           label: "Products",
           link: {
             type: "doc",
-            id: "api/products/public-product-api",
+            id: "api/products/products-api",
           },
           items: [
             {
