@@ -20,7 +20,7 @@ const sidebars = {
       type: "category",
       link: {
         type: "generated-index",
-        description: "Product Feeds require development work to be implemented. This section provides information on best practices and how to implement product feeds."
+        description: "We currently provide access to our product catalogue via product feeds. This section includes implementation steps and best practices to start using our feeds."
       },
       items: [
         {

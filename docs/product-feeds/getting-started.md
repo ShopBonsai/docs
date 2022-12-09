@@ -6,16 +6,16 @@ sidebar_position: 1
 
 # Getting Started
 
-Bonsai product feeds are CSV files that contain product information. We use [Google's product feed specification](https://support.google.com/merchants/answer/7052112?hl=en) as an inspiration for our product feed format.
+Bonsai product feeds are CSV files containing product information. [Google's product feed specification](https://support.google.com/merchants/answer/7052112?hl=en) forms the foundation for our feeds with changes based on Bonsai's requirements.
 
 :::info
-Feeds are provided as-is. Please get in touch with your account manager if you have specific questions/requirements, and we can guide you through the ingestion.
+Feeds are not customizable and need to be consumed as-is. Please contact your account manager if you have specific questions or requirements, and we can assist you with the implementation.
 :::
 
 ## Downloading a Feed
 
-Feeds are hosted on AWS as CSV files. Before you download a feed, you need to set up AWS
-credentials and AWS CLI.
+Feeds are hosted on [Amazon Web Services](https://aws.amazon.com/) as CSV files. Before you download a feed, you need to configure your AWS
+credentials and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
 ### Prerequisites
 
@@ -24,14 +24,14 @@ Your AWS credentials will be shared with you via your account manager.
 :::
 
 :::tip
-If you’re new to AWS, please [install AWS CLI first](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+If you’re new to AWS, please [install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) first.
 :::
 
 Once you received AWS credentials, you should have the following information:
 
-- access_id
-- secret
-- bucket_name
+- `access_id`
+- `secret`
+- `bucket_name`
 
 ### Configuration
 
@@ -44,8 +44,7 @@ aws configure # use `access_id` and `secret`
 
 ### Bucket Access
 
-You should now have access to the bucket. You can list the contents of the bucket to see the feeds,
-and download one of the feeds.
+You should now have access, list the bucket's contents, and download one of our feeds.
 
 ```bash
 # List contents of the bucket
@@ -59,16 +58,40 @@ aws s3 cp 's3://<bucket_name>/<file_name>.csv' - | gunzip > <file_name>.csv
 aws s3 cp 's3://prod-feed-exports/verishop.csv' - | gunzip > verishop.csv
 ```
 
-## Format
+## CSV Format
 
-The CSV data is:
+The provided CSV feeds are:
 
 - **comma separated**
 - the **first row contains the column names**
-- some columns are **optional**, and some are **required**
-- values that contain **multiple lines of text, commas, or double quotes are enclosed in double quotes**
+- some columns are **optional** whereas others are **required**
+- values that contain **multiple lines of text, commas, or double quotes** are **enclosed in double quotes**
 
-To see more details, head over to the [feed format docs](/docs/product-feeds/format).
+To see more details, head over to the [feed format reference](/docs/product-feeds/format).
+
+## Feed Ingestion
+
+So what do you need to do with this data? You can use it to create and update products in your application. Existing CSV ingestion services can import products depending on your technology to avoid manually integrating with our feeds.
+
+For example, if you're using Shopify, you can use a 3rd part service such as [Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export) to import a feed into your application automatically.
+
+Using a custom-built application, you can use a service like [Feedonomics](https://feedonomics.com/) to import your feeds. If these are not an option, you can write a service to import a feed into your application since CSV is a widely supported format.
+
+:::note
+We don't endorse any specific service, but we do recommend using a service that can automatically import your feed into your store.
+:::
+
+### Parsing the Feed
+
+The feed is a CSV file, so you'll need to parse the file to read out the data. If you're not using a 3rd party service and writing one yourself, you can use a library like [Papa Parse](https://www.papaparse.com/). Once you have the data, you can create and update your application's products.
+
+Depending on your use case, you may want to:
+
+1. create a new product for each variant, or
+2. create a new product for each variant color, but grouping sizes, or
+3. create a single product grouping colors and sizes
+
+This mainly depends on how your customers are used to viewing and purchasing products. We recommend either option 2 or 3. You can use the `item_group_id` column to group variants into a single product, as it's a unique identifier per product.
 
 ## Example
 
@@ -219,37 +242,3 @@ Model Measurement:
 
   </div>
 </details>
-
-## Feed Ingestion
-
-So what do you need to do with this data? Well, you can use it to create and update products in your
-store. Feed ingestion is the process of importing product data from a feed into your store. Depending
-on the technology you use to build your store, you can use a feed ingestion service to import.
-
-For example, if you're using Shopify, you can use a 3rd part service,
-[like Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export), to
-automatically import a feed into your store. If you're using a custom built store, you can use
-a service like [Feedonomics](https://feedonomics.com/) to import your feed into your store. Lastly,
-you can write your own service to import a feed into your store.
-
-:::note
-We don't endorse any specific service, but we do recommend using a service that can automatically
-import your feed into your store.
-:::
-
-### Parsing the Feed
-
-The feed is a CSV file, so you'll need to parse the file to get the data. If you're not using a 3rd
-party service, and writing one yourself instead, you can use a library, like
-[Papa Parse](https://www.papaparse.com/), to parse the feed. Once you have the data, you can
-use it to create and update products in your store.
-
-Depending on your use case, you may want to:
-
-1. create a new product for each variant, or
-2. create a new product for each variant color, but grouping sizes, or
-3. create a single product grouping colors and sizes
-
-This mainly depends on how your customers are used to shop. We recommend either option 2 or 3. To
-group variants into a single product, you can use the `item_group_id` column. This column is a unique
-identifier for a product.
