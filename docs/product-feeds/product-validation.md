@@ -10,7 +10,7 @@ We gather products from various merchants and validate them before they are expo
 feeds. Validation process makes sure that the data follows our requirements. We omit products from
 feeds if they do not meet our requirements.
 
-## Validation rules
+## Validation Rules
 
 All of the following rules must equate to `false` for a product to be included in our feeds:
 

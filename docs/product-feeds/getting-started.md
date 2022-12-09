@@ -12,7 +12,7 @@ Bonsai product feeds are CSV files that contain product information. We use [Goo
 Feeds are provided as-is. Please get in touch with your account manager if you have specific questions/requirements, and we can guide you through the ingestion.
 :::
 
-## Downloading a feed
+## Downloading a Feed
 
 Feeds are hosted on AWS as CSV files. Before you download a feed, you need to set up AWS
 credentials and AWS CLI.
@@ -42,7 +42,7 @@ feeds. Please configure AWS CLI with the credentials you received from your acco
 aws configure # use `access_id` and `secret`
 ```
 
-### Bucket access
+### Bucket Access
 
 You should now have access to the bucket. You can list the contents of the bucket to see the feeds,
 and download one of the feeds.
@@ -237,7 +237,7 @@ We don't endorse any specific service, but we do recommend using a service that 
 import your feed into your store.
 :::
 
-### Parsing the feed
+### Parsing the Feed
 
 The feed is a CSV file, so you'll need to parse the file to get the data. If you're not using a 3rd
 party service, and writing one yourself instead, you can use a library, like
