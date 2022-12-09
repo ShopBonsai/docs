@@ -99,11 +99,11 @@ const config = {
               },
               {
                 label: 'API',
-                to: '/docs/category/api',
+                to: '/docs/api',
               },
               {
                 label: 'Images',
-                to: '/docs/category/images',
+                to: '/docs/images',
               },
             ],
           },
