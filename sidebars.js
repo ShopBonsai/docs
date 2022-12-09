@@ -14,6 +14,7 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   bonsai: [
+    "intro",
     {
       label: "Product Feeds",
       type: "category",
