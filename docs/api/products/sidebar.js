@@ -1,1 +1,1 @@
-module.exports = [{"type":"doc","id":"api/products/public-product-api"},{"type":"category","label":"Products","link":{"type":"generated-index","title":"Products","slug":"/category/api/products/products"},"items":[{"type":"doc","id":"api/products/get-products","label":"Get Products","className":"api-method get"}]}];
+module.exports = [];

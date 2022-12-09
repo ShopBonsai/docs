@@ -1,0 +1,49 @@
+---
+title: Bonsai API
+description: Learn how to integrate with the Bonsai API.
+---
+
+# Bonsai API
+
+Bonsai API allows you to fetch products, calculate cart totals, and submit orders. This section aims
+to provide information on how to use the API.
+
+## Endpoints
+
+The Bonsai API is organized around REST. Our API has predictable resource-oriented URLs, accepts
+JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes.
+We support cross-origin resource sharing, allowing you to interact securely with our API from a
+client-side web application.
+
+## Versioning
+
+We use versioning for placing orders to ensure that your application will continue to work as we add
+new features and improve the API. However, we do not version the other endpoints at this time. We
+will not make breaking changes to the API without first giving you advance notice.
+
+## Authentication
+
+To authenticate your API requests, you need to provide an API key in request headers.
+
+:::info
+Your API key will be shared with you by your account manager.
+:::
+
+Provide your API key in the URL as a request header whenever you make API calls:
+
+```bash
+curl https://api.shopbonsai.ca/<api_endpoint> -H "API-Key: <API_KEY>"
+```
+
+:::tip
+If you have questions or need assistance, please contact your account manager.
+:::
+
+<br />
+
+```mdx-code-block
+import DocCardList from '@theme/DocCardList';
+import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+
+<DocCardList items={useCurrentSidebarCategory().items}/>
+```

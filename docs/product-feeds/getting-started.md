@@ -12,7 +12,7 @@ Bonsai product feeds are CSV files containing product information. [Google's pro
 Feeds are not customizable and need to be consumed as-is. Please contact your account manager if you have specific questions or requirements, and we can assist you with the implementation.
 :::
 
-## Downloading a feed
+## Downloading a Feed
 
 Feeds are hosted on [Amazon Web Services](https://aws.amazon.com/) as CSV files. Before you download a feed, you need to configure your AWS
 credentials and [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
@@ -42,7 +42,7 @@ feeds. Please configure AWS CLI with the credentials you received from your acco
 aws configure # use `access_id` and `secret`
 ```
 
-### Bucket access
+### Bucket Access
 
 You should now have access, list the bucket's contents, and download one of our feeds.
 
@@ -58,7 +58,7 @@ aws s3 cp 's3://<bucket_name>/<file_name>.csv' - | gunzip > <file_name>.csv
 aws s3 cp 's3://prod-feed-exports/verishop.csv' - | gunzip > verishop.csv
 ```
 
-## CSV format
+## CSV Format
 
 The provided CSV feeds are:
 
@@ -69,11 +69,11 @@ The provided CSV feeds are:
 
 To see more details, head over to the [feed format reference](/docs/product-feeds/format).
 
-## Feed ingestion
+## Feed Ingestion
 
 So what do you need to do with this data? You can use it to create and update products in your application. Existing CSV ingestion services can import products depending on your technology to avoid manually integrating with our feeds.
 
-For example, if you're using Shopify, you can use a 3rd part service such as [Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export) to import a feed into your application automatically. 
+For example, if you're using Shopify, you can use a 3rd part service such as [Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export) to import a feed into your application automatically.
 
 Using a custom-built application, you can use a service like [Feedonomics](https://feedonomics.com/) to import your feeds. If these are not an option, you can write a service to import a feed into your application since CSV is a widely supported format.
 
@@ -81,7 +81,7 @@ Using a custom-built application, you can use a service like [Feedonomics](https
 We don't endorse any specific service, but we do recommend using a service that can automatically import your feed into your store.
 :::
 
-### Parsing the feed
+### Parsing the Feed
 
 The feed is a CSV file, so you'll need to parse the file to read out the data. If you're not using a 3rd party service and writing one yourself, you can use a library like [Papa Parse](https://www.papaparse.com/). Once you have the data, you can create and update your application's products.
 

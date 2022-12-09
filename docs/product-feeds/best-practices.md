@@ -8,7 +8,7 @@ sidebar_position: 2
 
 This page contains best practices for ingesting Bonsai's product feeds based on our experience with our partners. They will help you to get the most out of our catalogue.
 
-## Automating feed ingestion
+## Automating Feed Ingestion
 
 Automate feed ingestion to ensure your feed is always up-to-date. We recommend ingesting our feeds every 1-2 hours for best results and once every 24 hours as a bare minimum. It'll ensure you have the latest, most up-to-date product information. If you only ingest our feeds every 24 hours, you might miss out on inventory and price changes, causing a negative experience for your customers and overhead for yourself. We update feeds **every 30 minutes**.
 
@@ -26,10 +26,10 @@ We recommend using `affiliate_item_group_id` if you need to map products from ou
 products from your database. This field is unique to each product per feed. And it is assigned
 by the merchant.
 
-## Out of stock products
+## Out of Stock Products
 
 Currently, we keep out-of-stock products in our feeds. You can use the `availability` column to filter out out-of-stock products. The `quantity` column will always be `0` for out-of-stock products.
 
-## Product removal
+## Product Removal
 
 We remove variants from the feeds if the merchant removed them or they are no longer up to our standards.

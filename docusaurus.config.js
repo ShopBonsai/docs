@@ -57,6 +57,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
+      },
       navbar: {
         title: 'Bonsai Docs',
         logo: {
@@ -89,16 +94,16 @@ const config = {
                 to: '/docs/intro',
               },
               {
-                label: 'Product feeds',
+                label: 'Product Feeds',
                 to: '/docs/category/product-feeds',
               },
               {
                 label: 'API',
-                to: '/docs/category/api',
+                to: '/docs/api',
               },
               {
                 label: 'Images',
-                to: '/docs/category/images',
+                to: '/docs/images',
               },
             ],
           },
@@ -131,15 +136,17 @@ const config = {
             specPath: "spec/products.json",
             outputDir: "docs/api/products",
             sidebarOptions: {
-              groupPathsBy: "tag",
+              categoryLinkSource: "info",
             },
+            downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/products.json",
           },
           orders: {
             specPath: "spec/orders.json",
             outputDir: "docs/api/orders",
             sidebarOptions: {
-              groupPathsBy: "tag",
+              categoryLinkSource: "info",
             },
+            downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json",
           },
         },
       },

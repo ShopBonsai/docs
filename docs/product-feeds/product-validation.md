@@ -9,7 +9,7 @@ sidebar_position: 3
 We gather products from various merchants and validate them before they become available in our product feeds. The validation process ensures that the data follow our requirements. We omit products from
 feeds if they do not meet our standards.
 
-## Validation rules
+## Validation Rules
 
 All of the following rules must equate to `false` for a product to be included in our feeds:
 

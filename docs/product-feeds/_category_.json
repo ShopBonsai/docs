@@ -1,8 +1,0 @@
-{
-  "label": "Product feeds",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "We currently provide access to our product catalogue via product feeds. This section includes implementation steps and best practices to start using our feeds."
-  }
-}
