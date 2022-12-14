@@ -36,16 +36,16 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/ShopBonsai/docs/tree/main/',
+          // editUrl:
+          //   'https://github.com/ShopBonsai/docs/tree/main/',
           docItemComponent: "@theme/ApiItem",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/ShopBonsai/docs/tree/main/',
+          // editUrl:
+          //   'https://github.com/ShopBonsai/docs/tree/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -106,16 +106,7 @@ const config = {
                 to: '/docs/images',
               },
             ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/ShopBonsai/docs',
-              },
-            ],
-          },
+          }
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Shop Bonsai, Inc. Built with Docusaurus.`,
       },
