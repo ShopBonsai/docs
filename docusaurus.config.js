@@ -76,11 +76,6 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {
-            href: 'https://github.com/ShopBonsai/docs',
-            label: 'GitHub',
-            position: 'right',
-          },
         ],
       },
       footer: {
