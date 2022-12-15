@@ -12,13 +12,14 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
+        <img src="img/logo-dark.svg"/>
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Bonsai Tutorial - 5min ⏱️
+            Getting Started
           </Link>
         </div>
       </div>
@@ -30,8 +31,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Documentation site on using Bonsai's products">
+      description="Documentation on using Bonsai's products">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

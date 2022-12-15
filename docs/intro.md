@@ -2,46 +2,24 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Getting Started
 
 Let's discover **Bonsai in less than 5 minutes**.
 
-## Getting Started
+## Product feeds
 
-Get started by [downloading a sample feed](https://shopbonsai/sample-feed.csv).
+[Product feeds](/docs/category/product-feeds) are the primary way to get products from Bonsai into your platform. They are updated frequently and contain all the information you need to sell products.
 
-### Feed Format
+> Find all information about our [product feeds](/docs/category/product-feeds).
 
-Once the feed is downloaded, open it in a spreadsheet editor like Excel or Google Sheets.
-<!-- TODO: add a note on Modern CSV and q -->
+## API
 
-#### Feed Columns
+The [Bonsai API](/docs/api) is a RESTful API that allows you to get up-to-date product information, generate checkout totals and place orders. It is the most flexible way to integrate with Bonsai.
 
-The feed columns are:
+> Find all information about our [API](/docs/api).
 
-- **name**: The name of the product.
-- **description**: The description of the product.
-- **id**: The unique identifier of the variant.
-- **item_group_id**: The unique identifier of the product.
-- **affiliate_item_group_id**: The unique identifier of the product.
-- **link**: The link to the product.
-- **image_link**: The link to the product image.
-- **price**: The price of the product.
-- **sale_price**: The "original" price of the product if it's now on sale.
-- **availability**: The availability of the product.
+## Images
 
-To see more details, head over to the [feed format docs](/docs/product-feeds/format)
+Our [image service](/docs/images) allows you to fetch product images in various sizes. You can either use these directly to display them on your website, or reupload them to your own service (_recommended_).
 
-#### Feed Rows
-
-Each of the rows of a feed represents a product variant. For example, if you have a product with 3 colors and 2 sizes, you'll have 6 rows. Each row will have the same `item_group_id` and `affiliate_item_group_id` but different `id` and `availability`. The `availability` column will be `in_stock` for the available variants and `out_of_stock` for the unavailable ones.
-
-To see more details, head over to the [feed format docs](/docs/product-feeds/format).
-
-### API
-
-Some quick notes on API
-
-### Product Collections
-
-Some quick notes on product collections
+> Find all information about our [image service](/docs/images).

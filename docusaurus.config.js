@@ -74,18 +74,38 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Getting Started',
+          },
+          {
+            type: 'doc',
+            docId: '/category/product-feeds',
+            position: 'left',
+            label: 'Product Feeds',
+          },
+          {
+            type: 'doc',
+            docId: 'api/index',
+            position: 'left',
+            label: 'API',
+          },
+          {
+            type: 'doc',
+            docId: 'images/index',
+            position: 'left',
+            label: 'Images',
           },
         ],
       },
       footer: {
         style: 'dark',
+      // No current need for footer containing the same navigation links as menu is fixed up top
+      /*
         links: [
           {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Getting Started',
                 to: '/docs/intro',
               },
               {
@@ -102,7 +122,7 @@ const config = {
               },
             ],
           }
-        ],
+        ], */
         copyright: `Copyright © ${new Date().getFullYear()} Shop Bonsai, Inc. Built with Docusaurus.`,
       },
       prism: {

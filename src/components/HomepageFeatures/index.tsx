@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
+import Link from '@docusaurus/Link';
 
 type FeatureItem = {
   title: string;
@@ -14,9 +15,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_spreadsheet_re_cn18.svg').default,
     description: (
       <>
-        Product Feeds are the main way to get products from Bonsai into your platform.
-        They are updated every 30 minutes and contain all the information you need to
-        sell products.
+        <Link to="/docs/category/product-feeds">Product Feeds</Link> are the primary way to get products from Bonsai into your platform. They are updated frequently and contain all the information you need to sell products.
       </>
     ),
   },
@@ -25,7 +24,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_programmer_re_owql.svg').default,
     description: (
       <>
-        The Bonsai API is a RESTful API that allows you to get up-to-date product information,
+        The <Link to="/docs/api">Bonsai API</Link> is a RESTful API that allows you to get up-to-date product information,
         generate checkout totals and place orders. It is the most flexible way to integrate with
         Bonsai.
       </>
@@ -36,8 +35,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require('@site/static/img/undraw_window_shopping_re_0kbm.svg').default,
     description: (
       <>
-        Images service allows you to fetch product images of various sizes. You can either display
-        them on your website or reupload them to your own CDN.
+        Our <Link to="/docs/images">image service</Link> allows you to fetch product images in various sizes. You can either use these directly to display them on your website, or reupload them to your own service.
       </>
     ),
   },
