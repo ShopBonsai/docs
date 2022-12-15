@@ -18,7 +18,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Bonsai Tutorial - 5min ⏱️
+            Getting Started
           </Link>
         </div>
       </div>
@@ -30,8 +30,7 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Documentation site on using Bonsai's products">
+      description="Documentation on using Bonsai's products">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
