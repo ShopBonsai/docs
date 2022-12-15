@@ -1,5 +1,5 @@
 {
-  "host": "api.staging.shopbonsai.ca/products",
+  "host": "api.shopbonsai.ca/products",
   "schemes": ["https"],
   "basePath": "/",
   "swagger": "2.0",
