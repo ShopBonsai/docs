@@ -65,13 +65,6 @@
             "required": true,
             "schema": { "$ref": "#/definitions/order Cart V1Input" }
           },
-          {
-            "in": "header",
-            "name": "Is-Test",
-            "required": false,
-            "type": "string",
-            "enum": ["snVkcxXoVy*FJbka6L9w"]
-          }
         ],
         "responses": {
           "200": {
@@ -102,7 +95,7 @@
           }
         },
         "summary": "Submit Orders",
-        "description": "Submits an order to Bonsai for processing. Use `Is-Test` header to submit test orders. Test orders will not be processed."
+        "description": "Submits an order to Bonsai for processing. Be careful as these orders will be processed unless Bonsai gets contacted to cancel!"
       }
     }
   },
