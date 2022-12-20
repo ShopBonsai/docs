@@ -77,6 +77,11 @@ const sidebars = {
     },
     {
       type: "doc",
+      id: "express-checkout/index",
+      label: "Express Checkout",
+    },
+    {
+      type: "doc",
       id: "images/index",
       label: "Images",
     },
