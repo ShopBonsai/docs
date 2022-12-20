@@ -84,3 +84,34 @@
   content: "head";
   background-color: var(--ifm-color-secondary-darkest);
 }
+
+.express-checkout-fields {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.express-checkout-fields .express-checkout-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.express-checkout-fields .express-checkout-field label {
+  min-width: 100px;
+}
+
+.express-checkout-fields input {
+  flex: 1;
+}
+
+.express-checkout-url-block {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.express-checkout-url-block span {
+  cursor: pointer;
+}

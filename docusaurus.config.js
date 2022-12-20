@@ -90,6 +90,12 @@ const config = {
           },
           {
             type: 'doc',
+            docId: 'express-checkout/index',
+            position: 'left',
+            label: 'Express Checkout',
+          },
+          {
+            type: 'doc',
             docId: 'images/index',
             position: 'left',
             label: 'Images',

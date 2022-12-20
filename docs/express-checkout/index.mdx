@@ -1,0 +1,26 @@
+---
+title: Express Checkout
+---
+
+## Description
+
+Bonsai Express Checkout is a service that allows customers to quickly and easily purchase a single product with configurable quantities through the company's custom user interface.
+
+To use the Express Checkout service, customers simply need to navigate to Express Checkout URL and select the desired quantity.
+
+The Express Checkout service requires that the `productId` and `variantId` of the product being purchased be passed as query parameters in the URL. These parameters are used to identify the specific product and variant that the customer is purchasing.
+
+## Example
+
+import { ExpressCheckoutUrl } from '@site/src/components/ExpressUrl'
+
+<ExpressCheckoutUrl />
+
+
+
+
+Once the Express Checkout process has been initiated, the customer will be redirected to the checkout page, where they can enter their payment and shipping information and complete their purchase.
+
+Overall, the Express Checkout service is a convenient and efficient way for customers to purchase a single product from Bonsai, and is an important part of the company's e-commerce offering.
+
+
