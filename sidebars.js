@@ -62,14 +62,34 @@ const sidebars = {
           },
           items: [
             {
-              type: "doc",
-              id: "api/orders/checkout-totals",
+              type: "category",
+              label: "Checkout Totals",
               className: "api-method post",
+              link: {
+                type: "doc",
+                id: "api/orders/checkout-totals"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "api/orders/checkout-error-responses",
+                },
+              ],
             },
             {
-              type: "doc",
-              id: "api/orders/submit-orders",
-              className:"api-method post",
+              type: "category",
+              label: "Submit Orders",
+              className: "api-method post",
+              link: {
+                type: "doc",
+                id: "api/orders/submit-orders"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "api/orders/orders-error-responses",
+                },
+              ],
             },
           ],
         },
