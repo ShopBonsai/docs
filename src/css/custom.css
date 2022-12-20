@@ -103,6 +103,7 @@
 
 .express-checkout-fields input {
   flex: 1;
+  margin-left: 8px;
 }
 
 .express-checkout-url-block {

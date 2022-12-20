@@ -6,50 +6,89 @@ import { CodeBlock } from '../CodeBlock';
 
 const CHECKOUT_URL = 'https://checkout.getbonsai.com';
 
-const getUrl = (productId: string, variantId: string): string =>
+const notEmpty = (s: string) => !pipe(s, isEmpty);
+const createCheckoutUrl = ([productId, variantId, accountId]: [string, string, string]) =>
+  `${CHECKOUT_URL}?bonsai=express/${productId}/${variantId}&bonsaiAccountId=${accountId}`;
+
+const getUrl = (maybeProductId?: string, maybeVariantId?: string, maybeApiKey?: string): string =>
   pipe(
-    productId,
-    O.fromPredicate((s) => !isEmpty(s)),
-    /* Construct URL only with product ID if not empty */
-    O.map((pid) => `${CHECKOUT_URL}?bonsai=express/${pid}`),
-    O.chain((urlWithProductId) =>
+    maybeProductId,
+    O.fromPredicate(notEmpty),
+    O.chain((productId) =>
       pipe(
-        variantId,
-        O.fromPredicate((s) => !isEmpty(s)),
-        /* Append variant ID to URL if not empty */
-        O.map((vid) => `${urlWithProductId}/${vid}`),
-        /* Use the above URL if both values are present,
-         * otherwise use URL with only product id. */
-        O.alt(() => O.some(urlWithProductId)),
+        maybeVariantId,
+        O.fromPredicate(notEmpty),
+        O.map((variantId) => [productId, variantId] as const),
       ),
     ),
+    O.chain(([productId, variantId]) =>
+      pipe(
+        maybeApiKey,
+        O.fromPredicate(notEmpty),
+        O.map((accountId) => [productId, variantId, accountId] as const),
+      ),
+    ),
+    O.map(createCheckoutUrl),
     O.getOrElse(() => ''),
   );
 
+type FieldProps = {
+  id: string;
+  label: string;
+  value: string;
+};
+type HandleChange = (event: React.ChangeEvent<HTMLInputElement>) => void;
+
+const Field = ({ id, label, value, handleChange }: FieldProps & { handleChange: HandleChange }) => (
+  <div className="express-checkout-field">
+    <label htmlFor={id}>{label}:</label>
+    <input type="text" name={id} value={value} onChange={handleChange} />
+  </div>
+);
+
 export const ExpressCheckoutUrl = () => {
-  const [{ productId, variantId }, setField] = React.useState({
+  const [{ productId, variantId, apiKey }, setField] = React.useState({
     productId: '',
     variantId: '',
+    apiKey: '',
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setField({ productId, variantId, [event.target.name]: event.target.value });
+  const handleChange: HandleChange = (event) => {
+    setField({ productId, variantId, apiKey, [event.target.name]: event.target.value });
   };
 
-  const url = getUrl(productId, variantId);
+  const url = getUrl(productId, variantId, apiKey);
+
+  const fields = [
+    {
+      id: 'productId',
+      label: 'Product ID',
+      value: productId,
+      required: true,
+    },
+
+    {
+      id: 'variantId',
+      label: 'Variant ID',
+      value: variantId,
+      required: true,
+    },
+    {
+      id: 'apiKey',
+      label: 'API Key',
+      value: apiKey,
+      required: true,
+    },
+  ];
+
+  const requiredFields = fields.filter(({ required }) => required);
 
   return (
     <form>
       <div className="express-checkout-fields">
-        <div className="express-checkout-field">
-          <label htmlFor="productId">Product ID:</label>
-          <input type="text" name="productId" value={productId} onChange={handleChange} />
-        </div>
-
-        <div className="express-checkout-field">
-          <label htmlFor="variantId">Variant ID:</label>
-          <input type="text" name="variantId" value={variantId} onChange={handleChange} />
-        </div>
+        {requiredFields.map(({ id, label, value }) => (
+          <Field key={id} id={id} label={label} value={value} handleChange={handleChange} />
+        ))}
       </div>
       <br />
       {url && <CodeBlock code={url} />}
