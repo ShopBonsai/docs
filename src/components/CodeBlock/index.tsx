@@ -26,10 +26,12 @@ export const CodeBlock = ({ code }: { code: string }) => {
   };
 
   return (
-    <pre className="express-checkout-url-block" ref={codeRef}>
-      {code}
+    <pre className="code-block" ref={codeRef}>
+      <span>{code}</span>
 
-      <span onClick={copyToClipboard}>{copied ? 'Copied!' : <CopyIcon />}</span>
+      <div className="copy" onClick={copyToClipboard}>
+        {copied ? 'Copied!' : <CopyIcon />}
+      </div>
     </pre>
   );
 };

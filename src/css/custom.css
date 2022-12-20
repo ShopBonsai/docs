@@ -106,13 +106,21 @@
   margin-left: 8px;
 }
 
-.express-checkout-url-block {
-  height: 64px;
+.code-block {
+  min-height: 64px;
+  white-space: pre-wrap;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
-.express-checkout-url-block span {
+.code-block span {
+  flex: 1;
+  max-width: 90%;
+}
+
+.code-block .copy {
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  width: 80px;
 }
