@@ -8,7 +8,8 @@ const CHECKOUT_URL = 'https://checkout.getbonsai.com';
 
 const notEmpty = (s: string) => !pipe(s, isEmpty);
 const createCheckoutUrl = ([productId, variantId, accountId]: [string, string, string]) =>
-  `${CHECKOUT_URL}?bonsai=express/${productId}/${variantId}&bonsaiAccountId=${accountId}`;
+  // TODO: Express Checkout expects at least 1 callback handler. Remove `onSuccess` once that is resolved
+  `${CHECKOUT_URL}?bonsai=express/${productId}/${variantId}&bonsaiAccountId=${accountId}&onSuccess=void`;
 
 const getUrl = (maybeProductId?: string, maybeVariantId?: string, maybeApiKey?: string): string =>
   pipe(
