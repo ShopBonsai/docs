@@ -26,4 +26,4 @@ Our [image service](/docs/images) allows you to fetch product images in various 
 
 ## Express Checkout
 
-Bonsai [Express Checkout](/docs/express-checkout) is a service that allows customers to quickly and easily purchase a single product with configurable quantities through the Bonsai custom user interface.
+[Express Checkout](/docs/express-checkout) is a service that allows customers to quickly and easily purchase **a single product** with configurable quantities through the Bonsai custom user interface.
