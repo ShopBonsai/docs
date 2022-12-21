@@ -46,3 +46,12 @@ Add a product link anywhere inside your `HTML`.
 :::info
 A product link is any `a` tag with `href` that contains query parameter `?bonsai=product_{ID}`
 :::
+
+### Programatically trigger PDP
+
+Alternatively, `PDP` can be open programatically by using exposed function `openBonsaiProduct` that's available as soon as the script loads.
+
+```typescript
+// Open PDP
+window.openBonsaiProduct("product-id");
+```
