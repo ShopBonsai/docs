@@ -1,13 +1,14 @@
 ---
 id: checkout-error-responses
+title: "Checkout Totals: Error Responses"
 sidebar_label: "Error Responses"
 hide_title: true
 ---
 ## Error Responses
 
 All error responses have HTTP status code `200`. The response body contains `errors` and `data` fields.
-The `errors` field contains an array of errors, and the `data` field contains the data that was sent
-in the request:
+The `errors` field contains an array of errors, and the `data` field contains `0`'s as totals and
+the data that was sent in the request:
 
 <details>
   <summary>Error response example</summary>
@@ -152,11 +153,34 @@ one error will be returned.
 }
 ```
 
+### `INVALID_INPUT`
 
-<!-- | Reason | Code | Error Example |
-|--------|------|---------------|
-| Merchant does not ship to country | INTERNATIONAL_SHIPPING_ERROR |
-| Product not found | PRODUCT_DOES_NOT_EXIST |
-| Variant not found | PRODUCT_UNAVAILABLE |
-| Fields are missing from the request | INVALID_INPUT |
-| Couldn't calculate taxes or duties for the given address | TAXES_OR_DUTIES_ERROR | -->
+| Code | Reason |
+|------|--------|
+| `INVALID_INPUT` | Required fields are missing from the request body |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "INVALID_INPUT",
+  "title": "Invalid input provided",
+  "detail": [
+    {
+      "message": "\"quantity\" is required",
+      "path": [
+        "products",
+        0,
+        "quantity"
+      ],
+      "type": "any.required",
+      "context": {
+        "key": "quantity",
+        "label": "quantity"
+      }
+    }
+  ]
+}
+```
