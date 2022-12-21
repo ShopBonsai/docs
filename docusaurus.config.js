@@ -90,15 +90,21 @@ const config = {
           },
           {
             type: 'doc',
+            docId: 'images/index',
+            position: 'left',
+            label: 'Images',
+          },
+          {
+            type: 'doc',
             docId: 'express-checkout/index',
             position: 'left',
             label: 'Express Checkout',
           },
           {
             type: 'doc',
-            docId: 'images/index',
+            docId: 'native-commerce/index',
             position: 'left',
-            label: 'Images',
+            label: 'Native Commerce',
           },
         ],
       },
