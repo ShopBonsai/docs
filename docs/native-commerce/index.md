@@ -16,23 +16,16 @@ Native Commerce works by detecting all anchor tags that contain links to Bonsai 
 
 ### Add Native Commerce scripts to your webpage
 
-- `CSS` script
-
 ```html
 <head>
-  ...
-  <link href="TODO/index.css" rel="stylesheet" type="text/css" />
-  ...
+  <link
+    href="https://natcommx.shopbonsai.ca/bonsai/index.f3d6b63a.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <script type="module" src="https://natcommx.shopbonsai.ca/bonsai/index.89f17aff.js"></script>
+  <script type="module" src="https://natcommx.shopbonsai.ca/bonsai/index.ee37ef32.js"></script>
 </head>
-```
-
-- `JS` script
-
-```html
-<body>
-  ...
-  <script async defer src="TODO/index.js">
-</body>
 ```
 
 ### Create a product link
@@ -53,5 +46,5 @@ Alternatively, `PDP` can be open programatically by using exposed function `open
 
 ```typescript
 // Open PDP
-window.openBonsaiProduct("product-id");
+window.openBonsaiProduct('product-id');
 ```
