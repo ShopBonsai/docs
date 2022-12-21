@@ -133,6 +133,31 @@ one error will be returned.
   "status": 400,
   "code": "INTERNATIONAL_SHIPPING_ERROR",
   "title": "The merchant does not provide international shipping",
+  "detail": [
+    {
+      "publicId": "clbj0i7w4041d01z60hv53mcm",
+      "variantId": "13833901"
+    }
+  ]
+}
+```
+
+### `PROVINCE_UNRECOGNIZED`
+
+| Code | Reason |
+|------|--------|
+| `PROVINCE_UNRECOGNIZED` | Province/state for the given country not found |
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 404,
+  "code": "PROVINCE_UNRECOGNIZED",
+  "title": "The province not recognized.",
+  "detail": {
+    "countryCode": "US",
+    "province": "WE"
+  }
 }
 ```
 
@@ -150,6 +175,25 @@ one error will be returned.
   "status": 400,
   "code": "TAXES_OR_DUTIES_ERROR",
   "title": "There was an error calculating taxes or duties",
+  "detail": "FetchError: invalid json response body at https://rest.avatax.com/api/v2/transactions/create reason: Unexpected token < in JSON at position 0"
+}
+```
+
+### `TAX_ERROR`
+
+| Code | Reason |
+|------|--------|
+| `TAX_ERROR` | Could not calculate taxes |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "TAX_ERROR",
+  "title": "Tax calculation cannot be determined. Zip is not valid for the state.",
+  "detail": "Tax calculation cannot be determined. Zip is not valid for the state.",
 }
 ```
 
