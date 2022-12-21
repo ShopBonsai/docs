@@ -5,13 +5,61 @@ hide_title: true
 ---
 ## Error Responses
 
-Errors are returned with status code 200, containing the error inside the errors array. This is in order to allow greater interoperability with integrators.
+All error responses have HTTP status code `200`. The response body contains `errors` and `data` fields.
+The `errors` field contains an array of errors, and the `data` field contains the data that was sent
+in the request:
 
-### PRODUCT_UNAVAILABLE
+<details>
+  <summary>Error response example</summary>
+  <div>
 
-| Reason | Code | HTTP Code |
-|--------|------|-----------|
-| Merchant does not ship to country | INTERNATIONAL_SHIPPING_ERROR | 400 Bad Request |
+  ```json
+  {
+    "data": {
+      "subtotal": 0,
+      "tax": 0,
+      "shipping": [],
+      "total": 0,
+      "duties": 0,
+      "line_items": [
+        {
+          "public_id": "clad6pg5z00eaw012gfz7hfm92",
+          "variant_id": "M00679529706740",
+          "inventory": 0,
+          "price": 0,
+          "quantity": 1,
+          "name": ""
+        }
+      ],
+      "currency": "USD",
+      "shipping_total": 0
+    },
+    "errors": [
+      {
+        "id": "a32b6540-80cb-11ed-9719-0bf8a5afe259",
+        "status": 404,
+        "code": "PRODUCT_DOES_NOT_EXIST",
+        "title": "Product does not exist",
+        "detail": {
+          "publicId": "clad6pg5z00eaw012gfz7hfm92",
+          "variantId": "M00679529706740"
+        }
+      }
+    ]
+  }
+  ```
+
+  </div>
+</details>
+
+We will return multiple errors if multiple errors are encountered. However, most of the time, only
+one error will be returned.
+
+### `PRODUCT_UNAVAILABLE`
+
+| Code | Reason |
+|------|--------|
+| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale |
 
 #### Example
 
@@ -28,11 +76,11 @@ Errors are returned with status code 200, containing the error inside the errors
 }
 ```
 
-### PRODUCT_DOES_NOT_EXIST
+### `PRODUCT_DOES_NOT_EXIST`
 
-| Reason | Code | HTTP Code |
-|--------|------|-----------|
-| Product not found | PRODUCT_DOES_NOT_EXIST | 404 Not Found |
+| Code | Reason |
+|------|--------|
+| `PRODUCT_DOES_NOT_EXIST` | Product not found |
 
 #### Example
 
@@ -49,11 +97,11 @@ Errors are returned with status code 200, containing the error inside the errors
 }
 ```
 
-### VARIANT_DOES_NOT_EXIST
+### `VARIANT_DOES_NOT_EXIST`
 
-| Reason | Code | HTTP Code |
-|--------|------|-----------|
-| Variant not found | VARIANT_DOES_NOT_EXIST | 404 Not Found |
+| Code | Reason |
+|------|--------|
+| `VARIANT_DOES_NOT_EXIST` | Variant not found |
 
 #### Example
 
@@ -70,11 +118,11 @@ Errors are returned with status code 200, containing the error inside the errors
 }
 ```
 
-### INTERNATIONAL_SHIPPING_ERROR
+### `INTERNATIONAL_SHIPPING_ERROR`
 
-| Reason | Code | HTTP Code |
-|--------|------|-----------|
-| Merchant does not ship to country | PRODUCT_DOES_NOT_EXIST | 400 Bad Request |
+| Code | Reason |
+|------|--------|
+| `INTERNATIONAL_SHIPPING_ERROR` | Merchant does not ship to country |
 
 #### Example
 
@@ -87,11 +135,11 @@ Errors are returned with status code 200, containing the error inside the errors
 }
 ```
 
-### TAXES_OR_DUTIES_ERROR
+### `TAXES_OR_DUTIES_ERROR`
 
-| Reason | Code | HTTP Code |
-|--------|------|-----------|
-| Product not found | PRODUCT_DOES_NOT_EXIST | 400 Bad Request |
+| Code | Reason |
+|------|--------|
+| `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address |
 
 #### Example
 
