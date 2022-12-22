@@ -6,6 +6,71 @@ hide_title: true
 ---
 ## Error Responses
 
+### `INSUFFICIENT_INVENTORY`
+
+| Code | Reason |
+|------|--------|
+| `INSUFFICIENT_INVENTORY` | Insufficient inventory for the requested quantity |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "INSUFFICIENT_INVENTORY",
+  "title": "Not enough inventory",
+  "detail": {
+    "productId": "clbj0i7w4041d01z60hv53mcm",
+    "variantId": "13833901"
+  }
+}
+```
+
+### `PAYMENT_REQUIRED`
+
+| Code | Reason |
+|------|--------|
+| `PAYMENT_REQUIRED` | Valid payment is required |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 402,
+  "code": "PAYMENT_REQUIRED",
+  "title": "Payment is required for this order",
+  "detail": {
+    "message": "Your card was declined."
+  }
+}
+```
+
+:::info
+If you're using Stripe as payment method, please refer to [Stripe docs](https://stripe.com/docs/error-codes) for possible Stripe error codes.
+:::
+
+### `PAYMENT_METHOD_NOT_SUPPORTED`
+
+| Code | Reason |
+|------|--------|
+| `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PAYMENT_METHOD_NOT_SUPPORTED",
+  "title": "The selected payment method is not supported for this order type",
+  "detail": {
+    "paymentMethod": "afterpay"
+  }
+}
+```
+
 ### `INTERNATIONAL_SHIPPING_ERROR`
 
 | Code | Reason |
@@ -103,18 +168,3 @@ hide_title: true
   ]
 }
 ```
-
-<!-- Errors are returned with status code 200, containing the error inside the errors array. This is in order to allow greater interoperability with integrators.
-
-| Reason | Code | HTTP Code |
-|--------|------|-----------|
-| Fields are missing from the request | INVALID_INPUT | 400 Bad Request |
-| Not enough inventory | INSUFFICIENT_INVENTORY | 400 Bad Request |
-| Merchant does not ship to country | INTERNATIONAL_SHIPPING_ERROR | 400 Bad Request |
-| Product does not exist | PRODUCT_DOES_NOT_EXIST | 404 Not Found |
-| Variant does not exist | VARIANT_DOES_NOT_EXIST | 404 Not Found |
-| Failed to verify the provided token | PAYMENT_REQUIRED | 402 Payment Required | -->
-
-:::info
-If you're using Stripe as payment provider, please refer to https://stripe.com/docs/error-codes for possible Stripe error codes.
-:::
