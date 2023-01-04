@@ -136,7 +136,6 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-
 ### `INVALID_INPUT`
 
 | Code | Reason |
@@ -166,5 +165,108 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
       }
     }
   ]
+}
+```
+
+### `PAYMENT_AMOUNTS_NOT_PROVIDED`
+
+| Code | Reason |
+|------|--------|
+| `PAYMENT_AMOUNTS_NOT_PROVIDED` | Payment amounts are not provided when using `external payment` as payment method |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PAYMENT_AMOUNTS_NOT_PROVIDED",
+  "title": "Payment amounts not provided"
+}
+```
+
+### `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT`
+
+| Code | Reason |
+|------|--------|
+| `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT` | Account does not support external payment |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT",
+  "title": "Account does not support external payment"
+}
+```
+
+### `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET`
+
+| Code | Reason |
+|------|--------|
+| `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET` | External payment type is not implemented for the account yet |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 402,
+  "code": "EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET",
+  "title": "External payment not implemented yet",
+  "detail": {
+    "token": "<redacted>",
+    "externalPaymentType": "api"
+  }
+}
+```
+
+### `EXTERNAL_PAYMENT_UNKNOWN_ERROR`
+
+| Code | Reason |
+|------|--------|
+| `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "EXTERNAL_PAYMENT_UNKNOWN_ERROR",
+  "title": "Unknown error while validating external payment",
+  "detail": {
+    "externalPaymentConfig": {
+      "api": {
+        "skipValidation": false,
+        "type": "apiKey",
+        "apiKey": "<redacted>",
+        "method": "<redacted>"
+      }
+    },
+    "token": "<redacted>"
+  }
+}
+```
+
+### `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED`
+
+| Code | Reason |
+|------|--------|
+| `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 402,
+  "code": "EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED",
+  "title": "External payment token validation failed",
+  "detail": {
+    "token": "<redacted>"
+  }
 }
 ```
