@@ -370,3 +370,185 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
   "title": "No payment was transferred to the merchant",
 }
 ```
+
+### `REQUEST_SOURCE_UNRECOGNIZED`
+
+| Code | Reason |
+|------|--------|
+| `REQUEST_SOURCE_UNRECOGNIZED` | The account source is not recognized because it was setup incorrectly |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "REQUEST_SOURCE_UNRECOGNIZED",
+  "title": "The account source is not recognized"
+}
+```
+
+### `MISSING_SHIPPING`
+
+| Code | Reason |
+|------|--------|
+| `MISSING_SHIPPING` | No shipping address was provided |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "MISSING_SHIPPING",
+  "title": "No shipping address was provided"
+}
+```
+
+### `STRIPE_ERROR`
+
+| Code | Reason |
+|------|--------|
+| `STRIPE_ERROR` | An error occurred while communicating with Stripe |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 500,
+  "code": "STRIPE_ERROR",
+  "title": "Error during a Stripe operation",
+  "detail": {
+    "stripeToken": "<redacted>",
+    "customer": {
+      "email": "qa@shopbonsai.ca",
+      "first_name": "Eddy",
+      "last_name": "Bonsai"
+    },
+    "message": "Your card was declined."
+  }
+}
+```
+
+### `PAYMENT_METHOD_NOT_SUPPORTED`
+
+| Code | Reason |
+|------|--------|
+| `PAYMENT_METHOD_NOT_SUPPORTED` | The selected payment method is not supported |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PAYMENT_METHOD_NOT_SUPPORTED",
+  "title": "The selected payment method is not supported",
+  "detail": {
+    "paymentMethod": "non-existent-payment-method"
+  }
+}
+```
+
+### `PAYMENT_REQUIRED`
+
+| Code | Reason |
+|------|--------|
+| `PAYMENT_REQUIRED` | The payment is required to complete the order |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PAYMENT_REQUIRED",
+  "title": "Payment is required for this order"
+}
+```
+
+### `OUT_OF_STOCK`
+
+| Code | Reason |
+|------|--------|
+| `OUT_OF_STOCK` | The product is out of stock |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "OUT_OF_STOCK",
+  "title": "The product is out of stock",
+  "detail": {
+    "public_id": "clbj0i7w4041d01z60hv53mcm",
+    "variant_id": "13833901"
+  }
+}
+```
+
+### `TAX_ERROR`
+
+| Code | Reason |
+|------|--------|
+| `TAX_ERROR` | An error occurred while communicating with Avalara |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "TAX_ERROR",
+  "title": "Error during a tax calculation",
+  "detail": {
+    "message": "Company not found.",
+    "code": "EntityNotFoundError",
+    "number": 4,
+    "description": "The Company with code 'ABC' was not found.",
+    "faultCode": "Client",
+    "helpLink": "https://developer.avalara.com/avatax/errors/EntityNotFoundError",
+    "severity": "Error"
+  }
+}
+```
+
+### `TAXES_OR_DUTIES_ERROR`
+
+| Code | Reason |
+|------|--------|
+| `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "TAXES_OR_DUTIES_ERROR",
+  "title": "There was an error calculating taxes or duties",
+  "detail": "FetchError: invalid json response body at https://rest.avatax.com/api/v2/transactions/create reason: Unexpected token < in JSON at position 0"
+}
+```
+
+### `PROVINCE_NOT_FOUND`
+
+| Code | Reason |
+|------|--------|
+| `PROVINCE_NOT_FOUND` | The province was not found |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 404,
+  "code": "PROVINCE_NOT_FOUND",
+  "title": "Could not find delivery province",
+  "detail": {
+    "province": "non-existent-province"
+  }
+}
+```
