@@ -100,6 +100,16 @@ const sidebars = {
       id: "images/index",
       label: "Images",
     },
+    {
+      type: "doc",
+      id: "express-checkout/index",
+      label: "Express Checkout",
+    },
+    {
+      type: "doc",
+      id: "native-commerce/index",
+      label: "Native Commerce",
+    },
   ],
 };
 

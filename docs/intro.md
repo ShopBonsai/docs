@@ -23,3 +23,7 @@ The [Bonsai API](/docs/api) is a RESTful API that allows you to get up-to-date p
 Our [image service](/docs/images) allows you to fetch product images in various sizes. You can either use these directly to display them on your website, or reupload them to your own service (_recommended_).
 
 > Find all information about our [image service](/docs/images).
+
+## Express Checkout
+
+[Express Checkout](/docs/express-checkout) is a service that allows customers to quickly and easily purchase **a single product** with configurable quantities through the Bonsai custom user interface.
