@@ -270,3 +270,103 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
   }
 }
 ```
+
+### `MERCHANT_NOT_FOUND`
+
+| Code | Reason |
+|------|--------|
+| `MERCHANT_NOT_FOUND` | Could not find merchant with that id from supported integration types |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 404,
+  "code": "MERCHANT_NOT_FOUND",
+  "title": "Could not find merchant with that id from supported integration types",
+  "detail": {
+    "_id": "632f1a217f7aad1048d141d6"
+  }
+}
+```
+
+### `PRODUCTS_PRICE_CHANGE`
+
+| Code | Reason |
+|------|--------|
+| `PRODUCTS_PRICE_CHANGE` | The price of one of the products has changed since the last time it was fetched |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PRODUCTS_PRICE_CHANGE",
+  "title": "The price of one of the products has changed",
+  "detail": {
+    "publicId": "clbj0i7w4041d01z60hv53mcm",
+    "variantId": "13833901"
+  }
+}
+```
+
+### `PRODUCTS_PRICE_INVALID`
+
+| Code | Reason |
+|------|--------|
+| `PRODUCTS_PRICE_INVALID` | The price of one of the products is `<= 0` |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PRODUCTS_PRICE_CHANGE",
+  "title": "The price of one of the products has changed",
+  "detail": {
+    "publicId": "clbj0i7w4041d01z60hv53mcm",
+    "variantId": "13833901"
+  }
+}
+```
+
+### `PRODUCT_UNAVAILABLE`
+
+| Code | Reason |
+|------|--------|
+| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 400,
+  "code": "PRODUCT_UNAVAILABLE",
+  "title": "The product requested is no longer available",
+  "detail": {
+    "publicId": "clbj0i7w4041d01z60hv53mcm",
+    "variantId": "13833901"
+  }
+}
+```
+
+### `MERCHANT_PAYMENT_MISSING`
+
+| Code | Reason |
+|------|--------|
+| `MERCHANT_PAYMENT_MISSING` | No payment was transferred to the merchant when using standard payment method |
+
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 404,
+  "code": "MERCHANT_PAYMENT_MISSING",
+  "title": "No payment was transferred to the merchant",
+}
+```
