@@ -6,6 +6,36 @@ hide_title: true
 ---
 ## Error Responses
 
+All error responses have HTTP status code `4xx` or `5xx`. The response body contains `errors` field.
+The `errors` field contains an array of errors:
+
+<details>
+  <summary>Error response example</summary>
+  <div>
+
+  ```json
+  {
+    "errors": [
+      {
+        "id": "5d094f10-8caf-11ed-83bd-2bcc14ba6c4e",
+        "status": 400,
+        "code": "INSUFFICIENT_INVENTORY",
+        "title": "Not enough inventory",
+        "detail": {
+          "productId": "clbj0i7w4041d01z60hv53mcm",
+          "variantId": "13833901"
+        }
+      }
+    ]
+  }
+  ```
+
+  </div>
+</details>
+
+We will return multiple errors if multiple errors are encountered. However, most of the time, only
+one error will be returned.
+
 ### `INSUFFICIENT_INVENTORY`
 
 | Code | Reason |
