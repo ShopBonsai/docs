@@ -6,7 +6,7 @@
   "info": {
     "title": "Orders API",
     "description": "APIs used for interacting with orders.",
-    "version": "1.21.41",
+    "version": "1.23.1",
     "contact": { "email": "developers@shopbonsai.ca" }
   },
   "paths": {
@@ -64,7 +64,7 @@
             "name": "order Cart V1Input",
             "required": true,
             "schema": { "$ref": "#/definitions/order Cart V1Input" }
-          },
+          }
         ],
         "responses": {
           "200": {
@@ -669,6 +669,11 @@
               "type": "string",
               "description": "Stripe token for the payment",
               "example": "tok_us"
+            },
+            "currency": {
+              "type": "string",
+              "enum": ["CAD", "USD", "GBP", "AUD"],
+              "description": "ISO currency code for the currency that customer payment was taken in."
             },
             "amounts": {
               "type": "object",
