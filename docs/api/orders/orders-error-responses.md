@@ -3,8 +3,9 @@ id: orders-error-responses
 title: "Submit Orders: Error Responses"
 sidebar_label: "Error Responses"
 hide_title: true
+toc_max_heading_level: 2
 ---
-## Error Responses
+# Error Responses
 
 All error responses have HTTP status code `4xx` or `5xx`. The response body contains `errors` field.
 The `errors` field contains an array of errors:
@@ -36,13 +37,13 @@ The `errors` field contains an array of errors:
 We will return multiple errors if multiple errors are encountered. However, most of the time, only
 one error will be returned.
 
-### `INSUFFICIENT_INVENTORY`
+## `INSUFFICIENT_INVENTORY`
 
 | Code | Reason |
 |------|--------|
 | `INSUFFICIENT_INVENTORY` | Insufficient inventory for the requested quantity |
 
-#### Example
+### Example
 
 ```json
 {
@@ -57,13 +58,13 @@ one error will be returned.
 }
 ```
 
-### `OUT_OF_STOCK`
+## `OUT_OF_STOCK`
 
 | Code | Reason |
 |------|--------|
 | `OUT_OF_STOCK` | The product is out of stock |
 
-#### Example
+### Example
 
 ```json
 {
@@ -78,13 +79,13 @@ one error will be returned.
 }
 ```
 
-### `PAYMENT_REQUIRED`
+## `PAYMENT_REQUIRED`
 
 | Code | Reason |
 |------|--------|
 | `PAYMENT_REQUIRED` | Valid payment is required |
 
-#### Example
+### Example
 
 ```json
 {
@@ -102,13 +103,13 @@ one error will be returned.
 If you're using Stripe as payment method, please refer to [Stripe docs](https://stripe.com/docs/error-codes) for possible Stripe error codes.
 :::
 
-### `PAYMENT_METHOD_NOT_SUPPORTED`
+## `PAYMENT_METHOD_NOT_SUPPORTED`
 
 | Code | Reason |
 |------|--------|
 | `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products |
 
-#### Example
+### Example
 
 ```json
 {
@@ -122,13 +123,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `STRIPE_ERROR`
+## `STRIPE_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `STRIPE_ERROR` | An error occurred while communicating with Stripe |
 
-#### Example
+### Example
 
 ```json
 {
@@ -148,13 +149,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `PROVINCE_NOT_FOUND`
+## `PROVINCE_NOT_FOUND`
 
 | Code | Reason |
 |------|--------|
 | `PROVINCE_NOT_FOUND` | The province was not found |
 
-#### Example
+### Example
 
 ```json
 {
@@ -168,13 +169,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `INTERNATIONAL_SHIPPING_ERROR`
+## `INTERNATIONAL_SHIPPING_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `INTERNATIONAL_SHIPPING_ERROR` | Merchant does not ship to country |
 
-#### Example
+### Example
 
 ```json
 {
@@ -191,13 +192,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `PRODUCT_DOES_NOT_EXIST`
+## `PRODUCT_DOES_NOT_EXIST`
 
 | Code | Reason |
 |------|--------|
 | `PRODUCT_DOES_NOT_EXIST` | Product not found |
 
-#### Example
+### Example
 
 ```json
 {
@@ -212,13 +213,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `VARIANT_DOES_NOT_EXIST`
+## `VARIANT_DOES_NOT_EXIST`
 
 | Code | Reason |
 |------|--------|
 | `VARIANT_DOES_NOT_EXIST` | Variant not found |
 
-#### Example
+### Example
 
 ```json
 {
@@ -233,13 +234,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `PRODUCTS_PRICE_CHANGE`
+## `PRODUCTS_PRICE_CHANGE`
 
 | Code | Reason |
 |------|--------|
 | `PRODUCTS_PRICE_CHANGE` | The price of one of the products has changed since the last time it was fetched |
 
-#### Example
+### Example
 
 ```json
 {
@@ -254,13 +255,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `PRODUCTS_PRICE_INVALID`
+## `PRODUCTS_PRICE_INVALID`
 
 | Code | Reason |
 |------|--------|
 | `PRODUCTS_PRICE_INVALID` | The price of one of the products is `<= 0` |
 
-#### Example
+### Example
 
 ```json
 {
@@ -275,13 +276,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `PRODUCT_UNAVAILABLE`
+## `PRODUCT_UNAVAILABLE`
 
 | Code | Reason |
 |------|--------|
 | `PRODUCT_UNAVAILABLE` | Product is no longer available for sale |
 
-#### Example
+### Example
 
 ```json
 {
@@ -296,13 +297,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `MERCHANT_NOT_FOUND`
+## `MERCHANT_NOT_FOUND`
 
 | Code | Reason |
 |------|--------|
 | `MERCHANT_NOT_FOUND` | Could not find merchant with that id from supported integration types |
 
-#### Example
+### Example
 
 ```json
 {
@@ -316,13 +317,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `INVALID_INPUT`
+## `INVALID_INPUT`
 
 | Code | Reason |
 |------|--------|
 | `INVALID_INPUT` | Required fields are missing from the request body |
 
-#### Example
+### Example
 
 ```json
 {
@@ -348,13 +349,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `PAYMENT_AMOUNTS_NOT_PROVIDED`
+## `PAYMENT_AMOUNTS_NOT_PROVIDED`
 
 | Code | Reason |
 |------|--------|
 | `PAYMENT_AMOUNTS_NOT_PROVIDED` | Payment amounts are not provided when using `external payment` as payment method |
 
-#### Example
+### Example
 
 ```json
 {
@@ -365,13 +366,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT`
+## `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT`
 
 | Code | Reason |
 |------|--------|
 | `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT` | Account does not support external payment |
 
-#### Example
+### Example
 
 ```json
 {
@@ -382,13 +383,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET`
+## `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET`
 
 | Code | Reason |
 |------|--------|
 | `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET` | External payment type is not implemented for the account yet |
 
-#### Example
+### Example
 
 ```json
 {
@@ -403,13 +404,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `EXTERNAL_PAYMENT_UNKNOWN_ERROR`
+## `EXTERNAL_PAYMENT_UNKNOWN_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment |
 
-#### Example
+### Example
 
 ```json
 {
@@ -431,13 +432,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED`
+## `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED`
 
 | Code | Reason |
 |------|--------|
 | `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed |
 
-#### Example
+### Example
 
 ```json
 {
@@ -451,13 +452,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `MERCHANT_PAYMENT_MISSING`
+## `MERCHANT_PAYMENT_MISSING`
 
 | Code | Reason |
 |------|--------|
 | `MERCHANT_PAYMENT_MISSING` | No payment was transferred to the merchant when using standard payment method |
 
-#### Example
+### Example
 
 ```json
 {
@@ -468,13 +469,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `REQUEST_SOURCE_UNRECOGNIZED`
+## `REQUEST_SOURCE_UNRECOGNIZED`
 
 | Code | Reason |
 |------|--------|
 | `REQUEST_SOURCE_UNRECOGNIZED` | The account source is not recognized because it was setup incorrectly |
 
-#### Example
+### Example
 
 ```json
 {
@@ -485,13 +486,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `MISSING_SHIPPING`
+## `MISSING_SHIPPING`
 
 | Code | Reason |
 |------|--------|
 | `MISSING_SHIPPING` | No shipping address was provided |
 
-#### Example
+### Example
 
 ```json
 {
@@ -502,13 +503,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `TAX_ERROR`
+## `TAX_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `TAX_ERROR` | An error occurred while communicating with Avalara |
 
-#### Example
+### Example
 
 ```json
 {
@@ -528,13 +529,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-### `TAXES_OR_DUTIES_ERROR`
+## `TAXES_OR_DUTIES_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address |
 
-#### Example
+### Example
 
 ```json
 {

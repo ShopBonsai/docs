@@ -124,3 +124,20 @@
   justify-content: flex-end;
   width: 80px;
 }
+
+.docItemContainer_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiItem-Layout-styles-module h2:first-child {
+  --ifm-h2-font-size: 3rem;
+  margin-top: 0px;
+}
+
+.markdown h1:first-child, .docItemContainer_node_modules-docusaurus-theme-openapi-docs-lib-next-theme-ApiItem-Layout-styles-module h2:first-child {
+  margin-bottom: calc(var(--ifm-h1-vertical-rhythm-bottom)*var(--ifm-leading));
+}
+
+.markdown h2 {
+  margin-top: calc(var(--ifm-h2-vertical-rhythm-top)*var(--ifm-leading));
+}
+
+.markdown h3 {
+  margin-top: calc(var(--ifm-h3-vertical-rhythm-top)*var(--ifm-leading));
+}

@@ -3,8 +3,9 @@ id: checkout-error-responses
 title: "Checkout Totals: Error Responses"
 sidebar_label: "Error Responses"
 hide_title: true
+toc_max_heading_level: 2
 ---
-## Error Responses
+# Error Responses
 
 All error responses have HTTP status code `200`. The response body contains `errors` and `data` fields.
 The `errors` field contains an array of errors, and the `data` field contains `0`'s as totals and
@@ -56,13 +57,13 @@ the data that was sent in the request:
 We will return multiple errors if multiple errors are encountered. However, most of the time, only
 one error will be returned.
 
-### `PRODUCT_UNAVAILABLE`
+## `PRODUCT_UNAVAILABLE`
 
 | Code | Reason |
 |------|--------|
 | `PRODUCT_UNAVAILABLE` | Product is no longer available for sale |
 
-#### Example
+### Example
 
 ```json
 {
@@ -77,13 +78,13 @@ one error will be returned.
 }
 ```
 
-### `PRODUCT_DOES_NOT_EXIST`
+## `PRODUCT_DOES_NOT_EXIST`
 
 | Code | Reason |
 |------|--------|
 | `PRODUCT_DOES_NOT_EXIST` | Product not found |
 
-#### Example
+### Example
 
 ```json
 {
@@ -98,13 +99,13 @@ one error will be returned.
 }
 ```
 
-### `VARIANT_DOES_NOT_EXIST`
+## `VARIANT_DOES_NOT_EXIST`
 
 | Code | Reason |
 |------|--------|
 | `VARIANT_DOES_NOT_EXIST` | Variant not found |
 
-#### Example
+### Example
 
 ```json
 {
@@ -119,13 +120,13 @@ one error will be returned.
 }
 ```
 
-### `INTERNATIONAL_SHIPPING_ERROR`
+## `INTERNATIONAL_SHIPPING_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `INTERNATIONAL_SHIPPING_ERROR` | Merchant does not ship to country |
 
-#### Example
+### Example
 
 ```json
 {
@@ -142,11 +143,13 @@ one error will be returned.
 }
 ```
 
-### `PROVINCE_UNRECOGNIZED`
+## `PROVINCE_UNRECOGNIZED`
 
 | Code | Reason |
 |------|--------|
 | `PROVINCE_UNRECOGNIZED` | Province/state for the given country not found |
+
+### Example
 
 ```json
 {
@@ -161,13 +164,13 @@ one error will be returned.
 }
 ```
 
-### `TAXES_OR_DUTIES_ERROR`
+## `TAXES_OR_DUTIES_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address |
 
-#### Example
+### Example
 
 ```json
 {
@@ -179,13 +182,13 @@ one error will be returned.
 }
 ```
 
-### `TAX_ERROR`
+## `TAX_ERROR`
 
 | Code | Reason |
 |------|--------|
 | `TAX_ERROR` | Could not calculate taxes |
 
-#### Example
+### Example
 
 ```json
 {
@@ -197,13 +200,13 @@ one error will be returned.
 }
 ```
 
-### `INVALID_INPUT`
+## `INVALID_INPUT`
 
 | Code | Reason |
 |------|--------|
 | `INVALID_INPUT` | Required fields are missing from the request body |
 
-#### Example
+### Example
 
 ```json
 {
