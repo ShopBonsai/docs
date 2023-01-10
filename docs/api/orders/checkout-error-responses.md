@@ -7,9 +7,8 @@ toc_max_heading_level: 2
 ---
 # Error Responses
 
-All error responses have HTTP status code `200`. The response body contains `errors` and `data` fields.
-The `errors` field contains an array of errors, and the `data` field contains `0`'s as totals and
-the data that was sent in the request:
+All responses have HTTP status code `200`. The response body contains `errors` and `data` fields.
+The `errors` field contains an array of errors, and the `data` field contains `0`'s for line items causing errors. All line items in the request are included in the response with summary calculations for items that do not have errors.
 
 <details>
   <summary>Error response example</summary>
