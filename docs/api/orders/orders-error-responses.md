@@ -99,10 +99,6 @@ one error will be returned.
 }
 ```
 
-:::info
-If you're using Stripe as payment method, please refer to [Stripe docs](https://stripe.com/docs/error-codes) for possible Stripe error codes.
-:::
-
 ## `PAYMENT_METHOD_NOT_SUPPORTED`
 
 | Code | Reason |
@@ -134,20 +130,23 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 ```json
 {
   "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 500,
+  "status": 402,
   "code": "STRIPE_ERROR",
-  "title": "Error during a Stripe operation",
+  "title": "Your card has insufficient funds.",
   "detail": {
-    "stripeToken": "<redacted>",
+    "stripeToken": "tok_visa_chargeDeclinedInsufficientFunds",
     "customer": {
-      "email": "qa@shopbonsai.ca",
-      "first_name": "Eddy",
-      "last_name": "Bonsai"
-    },
-    "message": "Your card was declined."
+      "first_name": "Haytham",
+      "last_name": "Labrini",
+      "email": "qa@shopbonsai.ca"
+    }
   }
 }
 ```
+
+:::info
+If you're using Stripe as payment method, please refer to [Stripe docs](https://stripe.com/docs/error-codes) for possible Stripe error codes.
+:::
 
 ## `PROVINCE_NOT_FOUND`
 
