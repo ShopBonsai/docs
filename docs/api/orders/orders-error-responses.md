@@ -456,7 +456,7 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 
 | Code | Reason |
 |------|--------|
-| `MERCHANT_PAYMENT_MISSING` | No payment was transferred to the merchant when using standard payment method |
+| `MERCHANT_PAYMENT_MISSING` | No payment was transferred to the **Shopify** merchant when using standard payment method |
 
 ### Example
 
