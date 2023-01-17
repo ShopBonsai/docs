@@ -110,6 +110,11 @@ const sidebars = {
       id: "native-commerce/index",
       label: "Native Commerce",
     },
+    {
+      type: "doc",
+      id: "inventory-validation/index",
+      label: "Inventory Validation",
+    },
   ],
 };
 
