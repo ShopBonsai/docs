@@ -41,3 +41,5 @@ Here's how the checkout flow looks in this case:
 
 ## Checkout flow diagram
 ![Inventory validation flow diagram](./inventory-validation-flow-diagram.jpg)
+
+[comment]: # (Edit diagram https://miro.com/app/board/uXjVPxSArFY=/)
