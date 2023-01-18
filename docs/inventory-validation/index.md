@@ -8,8 +8,8 @@ This page contains information about product inventory validation.
 This feature provides live inventory checks to increase order success rate when product information gets outdated.
 
 ## Who is this for
-We currently only support inventory validation for some of our merchants. 
-Verify with your account manager, as this is considered a feature only implemented for merchants providing slower inventory updates leading to success rates below expectations.
+Inventory validation is currently implemented for merchants that provide slower inventory updates leading to success rates below expectations. 
+Verify with your account manager, if you have questions which merchants are not included in this additional check.
 
 ## How can a user buy an out-of-stock product
 A customer can buy an out-of-stock product when the following scenario occurs:
