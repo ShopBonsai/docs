@@ -56,3 +56,9 @@ Here's how the checkout flow looks in this case:
 ![Inventory validation flow diagram](./inventory-validation-flow-diagram.jpg)
 
 [comment]: # (Edit diagram https://miro.com/app/board/uXjVPxSArFY=/)
+
+:::info
+When a product is unavailable Checkout Totals API endpoint responds with the status `200`.
+If you want to display an error, look for the `errors` array in the response.
+See more examples in [Checkout Error Responses](../api/orders/checkout-error-responses.md#product_unavailable).
+:::
