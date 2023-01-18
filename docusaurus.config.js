@@ -106,6 +106,12 @@ const config = {
             position: 'left',
             label: 'Native Commerce',
           },
+          {
+            type: "doc",
+            docId: "inventory-validation/index",
+            position: 'left',
+            label: "Inventory Validation",
+          },
         ],
       },
       footer: {
@@ -141,6 +147,11 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      }
     }),
 
   plugins: [
