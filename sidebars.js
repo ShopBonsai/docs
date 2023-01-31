@@ -91,6 +91,21 @@ const sidebars = {
                 },
               ],
             },
+            {
+              type: "category",
+              label: "Order Status",
+              className: "api-method get",
+              link: {
+                type: "doc",
+                id: "api/orders/order-status"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "api/orders/order-status-error-responses",
+                },
+              ],
+            },
           ],
         },
       ],
