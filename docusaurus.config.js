@@ -48,7 +48,7 @@ const config = {
           //   'https://github.com/ShopBonsai/docs/tree/main/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: [require.resolve('./src/css/custom.css')],
         },
       }),
     ],
