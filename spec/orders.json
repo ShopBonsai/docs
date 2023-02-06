@@ -1007,7 +1007,7 @@
             },
             "token": {
               "type": "string",
-              "description": "Stripe token for the payment",
+              "description": "Payment token for the order. Each payment token may be used for 1 order.",
               "example": "tok_us"
             },
             "currency": {
