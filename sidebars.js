@@ -63,31 +63,55 @@ const sidebars = {
           items: [
             {
               type: "category",
-              label: "Checkout Totals",
-              className: "api-method post",
-              link: {
-                type: "doc",
-                id: "api/orders/checkout-totals"
-              },
+              label: "Orders Original",
               items: [
                 {
-                  type: "doc",
-                  id: "api/orders/checkout-error-responses",
+                  type: "category",
+                  label: "Checkout Totals",
+                  className: "api-method post",
+                  link: {
+                    type: "doc",
+                    id: "api/orders/checkout-totals"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "api/orders/checkout-error-responses",
+                    },
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Submit Orders",
+                  className: "api-method post",
+                  link: {
+                    type: "doc",
+                    id: "api/orders/submit-orders"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "api/orders/orders-error-responses",
+                    },
+                  ],
                 },
               ],
             },
             {
               type: "category",
-              label: "Submit Orders",
-              className: "api-method post",
-              link: {
-                type: "doc",
-                id: "api/orders/submit-orders"
-              },
+              label: "Orders v2",
               items: [
                 {
                   type: "doc",
-                  id: "api/orders/orders-error-responses",
+                  id: "api/orders/order-status",
+                  label: "Order Status",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "api/orders/order-refunds",
+                  label: "Order Refunds",
+                  className: "api-method get",
                 },
               ],
             },

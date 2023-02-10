@@ -144,7 +144,7 @@
           },
           "401": {
             "description": "401 - Unauthorized",
-            "schema": { "$ref": "#/definitions/UnauthorizedError" }
+            "schema": { "$ref": "#/definitions/Authentication FailedResult" }
           },
           "404": {
             "description": "404 - Not found",
@@ -189,7 +189,7 @@
           },
           "401": {
             "description": "401 - Unauthorized",
-            "schema": { "$ref": "#/definitions/UnauthorizedError" }
+            "schema": { "$ref": "#/definitions/Authentication FailedResult" }
           },
           "404": {
             "description": "404 - Not found",
@@ -1933,6 +1933,51 @@
                     }
                   }
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Authentication FailedResult": {
+      "type": "object",
+      "properties": {
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "status", "code", "title", "detail"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for error. Can be used for tracing across services.",
+                "example": "123e4567-e89b-12d3-a456-426655440000"
+              },
+              "status": {
+                "type": "number",
+                "format": "float",
+                "description": "HTTP status code.",
+                "example": 401
+              },
+              "code": {
+                "type": "string",
+                "description": "Unique code for specific error.",
+                "example": "AUTHENTICATION_FAILED"
+              },
+              "title": {
+                "type": "string",
+                "description": "Short description what the error entails.",
+                "example": "Authentication failed"
+              },
+              "detail": {
+                "type": "object",
+                "properties": {
+                  "authentication_expected": {
+                    "type": "string",
+                    "example": "Authorization header"
+                  }
+                },
+                "description": "Useful details related to the error"
               }
             }
           }
