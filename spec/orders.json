@@ -118,6 +118,11 @@
       "get": {
         "tags": ["Order Status"],
         "produces": ["application/json"],
+        "security": [
+          {
+            "AuthorizationHeader": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -163,6 +168,11 @@
       "get": {
         "tags": ["Order Refunds"],
         "produces": ["application/json"],
+        "security": [
+          {
+            "AuthorizationHeader": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -2102,6 +2112,11 @@
   },
   "security": [{ "APIKeyHeader": [] }],
   "securityDefinitions": {
-    "APIKeyHeader": { "type": "apiKey", "name": "API-Key", "in": "header" }
+    "APIKeyHeader": { "type": "apiKey", "name": "API-Key", "in": "header" },
+    "AuthorizationHeader": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
   }
 }

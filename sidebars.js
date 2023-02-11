@@ -63,43 +63,37 @@ const sidebars = {
           items: [
             {
               type: "category",
-              label: "Orders Original",
+              label: "Checkout Totals",
+              className: "api-method post",
+              link: {
+                type: "doc",
+                id: "api/orders/checkout-totals"
+              },
               items: [
                 {
-                  type: "category",
-                  label: "Checkout Totals",
-                  className: "api-method post",
-                  link: {
-                    type: "doc",
-                    id: "api/orders/checkout-totals"
-                  },
-                  items: [
-                    {
-                      type: "doc",
-                      id: "api/orders/checkout-error-responses",
-                    },
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Submit Orders",
-                  className: "api-method post",
-                  link: {
-                    type: "doc",
-                    id: "api/orders/submit-orders"
-                  },
-                  items: [
-                    {
-                      type: "doc",
-                      id: "api/orders/orders-error-responses",
-                    },
-                  ],
+                  type: "doc",
+                  id: "api/orders/checkout-error-responses",
                 },
               ],
             },
             {
               type: "category",
-              label: "Orders v2",
+              label: "Submit Orders",
+              className: "api-method post",
+              link: {
+                type: "doc",
+                id: "api/orders/submit-orders"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "api/orders/orders-error-responses",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "v2",
               items: [
                 {
                   type: "doc",

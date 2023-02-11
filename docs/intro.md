@@ -14,7 +14,7 @@ Let's discover **Bonsai in less than 5 minutes**.
 
 ## API
 
-The [Bonsai API](/docs/api) is a RESTful API that allows you to get up-to-date product information, generate checkout totals and place orders. It is the most flexible way to integrate with Bonsai.
+The [Bonsai API](/docs/api) is a RESTful API that allows you to get up-to-date product information, generate checkout totals, place orders, and get information about your orders. It is the most flexible way to integrate with Bonsai.
 
 > Find all information about our [API](/docs/api).
 
