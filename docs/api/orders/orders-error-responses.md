@@ -38,7 +38,7 @@ The `errors` field contains an array of errors:
 We will return multiple errors if multiple errors are encountered. However, most of the time, only
 one error will be returned.
 
-The errors will also depend on the `paymentMethod` provided.
+Payment-related errors will also depend on the `paymentMethod` provided.
 
 ## Generic Errors
 
@@ -46,7 +46,7 @@ The errors will also depend on the `paymentMethod` provided.
 
 | Code | Reason | Next step |
 |------|--------|-----------|
-| `INSUFFICIENT_INVENTORY` | Insufficient inventory for the requested quantity | Request the customer to change requested quantity |
+| `INSUFFICIENT_INVENTORY` | Insufficient inventory for the requested quantity | Request that the customer changes quantity |
 
 #### Example
 
@@ -87,7 +87,9 @@ The errors will also depend on the `paymentMethod` provided.
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PAYMENT_REQUIRED` | Valid payment is required | Request the customer to verify their payment information |
+| `PAYMENT_REQUIRED` | Valid payment is required | Request that the customer verifies their payment information |
+#### Note
+This error will contain a detail with more information about what went wrong with the payment. For Payment methods other than `external payment` it is safe to show this message to the customer.
 #### Example
 
 ```json
@@ -106,7 +108,7 @@ The errors will also depend on the `paymentMethod` provided.
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products | Request the customer to choose a different payment method |
+| `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products | Request that the customer chooses a different payment method |
 #### Example
 
 ```json
@@ -125,7 +127,7 @@ The errors will also depend on the `paymentMethod` provided.
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PROVINCE_NOT_FOUND` | The province was not found | Request the customer to verify their address |
+| `PROVINCE_NOT_FOUND` | The province was not found | Request that the customer verifies their address |
 #### Example
 
 ```json
@@ -169,7 +171,7 @@ The errors will also depend on the `paymentMethod` provided.
 | `PRODUCT_DOES_NOT_EXIST` | Product not found | Mark the product as unavailable |
 
 #### Note
-If this error happens, we suggest to verify the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products.
+If this error happens, we suggest verifying the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products.
 #### Example
 
 ```json
@@ -190,6 +192,8 @@ If this error happens, we suggest to verify the feed ingestion to make sure you 
 | Code | Reason |Next step |
 |------|--------|-|
 | `VARIANT_DOES_NOT_EXIST` | Variant not found | Mark the variant as unavailable |
+#### Note
+If this error happens, we suggest verifying the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products
 
 #### Example
 
@@ -210,7 +214,7 @@ If this error happens, we suggest to verify the feed ingestion to make sure you 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PRODUCTS_PRICE_CHANGE` | The price of one of the products has changed since the last time it was fetched | Request the customer to confirm the new price |
+| `PRODUCTS_PRICE_CHANGE` | The price of one of the products has changed since the last time it was fetched | Request that the customer confirms the new price |
 #### Example
 
 ```json
@@ -230,7 +234,7 @@ If this error happens, we suggest to verify the feed ingestion to make sure you 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PRODUCTS_PRICE_INVALID` | The price of one of the products is `<= 0` | Set the product as unavailable |
+| `PRODUCTS_PRICE_INVALID` | The price of one of the products is `<= 0` | Mark the product as unavailable |
 
 
 <!-- TODO: Review this error and how we could translate in a more friendly way > set to unavailable as this should be handled before it hits our API clients -->
@@ -253,7 +257,7 @@ If this error happens, we suggest to verify the feed ingestion to make sure you 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale | Set product as unavailable |
+| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale | Mark product as unavailable |
 #### Example
 
 ```json
@@ -273,7 +277,7 @@ If this error happens, we suggest to verify the feed ingestion to make sure you 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `MERCHANT_NOT_FOUND` | Could not find merchant with that id from supported integration types | Set this merchant products to unavailable |
+| `MERCHANT_NOT_FOUND` | Could not find merchant with that id from supported integration types | Mark this merchant's products as unavailable |
 
 #### Note
 If this ever happens, please reach out to Bonsai for more context.
@@ -297,7 +301,7 @@ If this ever happens, please reach out to Bonsai for more context.
 
 | Code | Reason | Next Step |
 |------|--------|-|
-| `INVALID_INPUT` | Required fields are missing from the request body | Request the customer to provide the missing fields |
+| `INVALID_INPUT` | Required fields are missing from the request body | Check the format of the requests you're sending to our API |
 #### Example
 
 ```json
@@ -386,7 +390,7 @@ There are however some very rare instances where merchants update their system, 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `TAX_ERROR` | An error occurred while communicating with Avalara | Reach out to Bonsai |
+| `TAX_ERROR` | Error while calculating taxes | Reach out to Bonsai |
 
 <!-- This should probably be an internal error as we should not communicate which system we are using internally -->
 #### Example
@@ -435,7 +439,7 @@ There are however some very rare instances where merchants update their system, 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `STRIPE_ERROR` | An error occurred while communicating with Stripe | Provide the customer the provided feedback from Stripe |
+| `STRIPE_ERROR` | An error occurred while communicating with Stripe | Provide the customer the error message from Stripe (error title) |
 #### Example
 
 ```json
@@ -466,7 +470,7 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PAYMENT_AMOUNTS_NOT_PROVIDED` | Payment amounts are not provided when using `external payment` as payment method | Please provide the amounts when submitting the external payment |
+| `PAYMENT_AMOUNTS_NOT_PROVIDED` | Payment amounts are not provided when using `external payment` as payment method | Please provide the amounts when submitting an order with payment method `external payment` |
 #### Example
 
 ```json
@@ -521,8 +525,6 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 |------|--------|-|
 | `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment | Please reach out to `Bonsai` for more details |
 
-#### Note
-When setting you up, you provide us with an endpoint to validate that the provided payment token is indeed valid in your system.
 #### Example
 
 ```json
@@ -552,7 +554,7 @@ When setting you up, you provide us with an endpoint to validate that the provid
 | `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed | Please reach out to `Bonsai` for more details |
 
 #### Note
-When setting you up, you provide us with an endpoint to validate that the provided payment token is indeed valid in your system.
+When setting you up, you provided us with an endpoint to validate that the provided payment token is valid in your system. If that validation fails this error will be thrown.
 
 #### Example
 
