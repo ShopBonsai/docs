@@ -6,7 +6,7 @@
   "info": {
     "title": "Orders API",
     "description": "APIs used for interacting with orders.",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "contact": { "email": "developers@shopbonsai.ca" }
   },
   "paths": {
@@ -118,11 +118,6 @@
       "get": {
         "tags": ["Order Status"],
         "produces": ["application/json"],
-        "security": [
-          {
-            "AuthorizationHeader": []
-          }
-        ],
         "parameters": [
           {
             "in": "path",
@@ -161,18 +156,14 @@
           }
         },
         "summary": "Order Status",
-        "description": "Shows information about an existing order and its products. This endpoint\n        allows API users to get current information on the fulfillment status of their orders."
+        "description": "Shows information about an existing order and its products. This endpoint\n        allows API users to get current information on the fulfillment status of their orders.",
+        "security": [{ "AuthorizationHeader": [] }]
       }
     },
     "/v2/{id}/refunds": {
       "get": {
         "tags": ["Order Refunds"],
         "produces": ["application/json"],
-        "security": [
-          {
-            "AuthorizationHeader": []
-          }
-        ],
         "parameters": [
           {
             "in": "path",
@@ -211,7 +202,8 @@
           }
         },
         "summary": "Order Refunds",
-        "description": "Shows refunds information about an existing order and its products. This endpoint\n        allows API users to get current information on the fulfillment status of their orders."
+        "description": "Shows refunds information about an existing order and its products. This endpoint\n        allows API users to get current information on the fulfillment status of their orders.",
+        "security": [{ "AuthorizationHeader": [] }]
       }
     }
   },
@@ -2110,7 +2102,6 @@
       }
     }
   },
-  "security": [{ "APIKeyHeader": [] }],
   "securityDefinitions": {
     "APIKeyHeader": { "type": "apiKey", "name": "API-Key", "in": "header" },
     "AuthorizationHeader": {
@@ -2118,5 +2109,6 @@
       "name": "Authorization",
       "in": "header"
     }
-  }
+  },
+  "security": [{ "APIKeyHeader": [] }]
 }
