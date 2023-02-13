@@ -65,9 +65,9 @@ Payment-related errors will also depend on the `paymentMethod` provided.
 
 ### `OUT_OF_STOCK`
 
-| Code | Reason |
-|------|--------|
-| `OUT_OF_STOCK` | The product is out of stock |
+| Code | Reason | Next step |
+|------|--------|-|
+| `OUT_OF_STOCK` | The product is out of stock | Request that the customer removes product from cart |
 #### Example
 
 ```json
@@ -189,7 +189,7 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 
 ### `VARIANT_DOES_NOT_EXIST`
 
-| Code | Reason |Next step |
+| Code | Reason | Next step |
 |------|--------|-|
 | `VARIANT_DOES_NOT_EXIST` | Variant not found | Mark the variant as unavailable |
 #### Note
@@ -230,29 +230,6 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 }
 ```
 
-### `PRODUCTS_PRICE_INVALID`
-
-| Code | Reason | Next step |
-|------|--------|-|
-| `PRODUCTS_PRICE_INVALID` | The price of one of the products is `<= 0` | Mark the product as unavailable |
-
-
-<!-- TODO: Review this error and how we could translate in a more friendly way > set to unavailable as this should be handled before it hits our API clients -->
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "PRODUCTS_PRICE_CHANGE",
-  "title": "The price of one of the products has changed",
-  "detail": {
-    "publicId": "clbj0i7w4041d01z60hv53mcm",
-    "variantId": "13833901"
-  }
-}
-```
-
 ### `PRODUCT_UNAVAILABLE`
 
 | Code | Reason | Next step |
@@ -273,33 +250,9 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 }
 ```
 
-### `MERCHANT_NOT_FOUND`
-
-| Code | Reason | Next step |
-|------|--------|-|
-| `MERCHANT_NOT_FOUND` | Could not find merchant with that id from supported integration types | Mark this merchant's products as unavailable |
-
-#### Note
-If this ever happens, please reach out to Bonsai for more context.
-
-<!-- TODO: This should probably be handled differently -->
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 404,
-  "code": "MERCHANT_NOT_FOUND",
-  "title": "Could not find merchant with that id from supported integration types",
-  "detail": {
-    "_id": "632f1a217f7aad1048d141d6"
-  }
-}
-```
-
 ### `INVALID_INPUT`
 
-| Code | Reason | Next Step |
+| Code | Reason | Next step |
 |------|--------|-|
 | `INVALID_INPUT` | Required fields are missing from the request body | Check the format of the requests you're sending to our API |
 #### Example
@@ -328,71 +281,12 @@ If this ever happens, please reach out to Bonsai for more context.
 }
 ```
 
-### `MERCHANT_PAYMENT_MISSING`
-
-| Code | Reason | Next step |
-|------|--------|-|
-| `MERCHANT_PAYMENT_MISSING` | No payment was transferred to the **Shopify** merchant when using standard payment method | Please reach out to Bonsai to help with this |
-
-<!-- TODO: Should probably be an internal error and not passed to the client -->
-
-#### Note
-There are however some very rare instances where merchants update their system, and impact ours in consequence. We handle these cases very promptly so the window of this happening is very slim.
-
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 404,
-  "code": "MERCHANT_PAYMENT_MISSING",
-  "title": "No payment was transferred to the merchant",
-}
-```
-
-### `REQUEST_SOURCE_UNRECOGNIZED`
-
-| Code | Reason |
-|------|--------|
-| `REQUEST_SOURCE_UNRECOGNIZED` | The account source is not recognized because it was setup incorrectly |
-
-<!-- TODO: Is this relevant anymore? -->
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "REQUEST_SOURCE_UNRECOGNIZED",
-  "title": "The account source is not recognized"
-}
-```
-
-### `MISSING_SHIPPING`
-
-| Code | Reason |
-|------|--------|
-| `MISSING_SHIPPING` | No shipping address was provided |
-
-<!-- This should be handled by INVALID_INPUT? -->
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "MISSING_SHIPPING",
-  "title": "No shipping address was provided"
-}
-```
-
 ### `TAX_ERROR`
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `TAX_ERROR` | Error while calculating taxes | Reach out to Bonsai |
+| `TAX_ERROR` | Error while calculating taxes | Please reach out to Bonsai |
 
-<!-- This should probably be an internal error as we should not communicate which system we are using internally -->
 #### Example
 
 ```json
@@ -402,25 +296,18 @@ There are however some very rare instances where merchants update their system, 
   "code": "TAX_ERROR",
   "title": "Error during a tax calculation",
   "detail": {
-    "message": "Company not found.",
-    "code": "EntityNotFoundError",
-    "number": 4,
-    "description": "The Company with code 'ABC' was not found.",
-    "faultCode": "Client",
-    "helpLink": "https://developer.avalara.com/avatax/errors/EntityNotFoundError",
-    "severity": "Error"
+
   }
 }
 ```
 
 ### `TAXES_OR_DUTIES_ERROR`
 
-| Code | Reason |
-|------|--------|
-| `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address |
+| Code | Reason | Next step |
+|------|--------|-|
+| `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address | Please reach out to Bonsai |
 
-<!-- This should probably be an internal error as we should not communicate which system we are using internally -->
-<!-- In case this happens, we should provide a better error about which product is being targetted by this error so front could handle it properly instead of cancelling the whole cart -->
+
 #### Example
 
 ```json
@@ -429,7 +316,6 @@ There are however some very rare instances where merchants update their system, 
   "status": 400,
   "code": "TAXES_OR_DUTIES_ERROR",
   "title": "There was an error calculating taxes or duties",
-  "detail": "FetchError: invalid json response body at https://rest.avatax.com/api/v2/transactions/create reason: Unexpected token < in JSON at position 0"
 }
 ```
 
@@ -523,7 +409,7 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment | Please reach out to `Bonsai` for more details |
+| `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment | Please reach out to Bonsai |
 
 #### Example
 
@@ -533,17 +419,6 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
   "status": 400,
   "code": "EXTERNAL_PAYMENT_UNKNOWN_ERROR",
   "title": "Unknown error while validating external payment",
-  "detail": {
-    "externalPaymentConfig": {
-      "api": {
-        "skipValidation": false,
-        "type": "apiKey",
-        "apiKey": "<redacted>",
-        "method": "<redacted>"
-      }
-    },
-    "token": "<redacted>"
-  }
 }
 ```
 
@@ -564,9 +439,6 @@ When setting you up, you provided us with an endpoint to validate that the provi
   "status": 402,
   "code": "EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED",
   "title": "External payment token validation failed",
-  "detail": {
-    "token": "<redacted>"
-  }
 }
 ```
 
