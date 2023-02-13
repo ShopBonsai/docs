@@ -5,28 +5,26 @@ description: Learn how to integrate with the Bonsai API.
 
 # Bonsai API
 
-Bonsai API allows you to fetch products, calculate cart totals, submit orders, and fetch order status
-including fulfillment details and refunds. This section aims to provide information on how to use the
-API.
+The Bonsai REST API allows you to fetch products, calculate cart totals, submit orders, and fetch order status,
+including fulfillment details and refunds. This section provides information on how to use the API.
 
 ## Endpoints
 
-The Bonsai API is organized around REST. Our API has predictable resource-oriented URLs, accepts
-JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes.
-We support cross-origin resource sharing, allowing you to interact securely with our API from a
-client-side web application.
+It has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded
+responses, and uses standard HTTP response codes. It supports cross-origin resource sharing, allowing
+you to interact securely with our API from a client-side web application.
 
 ## Versioning
 
-We use versioning for placing orders to ensure that your application will continue to work as we add
-new features and improve the API.
+Breaking changes are handled by prefixing URLs with version numbers (ex. `/v2`). These prefixes ensure
+that new features or other improvements do not impact your existing implementation.
 
-As of February 14th 2023, we have released net new endpoints with the `/v2` prefix. This is to
-highlight that these routes follow new guidelines that meant to make our API more consistent and
-predictable for you.
+As of February 14th, 2023, Bonsai has released net new endpoints with the `/v2` prefix. These routes
+follow new guidelines to make the API more consistent and predictable for you.
 
-The old routes will continue to be supported and may later be ported over to also be available under
-`/v2`. We will not make breaking changes to the API without first giving you advance notice.
+Bonsai will continue to support old endpoints and may later port these over to simultaneously be
+available in the prefixed versions. Bonsai will announce any deprecated endpoints well in advance
+of their removal.
 
 ## Authentication
 
@@ -36,10 +34,10 @@ Depending on the endpoint you are using, there are two ways to authenticate your
 - `AuthorizationHeader` - For backend endpoints. Requires `Authorization` header containing your `privateApiKey`.
 
 :::note
-Please keep in mind that the `apiKey` and `privateApiKey` are distinct.
+Please note that the `apiKey` and `privateApiKey` are distinct.
 :::
 
-To identify which authentication to use, see **Authorization**/**Request** details for the endpoint you are using.
+To identify which authentication to use, see **Authorization**/**Request** details for that endpoint.
 
 :::info
 Your API keys will be shared with you by your account manager.
