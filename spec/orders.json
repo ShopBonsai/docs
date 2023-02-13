@@ -1848,13 +1848,19 @@
             "properties": {
               "id": {
                 "type": "string",
+                "description": "Product ID.",
                 "example": "clad6pg5z00eu012gfz7hfm92"
               },
-              "variantId": { "type": "string", "example": "M00679529706740" },
+              "variantId": {
+                "type": "string",
+                "description": "The ID of the product variant.",
+                "example": "M00679529706740"
+              },
               "quantity": {
                 "type": "number",
                 "format": "float",
                 "minimum": 1,
+                "description": "Quantity of the product variant.",
                 "example": 1
               },
               "merchantOrderId": {
@@ -1921,16 +1927,19 @@
                   "properties": {
                     "id": {
                       "type": "string",
+                      "description": "Product ID.",
                       "example": "clad6pg5z00eu012gfz7hfm92"
                     },
                     "variantId": {
                       "type": "string",
+                      "description": "The ID of the product variant.",
                       "example": "M00679529706740"
                     },
                     "quantity": {
                       "type": "number",
                       "format": "float",
                       "minimum": 1,
+                      "description": "Quantity of the product variant.",
                       "example": 1
                     }
                   }
@@ -2040,7 +2049,7 @@
           "description": "Public ID of the order.",
           "example": "cldbvy7gt0006hpzo9nyw72ks"
         },
-        "external_id": {
+        "externalId": {
           "type": "string",
           "description": "ID of the order provided to Bonsai by the party who placed the order.",
           "example": "51cf91c1-da4a-42c4-81d3-3ec3e3268655"
@@ -2049,35 +2058,35 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["products", "refund_reason", "refunded_amount"],
+            "required": ["products", "refundReason", "refundedAmount"],
             "properties": {
               "products": {
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "required": ["product_id", "variant_id", "quantity"],
+                  "required": ["id", "variantId", "quantity"],
                   "properties": {
-                    "product_id": {
+                    "id": {
                       "type": "string",
-                      "description": "Product id",
-                      "example": "cjld2cyuq0000t3rmniod1foy"
+                      "description": "Product ID.",
+                      "example": "clad6pg5z00eu012gfz7hfm92"
                     },
-                    "variant_id": {
+                    "variantId": {
                       "type": "string",
                       "description": "The ID of the product variant.",
-                      "example": "1234 - M - Black"
+                      "example": "M00679529706740"
                     },
                     "quantity": {
                       "type": "number",
                       "format": "float",
                       "minimum": 1,
-                      "description": "Quantity of the product variant in the cart",
-                      "example": 2
+                      "description": "Quantity of the product variant.",
+                      "example": 1
                     }
                   }
                 }
               },
-              "refund_reason": {
+              "refundReason": {
                 "type": "string",
                 "enum": [
                   "item unavailable",
@@ -2089,7 +2098,7 @@
                   "Historical refund. Reason missing"
                 ]
               },
-              "refunded_amount": {
+              "refundedAmount": {
                 "type": "number",
                 "format": "float",
                 "minimum": 1,
