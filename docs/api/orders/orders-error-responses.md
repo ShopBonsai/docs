@@ -93,7 +93,7 @@ Please reach out to Bonsai if you receive any error not listed within this docum
 | `PAYMENT_REQUIRED` | Valid payment is required | Request that the customer verifies their payment information |
 :::info
 This error will contain details with more information about what went wrong with the payment.
-it is safe to show this message to the customer for Payment methods other than `external payment` .
+It is safe to show this message to the customer for Payment methods other than `external payment`.
 :::
 #### Example
 
@@ -208,7 +208,7 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 | `VARIANT_DOES_NOT_EXIST` | Variant not found | Mark the variant as unavailable |
 
 :::info
-If this error happens, we suggest verifying the feed ingestion to make sure you are passing the right ids to the Bonsai API as it might also happen to other products
+If this error happens, we suggest verifying the feed ingestion to make sure you are passing the right ids to the Bonsai API as it might also happen to other products.
 :::
 
 #### Example
@@ -412,7 +412,7 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 | `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed | Please reach out to Bonsai for more details |
 
 :::info
-When setting you up, you provided us with an endpoint to validate that the provided payment token is valid in your system. If that validation fails this error will be thrown.
+During setup, you provided us with an endpoint to validate that the provided payment token is valid in your system. If that validation fails, this error will be thrown.
 :::
 
 #### Example
