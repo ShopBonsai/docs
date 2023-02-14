@@ -281,44 +281,6 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 }
 ```
 
-### `TAX_ERROR`
-
-| Code | Reason | Next step |
-|------|--------|-|
-| `TAX_ERROR` | Error while calculating taxes | Please reach out to Bonsai |
-
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "TAX_ERROR",
-  "title": "Error during a tax calculation",
-  "detail": {
-
-  }
-}
-```
-
-### `TAXES_OR_DUTIES_ERROR`
-
-| Code | Reason | Next step |
-|------|--------|-|
-| `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address | Please reach out to Bonsai |
-
-
-#### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "TAXES_OR_DUTIES_ERROR",
-  "title": "There was an error calculating taxes or duties",
-}
-```
-
 ## Stripe Payment Method Errors
 
 ### `STRIPE_ERROR`
