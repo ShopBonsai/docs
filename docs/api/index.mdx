@@ -5,35 +5,77 @@ description: Learn how to integrate with the Bonsai API.
 
 # Bonsai API
 
-Bonsai API allows you to fetch products, calculate cart totals, and submit orders. This section aims
-to provide information on how to use the API.
+The Bonsai API is a REST API that allows you to fetch products, calculate cart totals, submit orders,
+and fetch order status, including fulfillment details and refunds. This section provides information on
+how to use the API.
 
 ## Endpoints
 
-The Bonsai API is organized around REST. Our API has predictable resource-oriented URLs, accepts
-JSON-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes.
-We support cross-origin resource sharing, allowing you to interact securely with our API from a
-client-side web application.
+The Bonsai API has predictable resource-oriented URLs, accepts JSON-encoded request bodies, returns JSON-encoded
+responses, and uses standard HTTP response codes. It supports cross-origin resource sharing, allowing
+you to interact securely with our API from a client-side web application.
 
 ## Versioning
 
-We use versioning for placing orders to ensure that your application will continue to work as we add
-new features and improve the API. However, we do not version the other endpoints at this time. We
-will not make breaking changes to the API without first giving you advance notice.
+Breaking changes are handled by prefixing URLs with version numbers (ex. `/v2/`). These prefixes ensure
+that new features or other improvements do not impact your existing implementation.
+
+As of February 14th, 2023, Bonsai has released net new endpoints with the `/v2/` prefix. These endpoints
+follow new guidelines to make the API more consistent and predictable for you.
+
+Bonsai will continue to support old endpoints and may later convert these over to the same format as
+available under `/v2/`. Bonsai will announce any deprecated endpoints well in advance of their removal.
 
 ## Authentication
 
-To authenticate your API requests, you need to provide an API key in request headers.
+Depending on the endpoint you are using, there are two ways to authenticate your API requests. These are:
 
-:::info
-Your API key will be shared with you by your account manager.
+- `APIKeyHeader` - For frontend endpoints. Requires `API-Key` header containing your `apiKey`.
+- `AuthorizationHeader` - For backend endpoints. Requires `Authorization` header containing your `privateApiKey`.
+
+:::note
+Please note that the `apiKey` and `privateApiKey` are distinct.
 :::
 
-Provide your API key in the URL as a request header whenever you make API calls:
+To identify which authentication to use, see **Authorization**/**Request** details for that endpoint.
+
+:::info
+Your API keys will be shared with you by your account manager.
+:::
+
+### `APIKeyHeader`
+
+Provide your API key in the URL as a request header whenever you make `APIKeyHeader` API calls:
 
 ```bash
 curl https://api.shopbonsai.ca/<api_endpoint> -H "API-Key: <API_KEY>"
 ```
+
+### `AuthorizationHeader`
+
+Provide your private API key as the "username" portion of a Basic Authorization header whenever you make
+`AuthorizationHeader` API calls:
+
+```bash
+curl https://api.shopbonsai.ca/<api_endpoint> -H "Authorization: Basic <BASE64_PRIVATE_API_KEY>"
+```
+
+<details>
+  <summary>Additional private API key instructions</summary>
+  <div>
+
+To form your `BASE64_PRIVATE_API_KEY`, you need to take your `privateApiKey` and then encoded it into base64.
+
+For example, if your `privateApiKey` is `bonsaigavemethiskey`, then the `Base64EncodedKey` will be
+`Ym9uc2FpZ2F2ZW1ldGhpc2tleQ==`. In the context of the request, it would look like this:
+
+```bash
+curl https://api.shopbonsai.ca/<api_endpoint> \
+-H "Authorization: Basic Ym9uc2FpZ2F2ZW1ldGhpc2tleQ=="
+```
+
+  </div>
+</details>
 
 :::tip
 If you have questions or need assistance, please contact your account manager.
