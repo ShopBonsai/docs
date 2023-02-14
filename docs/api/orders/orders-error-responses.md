@@ -40,6 +40,9 @@ one error will be returned.
 
 Payment-related errors will also depend on the `paymentMethod` provided.
 
+### Note
+Please reach out to Bonsai if you receive any error not listed within this document.
+
 ## Generic Errors
 
 ### `INSUFFICIENT_INVENTORY`
