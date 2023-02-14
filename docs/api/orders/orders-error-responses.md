@@ -3,7 +3,8 @@ id: orders-error-responses
 title: "Submit Orders: Error Responses"
 sidebar_label: "Error Responses"
 hide_title: true
-toc_max_heading_level: 2
+toc_max_heading_level: 3
+toc_min_heading_level: 2
 ---
 # Error Responses
 
@@ -37,13 +38,20 @@ The `errors` field contains an array of errors:
 We will return multiple errors if multiple errors are encountered. However, most of the time, only
 one error will be returned.
 
-## `INSUFFICIENT_INVENTORY`
+Payment-related errors will also depend on the `paymentMethod` provided.
 
-| Code | Reason |
-|------|--------|
-| `INSUFFICIENT_INVENTORY` | Insufficient inventory for the requested quantity |
+### Note
+Please reach out to Bonsai if you receive any error not listed within this document.
 
-### Example
+## Generic Errors
+
+### `INSUFFICIENT_INVENTORY`
+
+| Code | Reason | Next step |
+|------|--------|-----------|
+| `INSUFFICIENT_INVENTORY` | Insufficient inventory for the requested quantity | Request that the customer changes quantity |
+
+#### Example
 
 ```json
 {
@@ -58,13 +66,12 @@ one error will be returned.
 }
 ```
 
-## `OUT_OF_STOCK`
+### `OUT_OF_STOCK`
 
-| Code | Reason |
-|------|--------|
-| `OUT_OF_STOCK` | The product is out of stock |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `OUT_OF_STOCK` | The product is out of stock | Request that the customer removes product from cart |
+#### Example
 
 ```json
 {
@@ -79,13 +86,14 @@ one error will be returned.
 }
 ```
 
-## `PAYMENT_REQUIRED`
+### `PAYMENT_REQUIRED`
 
-| Code | Reason |
-|------|--------|
-| `PAYMENT_REQUIRED` | Valid payment is required |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `PAYMENT_REQUIRED` | Valid payment is required | Request that the customer verifies their payment information |
+#### Note
+This error will contain a detail with more information about what went wrong with the payment. For Payment methods other than `external payment` it is safe to show this message to the customer.
+#### Example
 
 ```json
 {
@@ -99,13 +107,12 @@ one error will be returned.
 }
 ```
 
-## `PAYMENT_METHOD_NOT_SUPPORTED`
+### `PAYMENT_METHOD_NOT_SUPPORTED`
 
-| Code | Reason |
-|------|--------|
-| `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products | Request that the customer chooses a different payment method |
+#### Example
 
 ```json
 {
@@ -119,42 +126,12 @@ one error will be returned.
 }
 ```
 
-## `STRIPE_ERROR`
+### `PROVINCE_NOT_FOUND`
 
-| Code | Reason |
-|------|--------|
-| `STRIPE_ERROR` | An error occurred while communicating with Stripe |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 402,
-  "code": "STRIPE_ERROR",
-  "title": "Your card has insufficient funds.",
-  "detail": {
-    "stripeToken": "tok_visa_chargeDeclinedInsufficientFunds",
-    "customer": {
-      "first_name": "Haytham",
-      "last_name": "Labrini",
-      "email": "qa@shopbonsai.ca"
-    }
-  }
-}
-```
-
-:::info
-If you're using Stripe as payment method, please refer to [Stripe docs](https://stripe.com/docs/error-codes) for possible Stripe error codes.
-:::
-
-## `PROVINCE_NOT_FOUND`
-
-| Code | Reason |
-|------|--------|
-| `PROVINCE_NOT_FOUND` | The province was not found |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `PROVINCE_NOT_FOUND` | The province was not found | Request that the customer verifies their address |
+#### Example
 
 ```json
 {
@@ -168,13 +145,12 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `INTERNATIONAL_SHIPPING_ERROR`
+### `INTERNATIONAL_SHIPPING_ERROR`
 
-| Code | Reason |
-|------|--------|
-| `INTERNATIONAL_SHIPPING_ERROR` | Merchant does not ship to country |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `INTERNATIONAL_SHIPPING_ERROR` | Merchant does not ship to country | Communicate that the product (publicId/variantId) does not ship to the specified country |
+#### Example
 
 ```json
 {
@@ -191,13 +167,15 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `PRODUCT_DOES_NOT_EXIST`
+### `PRODUCT_DOES_NOT_EXIST`
 
-| Code | Reason |
-|------|--------|
-| `PRODUCT_DOES_NOT_EXIST` | Product not found |
+| Code | Reason | Next step |
+|------|--------|-|
+| `PRODUCT_DOES_NOT_EXIST` | Product not found | Mark the product as unavailable |
 
-### Example
+#### Note
+If this error happens, we suggest verifying the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products.
+#### Example
 
 ```json
 {
@@ -212,13 +190,15 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `VARIANT_DOES_NOT_EXIST`
+### `VARIANT_DOES_NOT_EXIST`
 
-| Code | Reason |
-|------|--------|
-| `VARIANT_DOES_NOT_EXIST` | Variant not found |
+| Code | Reason | Next step |
+|------|--------|-|
+| `VARIANT_DOES_NOT_EXIST` | Variant not found | Mark the variant as unavailable |
+#### Note
+If this error happens, we suggest verifying the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products
 
-### Example
+#### Example
 
 ```json
 {
@@ -233,34 +213,12 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `PRODUCTS_PRICE_CHANGE`
+### `PRODUCTS_PRICE_CHANGE`
 
-| Code | Reason |
-|------|--------|
-| `PRODUCTS_PRICE_CHANGE` | The price of one of the products has changed since the last time it was fetched |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "PRODUCTS_PRICE_CHANGE",
-  "title": "The price of one of the products has changed",
-  "detail": {
-    "publicId": "clbj0i7w4041d01z60hv53mcm",
-    "variantId": "13833901"
-  }
-}
-```
-
-## `PRODUCTS_PRICE_INVALID`
-
-| Code | Reason |
-|------|--------|
-| `PRODUCTS_PRICE_INVALID` | The price of one of the products is `<= 0` |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `PRODUCTS_PRICE_CHANGE` | The price of one of the products has changed since the last time it was fetched | Request that the customer confirms the new price |
+#### Example
 
 ```json
 {
@@ -275,13 +233,12 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `PRODUCT_UNAVAILABLE`
+### `PRODUCT_UNAVAILABLE`
 
-| Code | Reason |
-|------|--------|
-| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale | Mark product as unavailable |
+#### Example
 
 ```json
 {
@@ -296,33 +253,12 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `MERCHANT_NOT_FOUND`
+### `INVALID_INPUT`
 
-| Code | Reason |
-|------|--------|
-| `MERCHANT_NOT_FOUND` | Could not find merchant with that id from supported integration types |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 404,
-  "code": "MERCHANT_NOT_FOUND",
-  "title": "Could not find merchant with that id from supported integration types",
-  "detail": {
-    "_id": "632f1a217f7aad1048d141d6"
-  }
-}
-```
-
-## `INVALID_INPUT`
-
-| Code | Reason |
-|------|--------|
-| `INVALID_INPUT` | Required fields are missing from the request body |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `INVALID_INPUT` | Required fields are missing from the request body | Check the format of the requests you're sending to our API |
+#### Example
 
 ```json
 {
@@ -348,13 +284,45 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `PAYMENT_AMOUNTS_NOT_PROVIDED`
+## Stripe Payment Method Errors
 
-| Code | Reason |
-|------|--------|
-| `PAYMENT_AMOUNTS_NOT_PROVIDED` | Payment amounts are not provided when using `external payment` as payment method |
+### `STRIPE_ERROR`
 
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `STRIPE_ERROR` | An error occurred while communicating with Stripe | Provide the customer the error message from Stripe (error title) |
+#### Example
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "status": 402,
+  "code": "STRIPE_ERROR",
+  "title": "Your card has insufficient funds.",
+  "detail": {
+    "stripeToken": "tok_visa_chargeDeclinedInsufficientFunds",
+    "customer": {
+      "first_name": "Haytham",
+      "last_name": "Labrini",
+      "email": "qa@shopbonsai.ca"
+    }
+  }
+}
+```
+
+:::info
+If you're using Stripe as payment method, please refer to [Stripe docs](https://stripe.com/docs/error-codes) for possible Stripe error codes.
+:::
+
+
+## External Payment Method Errors
+
+### `PAYMENT_AMOUNTS_NOT_PROVIDED`
+
+| Code | Reason | Next step |
+|------|--------|-|
+| `PAYMENT_AMOUNTS_NOT_PROVIDED` | Payment amounts are not provided when using `external payment` as payment method | Please provide the amounts when submitting an order with payment method `external payment` |
+#### Example
 
 ```json
 {
@@ -365,13 +333,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT`
+### `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT`
 
-| Code | Reason |
-|------|--------|
-| `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT` | Account does not support external payment |
+| Code | Reason | Next step |
+|------|--------|-|
+| `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT` | Account does not support external payment | Please reach out to `Bonsai` to set you up |
 
-### Example
+#### Example
 
 ```json
 {
@@ -382,13 +350,12 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET`
+### `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET`
 
-| Code | Reason |
-|------|--------|
-| `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET` | External payment type is not implemented for the account yet |
-
-### Example
+| Code | Reason | Next step |
+|------|--------|-|
+| `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET` | External payment type is not implemented for the account yet | Please reach out to `Bonsai` to set you up |
+#### Example
 
 ```json
 {
@@ -403,13 +370,13 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 }
 ```
 
-## `EXTERNAL_PAYMENT_UNKNOWN_ERROR`
+### `EXTERNAL_PAYMENT_UNKNOWN_ERROR`
 
-| Code | Reason |
-|------|--------|
-| `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment |
+| Code | Reason | Next step |
+|------|--------|-|
+| `EXTERNAL_PAYMENT_UNKNOWN_ERROR` | Unknown error while validating external payment | Please reach out to Bonsai |
 
-### Example
+#### Example
 
 ```json
 {
@@ -417,27 +384,19 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
   "status": 400,
   "code": "EXTERNAL_PAYMENT_UNKNOWN_ERROR",
   "title": "Unknown error while validating external payment",
-  "detail": {
-    "externalPaymentConfig": {
-      "api": {
-        "skipValidation": false,
-        "type": "apiKey",
-        "apiKey": "<redacted>",
-        "method": "<redacted>"
-      }
-    },
-    "token": "<redacted>"
-  }
 }
 ```
 
-## `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED`
+### `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED`
 
-| Code | Reason |
-|------|--------|
-| `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed |
+| Code | Reason | Next step |
+|------|--------|-|
+| `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed | Please reach out to `Bonsai` for more details |
 
-### Example
+#### Note
+When setting you up, you provided us with an endpoint to validate that the provided payment token is valid in your system. If that validation fails this error will be thrown.
+
+#### Example
 
 ```json
 {
@@ -445,103 +404,6 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
   "status": 402,
   "code": "EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED",
   "title": "External payment token validation failed",
-  "detail": {
-    "token": "<redacted>"
-  }
 }
 ```
 
-## `MERCHANT_PAYMENT_MISSING`
-
-| Code | Reason |
-|------|--------|
-| `MERCHANT_PAYMENT_MISSING` | No payment was transferred to the **Shopify** merchant when using standard payment method |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 404,
-  "code": "MERCHANT_PAYMENT_MISSING",
-  "title": "No payment was transferred to the merchant",
-}
-```
-
-## `REQUEST_SOURCE_UNRECOGNIZED`
-
-| Code | Reason |
-|------|--------|
-| `REQUEST_SOURCE_UNRECOGNIZED` | The account source is not recognized because it was setup incorrectly |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "REQUEST_SOURCE_UNRECOGNIZED",
-  "title": "The account source is not recognized"
-}
-```
-
-## `MISSING_SHIPPING`
-
-| Code | Reason |
-|------|--------|
-| `MISSING_SHIPPING` | No shipping address was provided |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "MISSING_SHIPPING",
-  "title": "No shipping address was provided"
-}
-```
-
-## `TAX_ERROR`
-
-| Code | Reason |
-|------|--------|
-| `TAX_ERROR` | An error occurred while communicating with Avalara |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "TAX_ERROR",
-  "title": "Error during a tax calculation",
-  "detail": {
-    "message": "Company not found.",
-    "code": "EntityNotFoundError",
-    "number": 4,
-    "description": "The Company with code 'ABC' was not found.",
-    "faultCode": "Client",
-    "helpLink": "https://developer.avalara.com/avatax/errors/EntityNotFoundError",
-    "severity": "Error"
-  }
-}
-```
-
-## `TAXES_OR_DUTIES_ERROR`
-
-| Code | Reason |
-|------|--------|
-| `TAXES_OR_DUTIES_ERROR` | Couldn't calculate taxes or duties for the given address |
-
-### Example
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426655440000",
-  "status": 400,
-  "code": "TAXES_OR_DUTIES_ERROR",
-  "title": "There was an error calculating taxes or duties",
-  "detail": "FetchError: invalid json response body at https://rest.avatax.com/api/v2/transactions/create reason: Unexpected token < in JSON at position 0"
-}
-```

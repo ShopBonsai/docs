@@ -12,17 +12,90 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import Export from "@theme/ApiDemoPanel/Export";
 
-<span className={"theme-doc-version-badge badge badge--secondary"}>Version: 2.1.2</span>
+<span className={"theme-doc-version-badge badge badge--secondary"}>
+  Version: 2.1.2
+</span>
 
-<Export url={"https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json"} proxy={undefined}></Export>
+<Export
+  url={
+    "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json"
+  }
+  proxy={undefined}
+></Export>
 
 # Orders API
 
-
-
 APIs used for interacting with orders.
 
-<div style={{"marginBottom":"2rem"}}><h2 id={"authentication"} style={{"marginBottom":"1rem"}}>Authentication</h2><Tabs><TabItem label={"API Key"} value={"APIKeyHeader"}><div><table><tbody><tr><th>Security Scheme Type:</th><td>apiKey</td></tr><tr><th>Header parameter name:</th><td>API-Key</td></tr></tbody></table></div></TabItem><TabItem label={"Authorization Header"} value={"AuthorizationHeader"}><div><table><tbody><tr><th>Security Scheme Type:</th><td>apiKey</td></tr><tr><th>Header parameter name:</th><td>Authorization</td></tr></tbody></table></div></TabItem></Tabs></div><div style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}><h3 style={{"marginBottom":"0.25rem"}}>Contact</h3><span><a href={"mailto:developers@shopbonsai.ca"}>developers@shopbonsai.ca</a></span></div>
+There are a few types of integration with the Bonsai Order API depending on who owns the payments.
+
+## Bonsai owns the payment
+
+### Native Checkout experience
+
+If during the checkout process, the customer is redirected to Bonsai's checkout page to complete payment and order processing.
+
+### API integrated checkout experience
+
+If you are hosting your own checkout experience and leveraging our endpoints to collect payment and complete order processing.
+Please contact our team to provide you with all you need to get started.
+
+## Account owns the payment
+
+If you are owning payment. Orders will need to be submitted with the payment method `external payment`.
+Once the order is submitted, our team will handle fulfillment and Bonsai will invoice you for the order amount based on our agreement.
+
+<div style={{ marginBottom: "2rem" }}>
+  <h2 id={"authentication"} style={{ marginBottom: "1rem" }}>
+    Authentication
+  </h2>
+  <Tabs>
+    <TabItem label={"API Key"} value={"APIKeyHeader"}>
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>Security Scheme Type:</th>
+              <td>apiKey</td>
+            </tr>
+            <tr>
+              <th>Header parameter name:</th>
+              <td>API-Key</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+    <TabItem label={"Authorization Header"} value={"AuthorizationHeader"}>
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>Security Scheme Type:</th>
+              <td>apiKey</td>
+            </tr>
+            <tr>
+              <th>Header parameter name:</th>
+              <td>Authorization</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </Tabs>
+</div>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: "var(--ifm-paragraph-margin-bottom)",
+  }}
+>
+  <h3 style={{ marginBottom: "0.25rem" }}>Contact</h3>
+  <span>
+    <a href={"mailto:developers@shopbonsai.ca"}>developers@shopbonsai.ca</a>
+  </span>
+</div>
 
 ```mdx-code-block
 import DocCardList from '@theme/DocCardList';
@@ -30,4 +103,3 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
 <DocCardList items={useCurrentSidebarCategory().items}/>
 ```
-      
