@@ -40,9 +40,9 @@ one error will be returned.
 
 Payment-related errors will also depend on the `paymentMethod` provided.
 
-### Note
+:::info
 Please reach out to Bonsai if you receive any error not listed within this document.
-
+:::
 ## Generic Errors
 
 ### `INSUFFICIENT_INVENTORY`
@@ -91,8 +91,10 @@ Please reach out to Bonsai if you receive any error not listed within this docum
 | Code | Reason | Next step |
 |------|--------|-|
 | `PAYMENT_REQUIRED` | Valid payment is required | Request that the customer verifies their payment information |
-#### Note
-This error will contain a detail with more information about what went wrong with the payment. For Payment methods other than `external payment` it is safe to show this message to the customer.
+:::info
+This error will contain details with more information about what went wrong with the payment.
+It is safe to show this message to the customer for Payment methods other than `external payment`.
+:::
 #### Example
 
 ```json
@@ -112,6 +114,13 @@ This error will contain a detail with more information about what went wrong wit
 | Code | Reason | Next step |
 |------|--------|-|
 | `PAYMENT_METHOD_NOT_SUPPORTED` | Payment method is not supported for the requested products | Request that the customer chooses a different payment method |
+
+:::info
+Bonsai supports 2 payment methods:
+- `stripe`
+- `external payment`
+:::
+
 #### Example
 
 ```json
@@ -173,8 +182,10 @@ This error will contain a detail with more information about what went wrong wit
 |------|--------|-|
 | `PRODUCT_DOES_NOT_EXIST` | Product not found | Mark the product as unavailable |
 
-#### Note
-If this error happens, we suggest verifying the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products.
+:::info
+If this error happens, we suggest verifying the feed ingestion to make sure you are passing the right ids to the Bonsai API as it might also happen to other products.
+:::
+
 #### Example
 
 ```json
@@ -195,8 +206,10 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 | Code | Reason | Next step |
 |------|--------|-|
 | `VARIANT_DOES_NOT_EXIST` | Variant not found | Mark the variant as unavailable |
-#### Note
-If this error happens, we suggest verifying the feed ingestion to make sure you re passing the right ids to the Bonsai API as it might happen to other products
+
+:::info
+If this error happens, we suggest verifying the feed ingestion to make sure you are passing the right ids to the Bonsai API as it might also happen to other products.
+:::
 
 #### Example
 
@@ -237,7 +250,12 @@ If this error happens, we suggest verifying the feed ingestion to make sure you 
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale | Mark product as unavailable |
+| `PRODUCT_UNAVAILABLE` | Product is no longer available for sale | Mark the product as unavailable |
+
+:::info
+Please check this [Product feed documentation](https://docs.shopbonsai.ca/docs/product-feeds/best-practices/) to learn more on product validation and removal.
+:::
+
 #### Example
 
 ```json
@@ -337,7 +355,7 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT` | Account does not support external payment | Please reach out to `Bonsai` to set you up |
+| `ACCOUNT_DOES_NOT_SUPPORT_EXTERNAL_PAYMENT` | Account does not support external payment | Please reach out to Bonsai to set you up |
 
 #### Example
 
@@ -354,7 +372,7 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET` | External payment type is not implemented for the account yet | Please reach out to `Bonsai` to set you up |
+| `EXTERNAL_PAYMENT_NOT_IMPLEMENTED_YET` | External payment type is not implemented for the account yet | Please reach out to Bonsai to set you up |
 #### Example
 
 ```json
@@ -391,10 +409,11 @@ If you're using Stripe as payment method, please refer to [Stripe docs](https://
 
 | Code | Reason | Next step |
 |------|--------|-|
-| `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed | Please reach out to `Bonsai` for more details |
+| `EXTERNAL_PAYMENT_TOKEN_VALIDATION_FAILED` | External payment token validation failed | Please reach out to Bonsai for more details |
 
-#### Note
-When setting you up, you provided us with an endpoint to validate that the provided payment token is valid in your system. If that validation fails this error will be thrown.
+:::info
+During setup, you provided us with an endpoint to validate that the provided payment token is valid in your system. If that validation fails, this error will be thrown.
+:::
 
 #### Example
 
