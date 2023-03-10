@@ -93,6 +93,10 @@ Depending on your use case, you may want to:
 
 This mainly depends on how your customers are used to viewing and purchasing products. We recommend either option 2 or 3. You can use the `item_group_id` column to group variants into a single product, as it's a unique identifier per product.
 
+:::note
+Please be aware that new columns might be added to the feed file; your feed ingestion should not fail when new columns are added.
+:::
+
 ## Example
 
 Each row of a feed represents a product variant. For example, if you have a product with 2 colors
