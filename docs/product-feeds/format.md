@@ -151,3 +151,21 @@ ISO 8601 string of product’s creation date. Example: `2022-12-14T18:30:00Z`.
 > **required**
 
 ISO 8601 string of the product’s update date. Example: `2022-12-14T18:31:00Z`.
+
+## `gtin`
+
+> **optional**
+
+Global Trade Item Number (GTIN) is `null` unless provided by the merchant.
+
+## `sku`
+
+> **optional**
+
+stock keeping unit (sku) is `null` unless provided by the merchant.
+
+## `is_final_sale`
+
+> **optional**
+
+Some items are final sale (i.e. discounted products); we set it to true whenever this information is provided by the merchant.
