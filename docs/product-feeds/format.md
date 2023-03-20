@@ -84,7 +84,7 @@ Variant’s regular price, including currency. Example: `125 USD`.
 
 > **optional**
 
-Variant’s sale price, if the variant is on sale. Includes currency. Example: `150 USD`.
+Variant’s price before discount, if the variant is on sale. Includes currency. Example: `150 USD`.
 
 ## `google_product_category`
 
