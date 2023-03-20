@@ -91,6 +91,24 @@ const sidebars = {
                 },
               ],
             },
+            {
+              type: "category",
+              label: "v2",
+              items: [
+                {
+                  type: "doc",
+                  id: "api/orders/order-status",
+                  label: "Order Status",
+                  className: "api-method get",
+                },
+                {
+                  type: "doc",
+                  id: "api/orders/order-refunds",
+                  label: "Order Refunds",
+                  className: "api-method get",
+                },
+              ],
+            },
           ],
         },
       ],
