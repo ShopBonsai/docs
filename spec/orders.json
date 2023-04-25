@@ -1093,7 +1093,7 @@
           "properties": {
             "method": {
               "type": "string",
-              "enum": ["credit card", "afterpay", "external payment", "stripe"],
+              "enum": ["credit card", "external payment", "stripe"],
               "description": "Payment method used to pay for the order.",
               "example": "credit card"
             },
