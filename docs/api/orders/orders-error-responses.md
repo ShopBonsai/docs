@@ -130,7 +130,7 @@ Bonsai supports 2 payment methods:
   "code": "PAYMENT_METHOD_NOT_SUPPORTED",
   "title": "The selected payment method is not supported for this order type",
   "detail": {
-    "paymentMethod": "afterpay"
+    "paymentMethod": "customUnsupportedPayment"
   }
 }
 ```
