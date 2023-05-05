@@ -173,3 +173,10 @@ stock keeping unit (sku) is `null` unless provided by the merchant.
 > **optional**
 
 Some items are final sale (i.e. highly discounted products); we set it to true whenever this information is provided by the merchant.
+
+
+## `are_taxes_included_in_price`
+
+> **optional**
+
+If the price of the product is inclusive of taxes.
