@@ -1,25 +1,35 @@
 {
-  "host": "api.shopbonsai.ca/orders",
-  "schemes": ["https"],
-  "basePath": "/",
+  "host": "api.shopbonsai.ca",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/orders",
   "swagger": "2.0",
   "info": {
     "title": "Orders API",
-    "description": "APIs used for interacting with orders.",
-    "version": "2.1.2",
-    "contact": { "email": "developers@shopbonsai.ca" }
+    "description": "\n  APIs used for interacting with orders.\n\n  There are a few types of integration with the Bonsai Order API depending on who owns the payments.\n\n  ## Bonsai owns the payment\n\n  ### Native Checkout experience\n\n  If during the checkout process, the customer is redirected to Bonsai's checkout page to complete payment and order processing.\n\n  ### API integrated checkout experience\n\n  If you are hosting your own checkout experience and leveraging our endpoints to collect payment and complete order processing.\n  Please contact our team to provide you with all you need to get started.\n\n  ## Account owns the payment\n\n  If you are owning payment. Orders will need to be submitted with the payment method `external payment`.\n  Once the order is submitted, our team will handle fulfillment and Bonsai will invoice you for the order amount based on our agreement.\n  ",
+    "version": "3.8.13",
+    "contact": {
+      "email": "developers@shopbonsai.ca"
+    }
   },
   "paths": {
     "/checkout": {
       "post": {
-        "tags": ["Checkouts"],
-        "produces": ["application/json"],
+        "tags": [
+          "Checkouts"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
             "name": "checkoutCreateInput",
             "required": true,
-            "schema": { "$ref": "#/definitions/checkoutCreateInput" }
+            "schema": {
+              "$ref": "#/definitions/checkoutCreateInput"
+            }
           }
         ],
         "responses": {
@@ -27,7 +37,9 @@
             "description": "Success",
             "schema": {
               "properties": {
-                "data": { "$ref": "#/definitions/checkoutResult" }
+                "data": {
+                  "$ref": "#/definitions/checkoutResult"
+                }
               },
               "type": "object"
             }
@@ -40,7 +52,9 @@
           },
           "401": {
             "description": "401 - Unauthorized",
-            "schema": { "$ref": "#/definitions/UnauthorizedError" }
+            "schema": {
+              "$ref": "#/definitions/UnauthorizedError"
+            }
           },
           "404": {
             "description": "404 - Not found",
@@ -50,7 +64,9 @@
           },
           "5XX": {
             "description": "500 - Unknown error",
-            "schema": { "$ref": "#/definitions/UnknownError" }
+            "schema": {
+              "$ref": "#/definitions/UnknownError"
+            }
           }
         },
         "summary": "Checkout Totals",
@@ -59,14 +75,20 @@
     },
     "/V1/submit": {
       "post": {
-        "tags": ["Orders"],
-        "produces": ["application/json"],
+        "tags": [
+          "Orders"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
             "name": "order Cart V1Input",
             "required": true,
-            "schema": { "$ref": "#/definitions/order Cart V1Input" }
+            "schema": {
+              "$ref": "#/definitions/order Cart V1Input"
+            }
           }
         ],
         "responses": {
@@ -74,7 +96,9 @@
             "description": "Success",
             "schema": {
               "properties": {
-                "data": { "$ref": "#/definitions/universalOrderResult" }
+                "data": {
+                  "$ref": "#/definitions/orderOutputResult"
+                }
               },
               "type": "object"
             }
@@ -87,7 +111,9 @@
           },
           "401": {
             "description": "401 - Unauthorized",
-            "schema": { "$ref": "#/definitions/UnauthorizedError" }
+            "schema": {
+              "$ref": "#/definitions/UnauthorizedError"
+            }
           },
           "402": {
             "description": "402 - Payment required",
@@ -103,11 +129,15 @@
           },
           "500": {
             "description": "500 - Internal server error",
-            "schema": { "$ref": "#/definitions/orderFailedStripeErrorResult" }
+            "schema": {
+              "$ref": "#/definitions/orderFailedStripeErrorResult"
+            }
           },
           "5XX": {
             "description": "500 - Unknown error",
-            "schema": { "$ref": "#/definitions/UnknownError" }
+            "schema": {
+              "$ref": "#/definitions/UnknownError"
+            }
           }
         },
         "summary": "Submit Orders",
@@ -116,8 +146,12 @@
     },
     "/v2/{id}": {
       "get": {
-        "tags": ["Order Status"],
-        "produces": ["application/json"],
+        "tags": [
+          "Order Status"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -133,37 +167,55 @@
             "description": "Success",
             "schema": {
               "properties": {
-                "data": { "$ref": "#/definitions/Order StatusResult" }
+                "data": {
+                  "$ref": "#/definitions/Order StatusResult"
+                }
               },
               "type": "object"
             }
           },
           "400": {
             "description": "400 - Bad request",
-            "schema": { "$ref": "#/definitions/BadRequestError" }
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
           },
           "401": {
             "description": "401 - Unauthorized",
-            "schema": { "$ref": "#/definitions/Authentication FailedResult" }
+            "schema": {
+              "$ref": "#/definitions/Authentication FailedResult"
+            }
           },
           "404": {
             "description": "404 - Not found",
-            "schema": { "$ref": "#/definitions/Order Status Not FoundResult" }
+            "schema": {
+              "$ref": "#/definitions/Order Status Not FoundResult"
+            }
           },
           "5XX": {
             "description": "500 - Unknown error",
-            "schema": { "$ref": "#/definitions/UnknownError" }
+            "schema": {
+              "$ref": "#/definitions/UnknownError"
+            }
           }
         },
         "summary": "Order Status",
         "description": "Shows information about an existing order and its products. This endpoint\n        allows API users to get current information on the fulfillment status of their orders.",
-        "security": [{ "AuthorizationHeader": [] }]
+        "security": [
+          {
+            "AuthorizationHeader": []
+          }
+        ]
       }
     },
     "/v2/{id}/refunds": {
       "get": {
-        "tags": ["Order Refunds"],
-        "produces": ["application/json"],
+        "tags": [
+          "Order Refunds"
+        ],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "path",
@@ -179,31 +231,45 @@
             "description": "Success",
             "schema": {
               "properties": {
-                "data": { "$ref": "#/definitions/orderRefundsResult" }
+                "data": {
+                  "$ref": "#/definitions/orderRefundsResult"
+                }
               },
               "type": "object"
             }
           },
           "400": {
             "description": "400 - Bad request",
-            "schema": { "$ref": "#/definitions/BadRequestError" }
+            "schema": {
+              "$ref": "#/definitions/BadRequestError"
+            }
           },
           "401": {
             "description": "401 - Unauthorized",
-            "schema": { "$ref": "#/definitions/Authentication FailedResult" }
+            "schema": {
+              "$ref": "#/definitions/Authentication FailedResult"
+            }
           },
           "404": {
             "description": "404 - Not found",
-            "schema": { "$ref": "#/definitions/Order Status Not FoundResult" }
+            "schema": {
+              "$ref": "#/definitions/Order Status Not FoundResult"
+            }
           },
           "5XX": {
             "description": "500 - Unknown error",
-            "schema": { "$ref": "#/definitions/UnknownError" }
+            "schema": {
+              "$ref": "#/definitions/UnknownError"
+            }
           }
         },
         "summary": "Order Refunds",
         "description": "Shows refunds information about an existing order and its products. This endpoint\n        allows API users to get current information on the fulfillment status of their orders.",
-        "security": [{ "AuthorizationHeader": [] }]
+        "security": [
+          {
+            "AuthorizationHeader": []
+          }
+        ]
       }
     }
   },
@@ -215,15 +281,26 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["status", "detail", "title"],
+            "required": [
+              "status",
+              "detail",
+              "title"
+            ],
             "properties": {
-              "status": { "type": "number", "format": "float", "example": 500 },
+              "status": {
+                "type": "number",
+                "format": "float",
+                "example": 500
+              },
               "detail": {
                 "type": "string",
                 "nullable": true,
                 "example": "Fatal issue"
               },
-              "title": { "type": "string", "example": "Unknown error" }
+              "title": {
+                "type": "string",
+                "example": "Unknown error"
+              }
             },
             "example": {
               "status": 400,
@@ -242,17 +319,32 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["status", "detail", "title"],
+            "required": [
+              "status",
+              "detail",
+              "title"
+            ],
             "properties": {
-              "status": { "type": "number", "format": "float", "example": 500 },
+              "status": {
+                "type": "number",
+                "format": "float",
+                "example": 500
+              },
               "detail": {
                 "type": "string",
                 "nullable": true,
                 "example": "Fatal issue"
               },
-              "title": { "type": "string", "example": "Unknown error" }
+              "title": {
+                "type": "string",
+                "example": "Unknown error"
+              }
             },
-            "example": { "status": 404, "detail": "", "title": "Not Found" }
+            "example": {
+              "status": 404,
+              "detail": "",
+              "title": "Not Found"
+            }
           }
         }
       },
@@ -265,15 +357,26 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["status", "detail", "title"],
+            "required": [
+              "status",
+              "detail",
+              "title"
+            ],
             "properties": {
-              "status": { "type": "number", "format": "float", "example": 500 },
+              "status": {
+                "type": "number",
+                "format": "float",
+                "example": 500
+              },
               "detail": {
                 "type": "string",
                 "nullable": true,
                 "example": "Fatal issue"
               },
-              "title": { "type": "string", "example": "Unknown error" }
+              "title": {
+                "type": "string",
+                "example": "Unknown error"
+              }
             },
             "example": {
               "status": 401,
@@ -292,17 +395,32 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["status", "detail", "title"],
+            "required": [
+              "status",
+              "detail",
+              "title"
+            ],
             "properties": {
-              "status": { "type": "number", "format": "float", "example": 500 },
+              "status": {
+                "type": "number",
+                "format": "float",
+                "example": 500
+              },
               "detail": {
                 "type": "string",
                 "nullable": true,
                 "example": "Fatal issue"
               },
-              "title": { "type": "string", "example": "Unknown error" }
+              "title": {
+                "type": "string",
+                "example": "Unknown error"
+              }
             },
-            "example": { "status": 500, "detail": "", "title": "Unknown error" }
+            "example": {
+              "status": 500,
+              "detail": "",
+              "title": "Unknown error"
+            }
           }
         }
       },
@@ -310,7 +428,9 @@
     },
     "checkoutCreateInput": {
       "type": "object",
-      "required": ["products"],
+      "required": [
+        "products"
+      ],
       "properties": {
         "shipping_address": {
           "type": "object",
@@ -382,7 +502,11 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["public_id", "variant_id", "quantity"],
+            "required": [
+              "public_id",
+              "variant_id",
+              "quantity"
+            ],
             "properties": {
               "public_id": {
                 "type": "string",
@@ -406,9 +530,17 @@
         },
         "payment": {
           "type": "object",
-          "required": ["paymentMethod", "requestPaymentIntent"],
+          "required": [
+            "paymentMethod",
+            "requestPaymentIntent"
+          ],
           "properties": {
-            "paymentMethod": { "type": "string", "enum": ["stripe"] },
+            "paymentMethod": {
+              "type": "string",
+              "enum": [
+                "stripe"
+              ]
+            },
             "requestPaymentIntent": {
               "type": "boolean",
               "description": "Request a payment intent"
@@ -417,7 +549,13 @@
         },
         "target_currency": {
           "type": "string",
-          "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
+          "enum": [
+            "CAD",
+            "USD",
+            "GBP",
+            "AUD",
+            "EUR"
+          ],
           "description": "The currency to return values in.",
           "example": "USD"
         }
@@ -453,7 +591,12 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["amount", "label", "code"],
+            "required": [
+              "amount",
+              "label",
+              "code",
+              "products"
+            ],
             "properties": {
               "amount": {
                 "type": "number",
@@ -468,15 +611,45 @@
                 "example": "Standard Flat Rate Shipping"
               },
               "code": {
-                "type": "number",
-                "format": "float",
+                "type": "string",
                 "description": "Code that indicates the shipping type.",
-                "example": 1
+                "example": "0"
               },
               "merchant_name": {
                 "type": "string",
                 "description": "Merchant name.",
                 "example": "Virgin Club"
+              },
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "public_id",
+                    "variant_id",
+                    "quantity"
+                  ],
+                  "properties": {
+                    "public_id": {
+                      "type": "string",
+                      "description": "ID of the product",
+                      "example": "clad6pg5z00eu012gfz7hfm92"
+                    },
+                    "variant_id": {
+                      "type": "string",
+                      "description": "ID of the product variant.",
+                      "example": "M00679529706740"
+                    },
+                    "quantity": {
+                      "type": "number",
+                      "format": "float",
+                      "minimum": 1,
+                      "description": "Quantity of the product variant.",
+                      "example": 1
+                    }
+                  }
+                },
+                "description": "Products in this shipment."
               }
             }
           }
@@ -549,13 +722,23 @@
         },
         "currency": {
           "type": "string",
-          "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
+          "enum": [
+            "CAD",
+            "USD",
+            "GBP",
+            "AUD",
+            "EUR"
+          ],
           "description": "Currency that values are returned in.",
           "example": "USD"
         },
         "payment": {
           "type": "object",
-          "properties": { "clientSecret": { "type": "string" } }
+          "properties": {
+            "clientSecret": {
+              "type": "string"
+            }
+          }
         },
         "shipping_total": {
           "type": "number",
@@ -586,20 +769,31 @@
               "format": "float",
               "minimum": 0,
               "description": "The price of all products in the cart, in target currency (ex. USD).",
-              "examples": [12.5, 0]
+              "examples": [
+                12.5,
+                0
+              ]
             },
             "tax": {
               "type": "number",
               "format": "float",
               "minimum": 0,
               "description": "The amount of taxes to be paid, in target currency (ex. USD).",
-              "examples": [1.63, 0]
+              "examples": [
+                1.63,
+                0
+              ]
             },
             "shipping": {
               "type": "array",
               "items": {
                 "type": "object",
-                "required": ["amount", "label", "code"],
+                "required": [
+                  "amount",
+                  "label",
+                  "code",
+                  "products"
+                ],
                 "properties": {
                   "amount": {
                     "type": "number",
@@ -614,15 +808,45 @@
                     "example": "Standard Flat Rate Shipping"
                   },
                   "code": {
-                    "type": "number",
-                    "format": "float",
+                    "type": "string",
                     "description": "Code that indicates the shipping type.",
-                    "example": 1
+                    "example": "0"
                   },
                   "merchant_name": {
                     "type": "string",
                     "description": "Merchant name.",
                     "example": "Virgin Club"
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "public_id",
+                        "variant_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "public_id": {
+                          "type": "string",
+                          "description": "ID of the product",
+                          "example": "clad6pg5z00eu012gfz7hfm92"
+                        },
+                        "variant_id": {
+                          "type": "string",
+                          "description": "ID of the product variant.",
+                          "example": "M00679529706740"
+                        },
+                        "quantity": {
+                          "type": "number",
+                          "format": "float",
+                          "minimum": 1,
+                          "description": "Quantity of the product variant.",
+                          "example": 1
+                        }
+                      }
+                    },
+                    "description": "Products in this shipment."
                   }
                 }
               },
@@ -633,14 +857,20 @@
               "format": "float",
               "minimum": 0,
               "description": "The total amount for the order, in target currency (ex. USD).",
-              "examples": [12.25, 0]
+              "examples": [
+                12.25,
+                0
+              ]
             },
             "duties": {
               "type": "number",
               "format": "float",
               "minimum": 0,
               "description": "The total amount of duties for the order, in target currency (ex. USD).",
-              "examples": [12.25, 0]
+              "examples": [
+                12.25,
+                0
+              ]
             },
             "line_items": {
               "type": "array",
@@ -706,20 +936,33 @@
             },
             "currency": {
               "type": "string",
-              "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
+              "enum": [
+                "CAD",
+                "USD",
+                "GBP",
+                "AUD",
+                "EUR"
+              ],
               "description": "Currency that values are returned in.",
               "example": "USD"
             },
             "payment": {
               "type": "object",
-              "properties": { "clientSecret": { "type": "string" } }
+              "properties": {
+                "clientSecret": {
+                  "type": "string"
+                }
+              }
             },
             "shipping_total": {
               "type": "number",
               "format": "float",
               "minimum": 0,
               "description": "Total amount of shipping costs, in target currency (ex. USD).",
-              "examples": [120.2, 0]
+              "examples": [
+                120.2,
+                0
+              ]
             }
           }
         },
@@ -727,7 +970,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -757,7 +1006,10 @@
                     "type": "string",
                     "example": "clbj0i7w4041d01z60hv53mcm"
                   },
-                  "variantId": { "type": "string", "example": "13833901" }
+                  "variantId": {
+                    "type": "string",
+                    "example": "13833901"
+                  }
                 },
                 "description": "Useful details related to the error"
               }
@@ -786,20 +1038,31 @@
               "format": "float",
               "minimum": 0,
               "description": "The price of all products in the cart, in target currency (ex. USD).",
-              "examples": [12.5, 0]
+              "examples": [
+                12.5,
+                0
+              ]
             },
             "tax": {
               "type": "number",
               "format": "float",
               "minimum": 0,
               "description": "The amount of taxes to be paid, in target currency (ex. USD).",
-              "examples": [1.63, 0]
+              "examples": [
+                1.63,
+                0
+              ]
             },
             "shipping": {
               "type": "array",
               "items": {
                 "type": "object",
-                "required": ["amount", "label", "code"],
+                "required": [
+                  "amount",
+                  "label",
+                  "code",
+                  "products"
+                ],
                 "properties": {
                   "amount": {
                     "type": "number",
@@ -814,15 +1077,45 @@
                     "example": "Standard Flat Rate Shipping"
                   },
                   "code": {
-                    "type": "number",
-                    "format": "float",
+                    "type": "string",
                     "description": "Code that indicates the shipping type.",
-                    "example": 1
+                    "example": "0"
                   },
                   "merchant_name": {
                     "type": "string",
                     "description": "Merchant name.",
                     "example": "Virgin Club"
+                  },
+                  "products": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "public_id",
+                        "variant_id",
+                        "quantity"
+                      ],
+                      "properties": {
+                        "public_id": {
+                          "type": "string",
+                          "description": "ID of the product",
+                          "example": "clad6pg5z00eu012gfz7hfm92"
+                        },
+                        "variant_id": {
+                          "type": "string",
+                          "description": "ID of the product variant.",
+                          "example": "M00679529706740"
+                        },
+                        "quantity": {
+                          "type": "number",
+                          "format": "float",
+                          "minimum": 1,
+                          "description": "Quantity of the product variant.",
+                          "example": 1
+                        }
+                      }
+                    },
+                    "description": "Products in this shipment."
                   }
                 }
               },
@@ -833,14 +1126,20 @@
               "format": "float",
               "minimum": 0,
               "description": "The total amount for the order, in target currency (ex. USD).",
-              "examples": [12.25, 0]
+              "examples": [
+                12.25,
+                0
+              ]
             },
             "duties": {
               "type": "number",
               "format": "float",
               "minimum": 0,
               "description": "The total amount of duties for the order, in target currency (ex. USD).",
-              "examples": [12.25, 0]
+              "examples": [
+                12.25,
+                0
+              ]
             },
             "line_items": {
               "type": "array",
@@ -906,20 +1205,33 @@
             },
             "currency": {
               "type": "string",
-              "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
+              "enum": [
+                "CAD",
+                "USD",
+                "GBP",
+                "AUD",
+                "EUR"
+              ],
               "description": "Currency that values are returned in.",
               "example": "USD"
             },
             "payment": {
               "type": "object",
-              "properties": { "clientSecret": { "type": "string" } }
+              "properties": {
+                "clientSecret": {
+                  "type": "string"
+                }
+              }
             },
             "shipping_total": {
               "type": "number",
               "format": "float",
               "minimum": 0,
               "description": "Total amount of shipping costs, in target currency (ex. USD).",
-              "examples": [120.2, 0]
+              "examples": [
+                120.2,
+                0
+              ]
             }
           }
         },
@@ -927,7 +1239,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -971,11 +1289,20 @@
     },
     "order Cart V1Input": {
       "type": "object",
-      "required": ["customer", "products", "shipping_address", "payment"],
+      "required": [
+        "customer",
+        "products",
+        "shipping_address",
+        "payment"
+      ],
       "properties": {
         "customer": {
           "type": "object",
-          "required": ["email", "first_name", "last_name"],
+          "required": [
+            "email",
+            "first_name",
+            "last_name"
+          ],
           "properties": {
             "email": {
               "type": "string",
@@ -1000,7 +1327,11 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["public_id", "variant_id", "quantity"],
+            "required": [
+              "public_id",
+              "variant_id",
+              "quantity"
+            ],
             "properties": {
               "public_id": {
                 "type": "string",
@@ -1089,11 +1420,18 @@
         },
         "payment": {
           "type": "object",
-          "required": ["method", "token"],
+          "required": [
+            "method",
+            "token"
+          ],
           "properties": {
             "method": {
               "type": "string",
-              "enum": ["credit card", "external payment", "stripe"],
+              "enum": [
+                "credit card",
+                "external payment",
+                "stripe"
+              ],
               "description": "Payment method used to pay for the order.",
               "example": "credit card"
             },
@@ -1104,13 +1442,23 @@
             },
             "currency": {
               "type": "string",
-              "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
+              "enum": [
+                "CAD",
+                "USD",
+                "GBP",
+                "AUD",
+                "EUR"
+              ],
               "description": "ISO currency code for the currency that customer payment was taken in.",
               "example": "USD"
             },
             "amounts": {
               "type": "object",
-              "required": ["shipping", "taxes", "goods"],
+              "required": [
+                "shipping",
+                "taxes",
+                "goods"
+              ],
               "properties": {
                 "shipping": {
                   "type": "number",
@@ -1139,76 +1487,31 @@
         },
         "misc": {
           "type": "object",
-          "properties": { "data": { "type": "object", "properties": {} } },
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "object",
+              "properties": {}
+            }
+          },
           "description": "Miscellaneous data for the order. For example, analytics data."
+        },
+        "cart_id": {
+          "type": "string",
+          "description": "Unique identifier for the cart",
+          "example": "cjzyvxtm207z4rns56tif8job"
         }
       }
     },
-    "universalOrderResult": {
+    "orderOutputResult": {
       "type": "object",
-      "required": ["customer"],
+      "required": [
+        "public_id",
+        "orderNumber"
+      ],
       "properties": {
-        "marketing": {
-          "type": "object",
-          "properties": { "buyer_accepts_marketing": { "type": "boolean" } }
-        },
-        "customer": {
-          "type": "object",
-          "required": ["email", "first_name", "last_name"],
-          "properties": {
-            "email": {
-              "type": "string",
-              "format": "email",
-              "description": "Customer email address. We will be using this email to update the customer about their order",
-              "example": "qa@shopbonsai.ca"
-            },
-            "first_name": {
-              "type": "string",
-              "description": "Customer first name.",
-              "example": "Eddy"
-            },
-            "last_name": {
-              "type": "string",
-              "description": "Customer last name.",
-              "example": "Bonsai"
-            }
-          }
-        },
-        "financial_status": {
-          "type": "string",
-          "enum": [
-            "authorized",
-            "paid",
-            "partially_paid",
-            "partially_refunded",
-            "pending",
-            "voided"
-          ],
-          "nullable": true,
-          "description": "Financial status of order.",
-          "example": "authorized"
-        },
-        "fulfillment_status": {
-          "type": "string",
-          "enum": [
-            "pending",
-            "fulfilled",
-            "Partially Fulfilled",
-            "cancelled",
-            "sent to merchant",
-            "failed (merchant)",
-            "failed (unknown)",
-            "failed (payment)",
-            "cancelled (payment)",
-            "failed (payment validation)",
-            "payment successful",
-            "failed (inventory)",
-            "failed (inventory - related)"
-          ],
-          "nullable": true,
-          "description": "Whether order has been fulfilled.",
-          "example": "fulfilled"
-        },
         "email": {
           "type": "string",
           "format": "email",
@@ -1281,85 +1584,43 @@
           }
         },
         "shipping_lines": {
-          "type": "object",
-          "required": ["title", "code", "price", "source"],
-          "properties": {
-            "title": {
-              "type": "string",
-              "description": "The title of the shipping method.",
-              "example": "Small Packet International Air"
-            },
-            "code": {
-              "type": "string",
-              "description": "A reference to the shipping method.",
-              "example": "INT.TP"
-            },
-            "price": {
-              "type": "number",
-              "format": "float",
-              "description": "The price of this shipping method in the shop currency. Can not be negative.",
-              "example": 20
-            },
-            "source": {
-              "type": "string",
-              "description": "The source of the shipping method.",
-              "example": "canada_post"
-            },
-            "tax": {
-              "type": "number",
-              "format": "float",
-              "nullable": true,
-              "description": "Taxes for a specific shipping line.",
-              "example": 12.45
-            }
-          }
-        },
-        "duties_lines": {
-          "type": "object",
-          "properties": {
-            "title": {
-              "type": "string",
-              "description": "Specific type of duties",
-              "example": "FL county duty"
-            },
-            "price": {
-              "type": "number",
-              "format": "float",
-              "description": "Amount for duties.",
-              "example": 12.45
-            },
-            "currency": {
-              "type": "string",
-              "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
-              "description": "The three-letter code (ISO 4217 format) for the order currency.",
-              "example": "USD"
-            }
-          }
-        },
-        "metafields": {
           "type": "array",
           "items": {
             "type": "object",
+            "required": [
+              "title",
+              "code",
+              "price",
+              "source"
+            ],
             "properties": {
-              "key": {
+              "title": {
                 "type": "string",
-                "description": "The name of the metafield.",
-                "example": "warehouse"
+                "description": "The title of the shipping method.",
+                "example": "Small Packet International Air"
               },
-              "value": {
+              "code": {
                 "type": "string",
-                "description": "The information to be stored as metadata.",
-                "example": "25"
+                "description": "A reference to the shipping method.",
+                "example": "INT.TP"
               },
-              "value_type": {
-                "type": "string",
-                "description": "The metafield information type. Valid values: string, integer, json_string.",
-                "example": "integer"
+              "price": {
+                "type": "number",
+                "format": "float",
+                "description": "The price of this shipping method in the shop currency. Can not be negative.",
+                "example": 20
               },
-              "namespace": {
+              "source": {
                 "type": "string",
-                "description": "A container for a set of metafields.",
-                "example": "inventory"
+                "description": "The source of the shipping method.",
+                "example": "canada_post"
+              },
+              "tax": {
+                "type": "number",
+                "format": "float",
+                "nullable": true,
+                "description": "Taxes for a specific shipping line.",
+                "example": 12.45
               }
             }
           }
@@ -1439,159 +1700,46 @@
             }
           }
         },
-        "currency": {
-          "type": "string",
-          "enum": ["CAD", "USD", "GBP", "AUD", "EUR"],
-          "description": "The three-letter code (ISO 4217 format) for the order currency.",
-          "example": "USD"
-        },
-        "public_id": {
-          "type": "string",
-          "description": "Public id of customer order.",
-          "example": "cjld2cyuq0000t3rmniod1foy"
-        },
-        "note_attributes": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "type": "string",
-                "description": "Unique name for order note.",
-                "example": "remark"
-              },
-              "value": {
-                "type": "string",
-                "description": "Actual note value.",
-                "example": "Customer changed their mind."
-              }
-            }
-          }
-        },
-        "token": {
-          "type": "string",
-          "description": "A unique token for the order.",
-          "example": "b1946ac92492d2347c6235b4d2611184"
-        },
-        "discount_codes": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "amount": {
-                "type": "number",
-                "format": "float",
-                "description": "Discount amount.",
-                "example": 12
-              },
-              "type": {
-                "type": "string",
-                "description": "Discount type.",
-                "example": "fixed_amount"
-              },
-              "code": {
-                "type": "string",
-                "description": "The discount code that customers use at checkout.",
-                "example": "SUMMERSALE10OFF"
-              }
-            }
-          }
-        },
-        "merchant_revenue": {
-          "type": "number",
-          "format": "float",
-          "description": "Merchant revenue.",
-          "example": 17.98
-        },
         "total_tax": {
           "type": "number",
           "format": "float",
           "description": "Total amount of taxes to be paid.",
           "example": 12.25
         },
-        "raw_order": {
-          "description": "Original order details.",
-          "example": "{ _id: ... }"
+        "total_duties": {
+          "type": "number",
+          "format": "float",
+          "description": "Total amount of duties to be paid.",
+          "example": 20.12
         },
-        "merchant_country": {
+        "total_price": {
+          "type": "number",
+          "format": "float",
+          "description": "Total amount for entire order.",
+          "example": 120.25
+        },
+        "public_id": {
           "type": "string",
-          "description": "The merchant country.",
-          "example": "CA"
+          "description": "Public id of customer order",
+          "example": "cjld2cyuq0000t3rmniod1foy"
         },
         "partner_id": {
           "type": "string",
           "description": "This is the public ID of the partner that the sale will be attributed to.",
           "example": "ck865cyk00000xlzo0ftpawme"
         },
-        "incrementalId": {
+        "orderNumber": {
           "type": "number",
           "format": "float",
-          "description": "Send an order number if needed.",
-          "example": 25465
+          "description": "Order number in the system",
+          "example": 54663
         },
-        "billing_address": {
-          "type": "object",
-          "required": [
-            "first_name",
-            "last_name",
-            "address1",
-            "city",
-            "country",
-            "zip"
-          ],
-          "properties": {
-            "first_name": {
-              "type": "string",
-              "description": "Customer first name.",
-              "example": "Eddy"
-            },
-            "last_name": {
-              "type": "string",
-              "description": "Customer last name.",
-              "example": "Bonsai"
-            },
-            "address1": {
-              "type": "string",
-              "description": "The street address of the shipping address.",
-              "example": "351 E 103rd St"
-            },
-            "address2": {
-              "type": "string",
-              "nullable": true,
-              "description": "An optional additional field for the street address of the shipping address.",
-              "example": "Whitecastle"
-            },
-            "city": {
-              "type": "string",
-              "description": "The city, town, or village of the shipping address.",
-              "example": "New York"
-            },
-            "country": {
-              "type": "string",
-              "description": "The two-letter code (ISO 3166-1 format) for the country of the shipping address.",
-              "example": "US"
-            },
-            "name": {
-              "type": "string",
-              "description": "Full name.",
-              "example": "Eddy Bonsai"
-            },
-            "province": {
-              "type": "string",
-              "nullable": true,
-              "description": "The two-letter abbreviation of the region of the shipping address.",
-              "example": "NY"
-            },
-            "phone": {
-              "type": "string",
-              "description": "The phone number at the shipping address.",
-              "example": "555-625-1199"
-            },
-            "zip": {
-              "type": "string",
-              "description": "The postal code (zip, postcode, Eircode, …) of the shipping address.",
-              "example": "10029"
-            }
+        "stripeClientSecrets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Client secret from a stripe payment intent.",
+            "example": "pi_1DoS1i2eZvKYlo2CXgQLdndX_secret_jYJLrdftGY4odNdK6RIJzMeXO"
           }
         }
       }
@@ -1603,7 +1751,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -1652,7 +1806,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -1697,7 +1857,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -1746,7 +1912,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -1783,8 +1955,14 @@
                         "type": "string",
                         "example": "qa@shopbonsai.ca"
                       },
-                      "first_name": { "type": "string", "example": "Eddy" },
-                      "last_name": { "type": "string", "example": "Bonsai" }
+                      "first_name": {
+                        "type": "string",
+                        "example": "Eddy"
+                      },
+                      "last_name": {
+                        "type": "string",
+                        "example": "Bonsai"
+                      }
                     }
                   },
                   "message": {
@@ -1801,7 +1979,10 @@
     },
     "Order StatusResult": {
       "type": "object",
-      "required": ["id", "fulfillmentStatus"],
+      "required": [
+        "id",
+        "fulfillmentStatus"
+      ],
       "properties": {
         "id": {
           "type": "string",
@@ -1891,7 +2072,12 @@
               },
               "paymentStatus": {
                 "type": "string",
-                "enum": ["unpaid", "paid", "refunded", "partially refunded"],
+                "enum": [
+                  "unpaid",
+                  "paid",
+                  "refunded",
+                  "partially refunded"
+                ],
                 "description": "Payment status for the related order.",
                 "example": "paid"
               }
@@ -1902,7 +2088,11 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["carrier", "trackingNumber", "trackingUrl"],
+            "required": [
+              "carrier",
+              "trackingNumber",
+              "trackingUrl"
+            ],
             "properties": {
               "carrier": {
                 "type": "string",
@@ -1923,7 +2113,11 @@
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "required": ["id", "variantId", "quantity"],
+                  "required": [
+                    "id",
+                    "variantId",
+                    "quantity"
+                  ],
                   "properties": {
                     "id": {
                       "type": "string",
@@ -1957,7 +2151,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -2002,7 +2202,13 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["id", "status", "code", "title", "detail"],
+            "required": [
+              "id",
+              "status",
+              "code",
+              "title",
+              "detail"
+            ],
             "properties": {
               "id": {
                 "type": "string",
@@ -2042,7 +2248,10 @@
     },
     "orderRefundsResult": {
       "type": "object",
-      "required": ["id", "refunds"],
+      "required": [
+        "id",
+        "refunds"
+      ],
       "properties": {
         "id": {
           "type": "string",
@@ -2058,13 +2267,21 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["products", "refundReason", "refundedAmount"],
+            "required": [
+              "products",
+              "refundReason",
+              "refundedAmount"
+            ],
             "properties": {
               "products": {
                 "type": "array",
                 "items": {
                   "type": "object",
-                  "required": ["id", "variantId", "quantity"],
+                  "required": [
+                    "id",
+                    "variantId",
+                    "quantity"
+                  ],
                   "properties": {
                     "id": {
                       "type": "string",
@@ -2112,12 +2329,20 @@
     }
   },
   "securityDefinitions": {
-    "APIKeyHeader": { "type": "apiKey", "name": "API-Key", "in": "header" },
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "name": "API-Key",
+      "in": "header"
+    },
     "AuthorizationHeader": {
       "type": "apiKey",
       "name": "Authorization",
       "in": "header"
     }
   },
-  "security": [{ "APIKeyHeader": [] }]
+  "security": [
+    {
+      "APIKeyHeader": []
+    }
+  ]
 }
