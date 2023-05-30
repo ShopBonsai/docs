@@ -1,0 +1,126 @@
+---
+title: Bonsai Checkout
+description: Learn about the Bonsai Checkout and how to use it.
+sidebar_position: 1
+---
+
+This document explains how to use the Bonsai Checkout, and guides you through the process of
+integrating it with your website.
+
+# Integrations
+
+There are 2 ways to integrate with Bonsai Checkout:
+
+1. `Embedded` - embedding the Bonsai Checkout in your website
+2. `Hosted` - redirecting to secure Bonsai Checkout URL
+
+Each one of these integrations has its own advantages and disadvantages, and you should choose the one that fits your needs.
+
+## Embedded
+
+This integration enables you to run checkout process on your domain.
+This is the recommended way to integrate.
+
+You can obtain `order` information after a successful checkout, or an `error` in case of a failure, through _callbacks_.
+We will explain how to do this in the following sections.
+
+### Query parameters
+
+`Checkout` app reads the following query parameters from the URL:
+
+| Name        | Value           | Description                                                  | Required |
+| :---------- | :-------------- | :----------------------------------------------------------- | :------- |
+| `bonsai`    | `checkout_ID`   | Starts checkout process using provided cart ID               | Yes      |
+| `onSuccess` | `yourSuccessFn` | A _name_ of callback function that will be called on success | No       |
+| `onError`   | `yourErrorFn`   | A _name_ of callback function that will be called on error   | No       |
+
+:::info Example
+https://your.domain.com/checkout?bonsai=checkout_abcdef
+
+https://your.domain.com/checkout?bonsai=checkout_abcdef&onSuccess=yourSuccessFn&onError=yourErrorFn
+:::
+
+`bonsai` parameter is the only required parameter, and it should be provided with a `cart id` that you want to checkout.
+
+### Callbacks
+
+Callbacks are optional, and you can use them to obtain `order` information after a successful checkout, or an `error` in case of a failure.
+These function must be assigned to `window` object, and they will be called with `order` or `error` object as their first argument.
+
+:::info Example
+
+```javascript
+window.yourSuccessFn = function (order) {
+  // do something with order
+};
+
+window.yourErrorFn = function (error) {
+  // do something with error
+};
+```
+
+:::
+
+:::caution
+It's important that the names of the callback functions match the names provided in the `onSuccess` and `onError` query parameters.
+:::
+
+### Step 1: Create a page
+
+You will need to create a page on your website that will host the Bonsai Checkout,
+e.g. `https://your.domain.com/checkout`. We will refer to this page as the `Checkout page`.
+
+### Step 2: Add Bonsai Checkout dependencies
+
+Add the Bonsai Checkout dependencies to `Checkout page`:
+
+```html title="checkout.html"
+<head>
+  <!-- Bonsai Checkout CSS -->
+  <link rel="stylesheet" href="TODO" />
+</head>
+
+<body>
+  <!-- Bonsai Checkout JS -->
+  <script data-bonsai-partner-id="YOUR_API_KEY" src="TODO"></script>
+</body>
+```
+
+### Step 3: Create cart
+
+In order to start the checkout process, you need to create a cart first.
+You can do this by using `Bonsai Carts API`
+
+```bash
+curl 'https://carts.shopbonsai.ca/submit' \
+  -H 'authority: carts.shopbonsai.ca' \
+  -H 'accept: */*' \
+  -H 'accept-language: en-US,en;q=0.9' \
+  -H 'api-key: YOUR_API_KEY' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -H 'pragma: no-cache' \
+  --data-raw '{"products":[{"id":"cjzyvxtm407z4rns56tif8job","variantId":"36619342857","quantity":1}]}' \
+  --compressed
+
+# result:
+# {"data":{"id":"RANDOM_CART_ID"}}
+```
+
+:::info
+You can find more information about how to create and update carts using the `Bonsai Carts API` [here](/docs/api/carts).
+:::
+
+### Step 4: Redirect to checkout
+
+After you have created a cart, and obtained a `cart id`, you can redirect the user to the `Checkout page`.
+
+You will need to add a `bonsai` query parameter to the `Checkout page` URL, with the `cart id` as its value.
+
+:::info Example
+https://your.domain.com/checkout?bonsai=checkout_ID
+:::
+
+## Hosted
+
+Coming soon...

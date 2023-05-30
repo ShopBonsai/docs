@@ -30,27 +30,120 @@ const sidebars = {
         },
       ],
     },
-      label: "Bonsai UI",
-      type: "category",
+    {
+      type: 'category',
+      label: 'Bonsai API',
       link: {
-        type: "doc",
         type: 'doc',
         id: 'api/index',
-        id: "bonsai-ui/introduction",
       },
       items: [
+        {
           type: 'category',
           label: 'Products',
-          id: "bonsai-ui/express-checkout/index",
+          link: {
             type: 'doc',
             id: 'api/products/products-api',
-        {
-          type: "doc",
-          id: "bonsai-ui/checkout/index",
+          },
+          items: [
+            {
               type: 'doc',
               id: 'api/products/get-products',
               label: 'Get Products',
               className: 'api-method get',
+            },
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Orders',
+          link: {
+            type: 'doc',
+            id: 'api/orders/orders-api',
+          },
+          items: [
+            {
+              type: 'category',
+              label: 'Checkout Totals',
+              className: 'api-method post',
+              link: {
+                type: 'doc',
+                id: 'api/orders/checkout-totals',
+              },
+              items: [
+                {
+                  type: 'doc',
+                  id: 'api/orders/checkout-error-responses',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Submit Orders',
+              className: 'api-method post',
+              link: {
+                type: 'doc',
+                id: 'api/orders/submit-orders',
+              },
+              items: [
+                {
+                  type: 'doc',
+                  id: 'api/orders/orders-error-responses',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'v2',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'api/orders/order-status',
+                  label: 'Order Status',
+                  className: 'api-method get',
+                },
+                {
+                  type: 'doc',
+                  id: 'api/orders/order-refunds',
+                  label: 'Order Refunds',
+                  className: 'api-method get',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'doc',
+      id: 'images/index',
+      label: 'Images',
+    },
+    {
+      type: 'doc',
+      id: 'inventory-validation/index',
+      label: 'Inventory Validation',
+    },
+    {
+      label: 'Bonsai UI',
+      type: 'category',
+      link: {
+        type: 'doc',
+        id: 'bonsai-ui/introduction',
+      },
+      items: [
+        {
+          type: 'doc',
+          id: 'bonsai-ui/express-checkout/index',
+          label: 'Express Checkout',
+        },
+        {
+          type: 'doc',
+          id: 'bonsai-ui/checkout/index',
+          label: 'Bonsai Checkout',
+        },
+      ],
+    },
   ],
 };
 
