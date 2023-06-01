@@ -61,6 +61,8 @@ api:
                                                 "products",
                                                 "refundReason",
                                                 "refundedAmount",
+                                                "breakdown",
+                                                "refundedAt",
                                               ],
                                             "properties":
                                               {
@@ -119,9 +121,65 @@ api:
                                                   {
                                                     "type": "number",
                                                     "format": "float",
-                                                    "minimum": 1,
+                                                    "minimum": 0,
                                                     "description": "Total amount refunded across the subtotal, shipping, and taxes",
                                                     "example": 100,
+                                                  },
+                                                "breakdown":
+                                                  {
+                                                    "type": "object",
+                                                    "required":
+                                                      [
+                                                        "goods",
+                                                        "goodsTax",
+                                                        "shipping",
+                                                        "shippingTax",
+                                                        "duties",
+                                                      ],
+                                                    "properties":
+                                                      {
+                                                        "goods":
+                                                          {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "description": "The amount of goods refunded",
+                                                            "example": 5,
+                                                          },
+                                                        "goodsTax":
+                                                          {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "description": "The amount of goods tax refunded",
+                                                            "example": 1,
+                                                          },
+                                                        "shipping":
+                                                          {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "description": "The amount of shipping refunded",
+                                                            "example": 1,
+                                                          },
+                                                        "shippingTax":
+                                                          {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "description": "The amount of shipping tax refunded",
+                                                            "example": 1,
+                                                          },
+                                                        "duties":
+                                                          {
+                                                            "type": "number",
+                                                            "format": "float",
+                                                            "description": "The amount of duties refunded",
+                                                            "example": 0,
+                                                          },
+                                                      },
+                                                  },
+                                                "refundedAt":
+                                                  {
+                                                    "type": "string",
+                                                    "description": "Refund creation date and time.",
+                                                    "example": "2023-02-06T19:44:55.460Z",
                                                   },
                                               },
                                           },
@@ -404,7 +462,7 @@ api:
       {
         "title": "Orders API",
         "description": "\n  APIs used for interacting with orders.\n\n  There are a few types of integration with the Bonsai Order API depending on who owns the payments.\n\n  ## Bonsai owns the payment\n\n  ### Native Checkout experience\n\n  If during the checkout process, the customer is redirected to Bonsai's checkout page to complete payment and order processing.\n\n  ### API integrated checkout experience\n\n  If you are hosting your own checkout experience and leveraging our endpoints to collect payment and complete order processing.\n  Please contact our team to provide you with all you need to get started.\n\n  ## Account owns the payment\n\n  If you are owning payment. Orders will need to be submitted with the payment method `external payment`.\n  Once the order is submitted, our team will handle fulfillment and Bonsai will invoice you for the order amount based on our agreement.\n  ",
-        "version": "3.8.13",
+        "version": "3.10.0",
         "contact": { "email": "developers@shopbonsai.ca" },
       },
     "postman":
@@ -472,7 +530,7 @@ allows API users to get current information on the fulfillment status of their o
 
 Success
 
-</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>data</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} deprecated={undefined} schemaDescription={"Public ID of the order."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"externalId"} required={false} deprecated={undefined} schemaDescription={"ID of the order provided to Bonsai by the party who placed the order."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>refunds</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>products</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} deprecated={undefined} schemaDescription={"Product ID."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"variantId"} required={false} deprecated={undefined} schemaDescription={"The ID of the product variant."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"quantity"} required={false} deprecated={undefined} schemaDescription={"Quantity of the product variant."} schemaName={"float"} qualifierMessage={"**Possible values:** `>= 1`"} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"refundReason"} required={false} deprecated={undefined} schemaDescription={undefined} schemaName={"string"} qualifierMessage={"**Possible values:** [`item unavailable`, `customer canceled`, `customer returned`, `reimbursement`, `fraudulent`, `duplicate`, `Historical refund. Reason missing`]"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"refundedAmount"} required={false} deprecated={undefined} schemaDescription={"Total amount refunded across the subtotal, shipping, and taxes"} schemaName={"float"} qualifierMessage={"**Possible values:** `>= 1`"} defaultValue={undefined}></SchemaItem></div></details></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"data\": {\n    \"id\": \"cldbvy7gt0006hpzo9nyw72ks\",\n    \"externalId\": \"51cf91c1-da4a-42c4-81d3-3ec3e3268655\",\n    \"refunds\": [\n      {\n        \"products\": [\n          {\n            \"id\": \"clad6pg5z00eu012gfz7hfm92\",\n            \"variantId\": \"M00679529706740\",\n            \"quantity\": 1\n          }\n        ],\n        \"refundReason\": \"item unavailable\",\n        \"refundedAmount\": 100\n      }\n    ]\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>data</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} deprecated={undefined} schemaDescription={"Public ID of the order."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"externalId"} required={false} deprecated={undefined} schemaDescription={"ID of the order provided to Bonsai by the party who placed the order."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>refunds</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>products</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} deprecated={undefined} schemaDescription={"Product ID."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"variantId"} required={false} deprecated={undefined} schemaDescription={"The ID of the product variant."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"quantity"} required={false} deprecated={undefined} schemaDescription={"Quantity of the product variant."} schemaName={"float"} qualifierMessage={"**Possible values:** `>= 1`"} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"refundReason"} required={false} deprecated={undefined} schemaDescription={undefined} schemaName={"string"} qualifierMessage={"**Possible values:** [`item unavailable`, `customer canceled`, `customer returned`, `reimbursement`, `fraudulent`, `duplicate`, `Historical refund. Reason missing`]"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"refundedAmount"} required={false} deprecated={undefined} schemaDescription={"Total amount refunded across the subtotal, shipping, and taxes"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>breakdown</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"goods"} required={false} deprecated={undefined} schemaDescription={"The amount of goods refunded"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"goodsTax"} required={false} deprecated={undefined} schemaDescription={"The amount of goods tax refunded"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"shipping"} required={false} deprecated={undefined} schemaDescription={"The amount of shipping refunded"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"shippingTax"} required={false} deprecated={undefined} schemaDescription={"The amount of shipping tax refunded"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"duties"} required={false} deprecated={undefined} schemaDescription={"The amount of duties refunded"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"refundedAt"} required={false} deprecated={undefined} schemaDescription={"Refund creation date and time."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"data\": {\n    \"id\": \"cldbvy7gt0006hpzo9nyw72ks\",\n    \"externalId\": \"51cf91c1-da4a-42c4-81d3-3ec3e3268655\",\n    \"refunds\": [\n      {\n        \"products\": [\n          {\n            \"id\": \"clad6pg5z00eu012gfz7hfm92\",\n            \"variantId\": \"M00679529706740\",\n            \"quantity\": 1\n          }\n        ],\n        \"refundReason\": \"item unavailable\",\n        \"refundedAmount\": 100,\n        \"breakdown\": {\n          \"goods\": 5,\n          \"goodsTax\": 1,\n          \"shipping\": 1,\n          \"shippingTax\": 1,\n          \"duties\": 0\n        },\n        \"refundedAt\": \"2023-02-06T19:44:55.460Z\"\n      }\n    ]\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
 
 400 - Bad request
 
