@@ -26,4 +26,4 @@ Our [image service](/docs/images) allows you to fetch product images in various 
 
 ## Bonsai UI
 
-[Bonsai UI](/docs/category/bonsai-ui) is a service that allows customers to quickly and easily purchase products with configurable quantities through the Bonsai custom user interface.
+[Bonsai UI](/docs/bonsai-ui/introduction) is a service that allows customers to quickly and easily purchase products with configurable quantities through the Bonsai custom user interface.
