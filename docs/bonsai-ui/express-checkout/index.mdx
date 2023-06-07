@@ -2,6 +2,10 @@
 title: Express Checkout
 ---
 
+:::caution
+This integration is deprecated and will be removed in a future release. Please use [Bonsai Checkout](/docs/bonsai-ui/checkout) instead.
+:::
+
 ## Description
 
 Bonsai Express Checkout is a service that allows customers to quickly and easily purchase a single product with configurable quantities through the company's custom user interface.
@@ -18,10 +22,9 @@ Your `API key` will be shared with you by your account manager.
 
 _Fill in the required fields to generate Express Checkout URL._
 
-import { ExpressCheckoutUrl } from '@site/src/components/ExpressUrl'
+import { ExpressCheckoutUrl } from '@site/src/components/ExpressUrl';
 
 <ExpressCheckoutUrl />
-
 
 :::info
 We support 3 optional callbacks that can be defined, and exposed to the `window` object. If they are defined in the URL, Express Checkout will invoke them at appropriate times.
@@ -30,11 +33,12 @@ We support 3 optional callbacks that can be defined, and exposed to the `window`
 2. `onError` - called when a payment error occurs
 3. `onClose` - called if the checkout is closing, usually due to some error when initializing (e.g. missing a variant id in the URL)
 
-
 #### Example
 
 ```js
-window.myOnSuccess = (order) => { /* do something with order */ }
+window.myOnSuccess = (order) => {
+  /* do something with order */
+};
 ```
 
 Given a URL that contains a query param `&onSuccess=myOnSuccess`, Express checkout will invoke this function with order details
