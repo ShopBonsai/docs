@@ -56,16 +56,6 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Carts',
-          link: {
-            type: 'doc',
-            id: 'api/carts/carts-api',
-          },
-          items: [
-          ],
-        },
-        {
-          type: 'category',
           label: 'Orders',
           link: {
             type: 'doc',
