@@ -61,8 +61,9 @@ const sidebars = {
             type: 'doc',
             id: 'api/carts/carts-api',
           },
+          // TODO: Enable once public API routing is implemented!
           items: [
-            {
+           /*  {
               type: 'doc',
               id: 'api/carts/get-a-cart-by-id',
               label: 'Get Cart',
@@ -86,6 +87,12 @@ const sidebars = {
               label: 'Submit Cart',
               className: 'api-method post',
             },
+            {
+              type: 'doc',
+              id: 'api/carts/delete-a-cart-by-id.api',
+              label: 'Delete Cart',
+              className: 'api-method delete',
+            }, */
           ],
         },
         {
