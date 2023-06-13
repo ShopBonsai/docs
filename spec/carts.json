@@ -120,59 +120,6 @@
         },
         "summary": "Get a cart by ID.",
         "description": "Get a cart by ID."
-      },
-      "delete": {
-        "tags": [
-          "cart"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "string",
-            "description": "Cart ID",
-            "example": "9597879817"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "properties": {},
-              "type": "object"
-            }
-          },
-          "400": {
-            "description": "400 - Bad request",
-            "schema": {
-              "$ref": "#/definitions/BadRequestError"
-            }
-          },
-          "401": {
-            "description": "401 - Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/UnauthorizedError"
-            }
-          },
-          "404": {
-            "description": "404 - Not found",
-            "schema": {
-              "$ref": "#/definitions/NotFoundError"
-            }
-          },
-          "5XX": {
-            "description": "500 - Unknown error",
-            "schema": {
-              "$ref": "#/definitions/UnknownError"
-            }
-          }
-        },
-        "summary": "Delete a cart by ID.",
-        "description": "Delete a cart by ID."
       }
     },
     "/{id}/addProduct": {

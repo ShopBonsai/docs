@@ -56,6 +56,40 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Carts',
+          link: {
+            type: 'doc',
+            id: 'api/carts/carts-api',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'api/carts/get-a-cart-by-id',
+              label: 'Get Cart',
+              className: 'api-method get',
+            },
+            {
+              type: 'doc',
+              id: 'api/carts/add-product-to-cart',
+              label: 'Add Product',
+              className: 'api-method patch',
+            },
+            {
+              type: 'doc',
+              id: 'api/carts/remove-product-to-cart',
+              label: 'Remove Product',
+              className: 'api-method patch',
+            },
+            {
+              type: 'doc',
+              id: 'api/carts/submit-cart',
+              label: 'Submit Cart',
+              className: 'api-method post',
+            },
+          ],
+        },
+        {
+          type: 'category',
           label: 'Orders',
           link: {
             type: 'doc',
