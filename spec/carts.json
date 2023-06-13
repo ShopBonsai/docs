@@ -1,0 +1,867 @@
+{
+    "basePath": "/carts",
+    "definitions": {
+        "13wswf8ujInput": {
+            "properties": {
+                "id": {
+                    "description": "Product ID.",
+                    "example": "clad6pg5z00eu012gfz7hfm92",
+                    "type": "string"
+                },
+                "quantity": {
+                    "description": "Quantity of the product variant.",
+                    "example": 1,
+                    "format": "float",
+                    "minimum": 1,
+                    "type": "number"
+                },
+                "variantId": {
+                    "description": "The ID of the product variant.",
+                    "example": "M00679529706740",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "variantId",
+                "quantity"
+            ],
+            "type": "object"
+        },
+        "8ebq75ym3Input": {
+            "properties": {
+                "id": {
+                    "description": "Product ID.",
+                    "example": "clad6pg5z00eu012gfz7hfm92",
+                    "type": "string"
+                },
+                "quantity": {
+                    "description": "Quantity of the product variant.",
+                    "example": 1,
+                    "format": "float",
+                    "minimum": 1,
+                    "type": "number"
+                },
+                "variantId": {
+                    "description": "The ID of the product variant.",
+                    "example": "M00679529706740",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "variantId",
+                "quantity"
+            ],
+            "type": "object"
+        },
+        "BadRequestError": {
+            "description": "Provided input is invalid",
+            "properties": {
+                "errors": {
+                    "items": {
+                        "example": {
+                            "detail": "",
+                            "status": 400,
+                            "title": "Bad input request"
+                        },
+                        "properties": {
+                            "detail": {
+                                "example": "Fatal issue",
+                                "nullable": true,
+                                "type": "string"
+                            },
+                            "status": {
+                                "example": 500,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "example": "Unknown error",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "status",
+                            "detail",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "Cart inputInput": {
+            "properties": {
+                "products": {
+                    "description": "Product identifiers for the cart.",
+                    "items": {
+                        "properties": {
+                            "id": {
+                                "description": "Product ID.",
+                                "example": "clad6pg5z00eu012gfz7hfm92",
+                                "type": "string"
+                            },
+                            "quantity": {
+                                "description": "Quantity of the product variant.",
+                                "example": 1,
+                                "format": "float",
+                                "minimum": 1,
+                                "type": "number"
+                            },
+                            "variantId": {
+                                "description": "The ID of the product variant.",
+                                "example": "M00679529706740",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "variantId",
+                            "quantity"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "products"
+            ],
+            "type": "object"
+        },
+        "NotFoundError": {
+            "description": "Not Found",
+            "properties": {
+                "errors": {
+                    "items": {
+                        "example": {
+                            "detail": "",
+                            "status": 404,
+                            "title": "Not Found"
+                        },
+                        "properties": {
+                            "detail": {
+                                "example": "Fatal issue",
+                                "nullable": true,
+                                "type": "string"
+                            },
+                            "status": {
+                                "example": 500,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "example": "Unknown error",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "status",
+                            "detail",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "UnauthorizedError": {
+            "description": "Authentication information is missing or invalid",
+            "properties": {
+                "errors": {
+                    "items": {
+                        "example": {
+                            "detail": "",
+                            "status": 401,
+                            "title": "Authentication information is missing or invalid"
+                        },
+                        "properties": {
+                            "detail": {
+                                "example": "Fatal issue",
+                                "nullable": true,
+                                "type": "string"
+                            },
+                            "status": {
+                                "example": 500,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "example": "Unknown error",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "status",
+                            "detail",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "UnknownError": {
+            "description": "Unknown error",
+            "properties": {
+                "errors": {
+                    "items": {
+                        "example": {
+                            "detail": "",
+                            "status": 500,
+                            "title": "Unknown error"
+                        },
+                        "properties": {
+                            "detail": {
+                                "example": "Fatal issue",
+                                "nullable": true,
+                                "type": "string"
+                            },
+                            "status": {
+                                "example": 500,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "example": "Unknown error",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "status",
+                            "detail",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "lsrzzau65Result": {
+            "properties": {
+                "data": {
+                    "properties": {
+                        "id": {
+                            "description": "Unique identifier for the cart",
+                            "example": "cjzyvxtm207z4rns56tif8job",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "errors": {
+                    "items": {
+                        "properties": {
+                            "code": {
+                                "description": "Unique code for specific error.",
+                                "example": "USER_NOT_FOUND",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "Unique identifier for error. Can be used for tracing across services.",
+                                "example": "123e4567-e89b-12d3-a456-426655440000",
+                                "type": "string"
+                            },
+                            "status": {
+                                "description": "HTTP status code.",
+                                "example": 400,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "description": "Short description what the error entails.",
+                                "example": "Error occurred trying to create a new order",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "status",
+                            "code",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "peloy9kivResult": {
+            "properties": {
+                "data": {
+                    "properties": {
+                        "id": {
+                            "description": "Unique identifier for the cart",
+                            "example": "cjzyvxtm207z4rns56tif8job",
+                            "type": "string"
+                        },
+                        "products": {
+                            "description": "Product identifiers for the cart.",
+                            "items": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Product ID.",
+                                        "example": "clad6pg5z00eu012gfz7hfm92",
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "description": "Quantity of the product variant.",
+                                        "example": 1,
+                                        "format": "float",
+                                        "minimum": 1,
+                                        "type": "number"
+                                    },
+                                    "variantId": {
+                                        "description": "The ID of the product variant.",
+                                        "example": "M00679529706740",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "variantId",
+                                    "quantity"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "products",
+                        "id"
+                    ],
+                    "type": "object"
+                },
+                "errors": {
+                    "items": {
+                        "properties": {
+                            "code": {
+                                "description": "Unique code for specific error.",
+                                "example": "USER_NOT_FOUND",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "Unique identifier for error. Can be used for tracing across services.",
+                                "example": "123e4567-e89b-12d3-a456-426655440000",
+                                "type": "string"
+                            },
+                            "status": {
+                                "description": "HTTP status code.",
+                                "example": 400,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "description": "Short description what the error entails.",
+                                "example": "Error occurred trying to create a new order",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "status",
+                            "code",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "s0hyab0slResult": {
+            "properties": {
+                "data": {
+                    "properties": {
+                        "id": {
+                            "description": "Unique identifier for the cart",
+                            "example": "cjzyvxtm207z4rns56tif8job",
+                            "type": "string"
+                        },
+                        "products": {
+                            "description": "Product identifiers for the cart.",
+                            "items": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Product ID.",
+                                        "example": "clad6pg5z00eu012gfz7hfm92",
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "description": "Quantity of the product variant.",
+                                        "example": 1,
+                                        "format": "float",
+                                        "minimum": 1,
+                                        "type": "number"
+                                    },
+                                    "variantId": {
+                                        "description": "The ID of the product variant.",
+                                        "example": "M00679529706740",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "variantId",
+                                    "quantity"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "products",
+                        "id"
+                    ],
+                    "type": "object"
+                },
+                "errors": {
+                    "items": {
+                        "properties": {
+                            "code": {
+                                "description": "Unique code for specific error.",
+                                "example": "USER_NOT_FOUND",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "Unique identifier for error. Can be used for tracing across services.",
+                                "example": "123e4567-e89b-12d3-a456-426655440000",
+                                "type": "string"
+                            },
+                            "status": {
+                                "description": "HTTP status code.",
+                                "example": 400,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "description": "Short description what the error entails.",
+                                "example": "Error occurred trying to create a new order",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "status",
+                            "code",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "y5dx1ghypResult": {
+            "properties": {
+                "data": {
+                    "properties": {
+                        "id": {
+                            "description": "Unique identifier for the cart",
+                            "example": "cjzyvxtm207z4rns56tif8job",
+                            "type": "string"
+                        },
+                        "products": {
+                            "description": "Product identifiers for the cart.",
+                            "items": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Product ID.",
+                                        "example": "clad6pg5z00eu012gfz7hfm92",
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "description": "Quantity of the product variant.",
+                                        "example": 1,
+                                        "format": "float",
+                                        "minimum": 1,
+                                        "type": "number"
+                                    },
+                                    "variantId": {
+                                        "description": "The ID of the product variant.",
+                                        "example": "M00679529706740",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "variantId",
+                                    "quantity"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "required": [
+                        "products",
+                        "id"
+                    ],
+                    "type": "object"
+                },
+                "errors": {
+                    "items": {
+                        "properties": {
+                            "code": {
+                                "description": "Unique code for specific error.",
+                                "example": "USER_NOT_FOUND",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "Unique identifier for error. Can be used for tracing across services.",
+                                "example": "123e4567-e89b-12d3-a456-426655440000",
+                                "type": "string"
+                            },
+                            "status": {
+                                "description": "HTTP status code.",
+                                "example": 400,
+                                "format": "float",
+                                "type": "number"
+                            },
+                            "title": {
+                                "description": "Short description what the error entails.",
+                                "example": "Error occurred trying to create a new order",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "status",
+                            "code",
+                            "title"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "host": "api.shopbonsai.ca",
+    "info": {
+        "contact": {
+            "email": "developers@shopbonsai.ca"
+        },
+        "description": "API for creating, reading, updating, and deleting carts.",
+        "title": "Cart API",
+        "version": "0.8.30"
+    },
+    "paths": {
+        "/submit": {
+            "post": {
+                "description": "Submit a cart for creation.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "Cart inputInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Cart inputInput"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/lsrzzau65Result"
+                        }
+                    },
+                    "400": {
+                        "description": "400 - Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/BadRequestError"
+                        }
+                    },
+                    "401": {
+                        "description": "401 - Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedError"
+                        }
+                    },
+                    "404": {
+                        "description": "404 - Not found",
+                        "schema": {
+                            "$ref": "#/definitions/NotFoundError"
+                        }
+                    },
+                    "5XX": {
+                        "description": "500 - Unknown error",
+                        "schema": {
+                            "$ref": "#/definitions/UnknownError"
+                        }
+                    }
+                },
+                "summary": "Submit cart.",
+                "tags": [
+                    "cart"
+                ]
+            }
+        },
+        "/{id}": {
+            "delete": {
+                "description": "Delete a cart by ID.",
+                "parameters": [
+                    {
+                        "description": "Cart ID",
+                        "example": "9597879817",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {},
+                            "type": "object"
+                        }
+                    },
+                    "400": {
+                        "description": "400 - Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/BadRequestError"
+                        }
+                    },
+                    "401": {
+                        "description": "401 - Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedError"
+                        }
+                    },
+                    "404": {
+                        "description": "404 - Not found",
+                        "schema": {
+                            "$ref": "#/definitions/NotFoundError"
+                        }
+                    },
+                    "5XX": {
+                        "description": "500 - Unknown error",
+                        "schema": {
+                            "$ref": "#/definitions/UnknownError"
+                        }
+                    }
+                },
+                "summary": "Delete a cart by ID.",
+                "tags": [
+                    "cart"
+                ]
+            },
+            "get": {
+                "description": "Get a cart by ID.",
+                "parameters": [
+                    {
+                        "description": "Cart ID",
+                        "example": "9597879817",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/s0hyab0slResult"
+                        }
+                    },
+                    "400": {
+                        "description": "400 - Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/BadRequestError"
+                        }
+                    },
+                    "401": {
+                        "description": "401 - Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedError"
+                        }
+                    },
+                    "404": {
+                        "description": "404 - Not found",
+                        "schema": {
+                            "$ref": "#/definitions/NotFoundError"
+                        }
+                    },
+                    "5XX": {
+                        "description": "500 - Unknown error",
+                        "schema": {
+                            "$ref": "#/definitions/UnknownError"
+                        }
+                    }
+                },
+                "summary": "Get a cart by ID.",
+                "tags": [
+                    "cart"
+                ]
+            }
+        },
+        "/{id}/addProduct": {
+            "patch": {
+                "description": "Add product to cart.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "8ebq75ym3Input",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/8ebq75ym3Input"
+                        }
+                    },
+                    {
+                        "description": "Cart id",
+                        "example": "9597879817",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/y5dx1ghypResult"
+                        }
+                    },
+                    "400": {
+                        "description": "400 - Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/BadRequestError"
+                        }
+                    },
+                    "401": {
+                        "description": "401 - Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedError"
+                        }
+                    },
+                    "404": {
+                        "description": "404 - Not found",
+                        "schema": {
+                            "$ref": "#/definitions/NotFoundError"
+                        }
+                    },
+                    "5XX": {
+                        "description": "500 - Unknown error",
+                        "schema": {
+                            "$ref": "#/definitions/UnknownError"
+                        }
+                    }
+                },
+                "summary": "Add product to cart.",
+                "tags": [
+                    "cart"
+                ]
+            }
+        },
+        "/{id}/removeProduct": {
+            "patch": {
+                "description": "Remove product to cart.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "13wswf8ujInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/13wswf8ujInput"
+                        }
+                    },
+                    {
+                        "description": "Cart ID",
+                        "example": "9597879817",
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/peloy9kivResult"
+                        }
+                    },
+                    "400": {
+                        "description": "400 - Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/BadRequestError"
+                        }
+                    },
+                    "401": {
+                        "description": "401 - Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/UnauthorizedError"
+                        }
+                    },
+                    "404": {
+                        "description": "404 - Not found",
+                        "schema": {
+                            "$ref": "#/definitions/NotFoundError"
+                        }
+                    },
+                    "5XX": {
+                        "description": "500 - Unknown error",
+                        "schema": {
+                            "$ref": "#/definitions/UnknownError"
+                        }
+                    }
+                },
+                "summary": "Remove product to cart.",
+                "tags": [
+                    "cart"
+                ]
+            }
+        }
+    },
+    "schemes": [
+        "https"
+    ],
+    "security": [
+        {
+            "APIKeyHeader": []
+        }
+    ],
+    "securityDefinitions": {
+        "APIKeyHeader": {
+            "in": "header",
+            "name": "API-Key",
+            "type": "apiKey"
+        }
+    },
+    "swagger": "2.0"
+}

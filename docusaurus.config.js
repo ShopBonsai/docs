@@ -184,6 +184,14 @@ const config = {
             },
             downloadUrl: 'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json',
           },
+          carts: {
+            specPath: 'spec/carts.json',
+            outputDir: 'docs/api/carts',
+            sidebarOptions: {
+              categoryLinkSource: 'info',
+            },
+            downloadUrl: 'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/carts.json',
+          },
         },
       },
     ],
