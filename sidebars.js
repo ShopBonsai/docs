@@ -174,27 +174,26 @@ const sidebars = {
       id: 'native-commerce/index',
       label: 'Native Commerce',
     },
-    // ,
-    // {
-    //   label: 'Bonsai UI',
-    //   type: 'category',
-    //   link: {
-    //     type: 'doc',
-    //     id: 'bonsai-ui/introduction',
-    //   },
-    //   items: [
-    //     {
-    //       type: 'doc',
-    //       id: 'bonsai-ui/express-checkout/index',
-    //       label: 'Express Checkout',
-    //     },
-    //     {
-    //       type: 'doc',
-    //       id: 'bonsai-ui/checkout/index',
-    //       label: 'Bonsai Checkout',
-    //     },
-    //   ],
-    // },
+    {
+      label: 'Bonsai UI',
+      type: 'category',
+      link: {
+        type: 'doc',
+        id: 'bonsai-ui/introduction',
+      },
+      items: [
+        {
+          type: 'doc',
+          id: 'bonsai-ui/express-checkout/index',
+          label: 'Express Checkout',
+        },
+        {
+          type: 'doc',
+          id: 'bonsai-ui/checkout/index',
+          label: 'Bonsai Checkout',
+        },
+      ],
+    },
   ],
 };
 

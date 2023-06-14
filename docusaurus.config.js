@@ -112,12 +112,12 @@ const config = {
             position: 'left',
             label: 'Native Commerce',
           },
-          //, {
-          //   type: 'doc',
-          //   docId: 'bonsai-ui/introduction',
-          //   position: 'left',
-          //   label: 'Bonsai UI',
-          // },
+          {
+            type: 'doc',
+            docId: 'bonsai-ui/introduction',
+            position: 'left',
+            label: 'Bonsai UI',
+          },
         ],
       },
       footer: {
