@@ -76,7 +76,7 @@ const sidebars = {
             },
             {
               type: 'doc',
-              id: 'api/carts/remove-product-to-cart',
+              id: 'api/carts/remove-product-from-cart',
               label: 'Remove Product',
               className: 'api-method patch',
             },
