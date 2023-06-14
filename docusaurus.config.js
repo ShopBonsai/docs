@@ -102,18 +102,6 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'express-checkout/index',
-            position: 'left',
-            label: 'Express Checkout',
-          },
-          {
-            type: 'doc',
-            docId: 'native-commerce/index',
-            position: 'left',
-            label: 'Native Commerce',
-          },
-          {
-            type: 'doc',
             docId: 'bonsai-ui/introduction',
             position: 'left',
             label: 'Bonsai UI',
