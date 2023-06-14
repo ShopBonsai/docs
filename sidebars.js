@@ -174,13 +174,13 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          id: 'bonsai-ui/express-checkout/index',
-          label: 'Express Checkout',
+          id: 'bonsai-ui/checkout/index',
+          label: 'Bonsai Checkout',
         },
         {
           type: 'doc',
-          id: 'bonsai-ui/checkout/index',
-          label: 'Bonsai Checkout',
+          id: 'bonsai-ui/express-checkout/index',
+          label: 'Express Checkout',
         },
       ],
     },
