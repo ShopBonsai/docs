@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Bonsai Documentation',
   tagline: '',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://docs.shopbonsai.ca',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -183,6 +183,14 @@ const config = {
               categoryLinkSource: 'info',
             },
             downloadUrl: 'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json',
+          },
+          carts: {
+            specPath: 'spec/carts.json',
+            outputDir: 'docs/api/carts',
+            sidebarOptions: {
+              categoryLinkSource: 'info',
+            },
+            downloadUrl: 'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/carts.json',
           },
         },
       },
