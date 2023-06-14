@@ -14,7 +14,7 @@ There are 2 ways to integrate with Bonsai Checkout:
 1. `Embedded` - embedding the Bonsai Checkout in your website
 2. `Hosted` - redirecting to a secure Bonsai Checkout URL
 
-Each of these integrations has its advantages and disadvantages, and you should choose the one that fits your needs.
+Based on your preferred experience, choose the one that fits your needs.
 
 ## Embedded
 
@@ -90,16 +90,19 @@ In order to start the checkout process, you need to create a cart first.
 You can do this by using `Bonsai Carts API`
 
 ```bash
-curl 'https://carts.shopbonsai.ca/submit' \
-  -H 'authority: carts.shopbonsai.ca' \
-  -H 'accept: */*' \
-  -H 'accept-language: en-US,en;q=0.9' \
-  -H 'api-key: YOUR_API_KEY' \
-  -H 'cache-control: no-cache' \
-  -H 'content-type: application/json' \
-  -H 'pragma: no-cache' \
-  --data-raw '{"products":[{"id":"cjzyvxtm407z4rns56tif8job","variantId":"36619342857","quantity":1}]}' \
-  --compressed
+curl -L -X POST 'https://api.shopbonsai.ca/carts/v1/submit' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+-H 'API-Key: <API_KEY_VALUE>' \
+--data-raw '{
+  "products": [
+    {
+      "id": "clad6pg5z00eu012gfz7hfm92",
+      "variantId": "M00679529706740",
+      "quantity": 1
+    }
+  ]
+}'
 
 # result:
 # {"data":{"id":"RANDOM_CART_ID"}}
