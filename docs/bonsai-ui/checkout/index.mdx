@@ -20,7 +20,7 @@ Based on your preferred experience, choose the one that fits your needs.
 
 This integration enables you to run the checkout process on your domain.
 
-You can obtain `order` information after a successful checkout or an `error` in case of a failure through _callbacks_, explained in the following sections.
+You can obtain the `order` information after a successful checkout through _callbacks_, explained in the following sections.
 
 ### Query parameters
 
@@ -30,12 +30,11 @@ You can obtain `order` information after a successful checkout or an `error` in 
 | :---------- | :-------------- | :----------------------------------------------------------- | :------- |
 | `bonsai`    | `checkout_ID`   | Starts checkout process using provided cart ID               | Yes      |
 | `onSuccess` | `yourSuccessFn` | A _name_ of callback function that will be called on success | No       |
-| `onError`   | `yourErrorFn`   | A _name_ of callback function that will be called on error   | No       |
 
 :::info Example
 https://your.domain.com/checkout?bonsai=checkout_abcdef
 
-https://your.domain.com/checkout?bonsai=checkout_abcdef&onSuccess=yourSuccessFn&onError=yourErrorFn
+https://your.domain.com/checkout?bonsai=checkout_abcdef&onSuccess=yourSuccessFn
 :::
 
 `bonsai` parameter is the only required parameter, and it should be provided with a `cart id` that you want to check out.
@@ -51,16 +50,12 @@ These functions must be assigned to `window` object and called with `order` or `
 window.yourSuccessFn = function (order) {
   // do something with order
 };
-
-window.yourErrorFn = function (error) {
-  // do something with error
-};
 ```
 
 :::
 
 :::caution
-The callback functions' names must match those provided in the `onSuccess` and `onError` query parameters.
+The success callback function name must match the provided one in the `onSuccess` query parameter.
 :::
 
 ### Step 1: Create a page
@@ -116,10 +111,10 @@ You can find more information about how to create and update carts using the `Bo
 
 After you have created a cart, and obtained a `cart id`, you can redirect the user to the `Checkout page`.
 
-You will need to add a `bonsai` query parameter to the `Checkout page` URL, with the `cart id` as its value.
+You will need to add a `bonsai` query parameter to the `Checkout page` URL, with the `cart id` as its value, and optionally the name of success handler.
 
 :::info Example
-https://your.domain.com/checkout?bonsai=checkout_ID
+https://your.domain.com/checkout?bonsai=checkout_ID&onSuccess=mySuccessHandler
 :::
 
 ## Hosted
