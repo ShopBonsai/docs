@@ -165,36 +165,25 @@ const sidebars = {
       label: 'Inventory Validation',
     },
     {
-      type: 'doc',
-      id: 'express-checkout/index',
-      label: 'Express Checkout',
+      label: 'Bonsai UI',
+      type: 'category',
+      link: {
+        type: 'doc',
+        id: 'bonsai-ui/introduction',
+      },
+      items: [
+        {
+          type: 'doc',
+          id: 'bonsai-ui/checkout/index',
+          label: 'Bonsai Checkout',
+        },
+        {
+          type: 'doc',
+          id: 'bonsai-ui/express-checkout/index',
+          label: 'Express Checkout',
+        },
+      ],
     },
-    {
-      type: 'doc',
-      id: 'native-commerce/index',
-      label: 'Native Commerce',
-    },
-    // ,
-    // {
-    //   label: 'Bonsai UI',
-    //   type: 'category',
-    //   link: {
-    //     type: 'doc',
-    //     id: 'bonsai-ui/introduction',
-    //   },
-    //   items: [
-    //     {
-    //       type: 'doc',
-    //       id: 'bonsai-ui/express-checkout/index',
-    //       label: 'Express Checkout',
-    //     },
-    //     {
-    //       type: 'doc',
-    //       id: 'bonsai-ui/checkout/index',
-    //       label: 'Bonsai Checkout',
-    //     },
-    //   ],
-    // },
   ],
 };
 
