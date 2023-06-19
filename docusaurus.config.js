@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Bonsai Documentation',
   tagline: '',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://docs.shopbonsai.ca',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -38,7 +38,7 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // editUrl:
           //   'https://github.com/ShopBonsai/docs/tree/main/',
-          docItemComponent: "@theme/ApiItem",
+          docItemComponent: '@theme/ApiItem',
         },
         blog: {
           showReadingTime: true,
@@ -96,28 +96,22 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'express-checkout/index',
+            docId: 'inventory-validation/index',
             position: 'left',
-            label: 'Express Checkout',
+            label: 'Inventory Validation',
           },
           {
             type: 'doc',
-            docId: 'native-commerce/index',
+            docId: 'bonsai-ui/introduction',
             position: 'left',
-            label: 'Native Commerce',
-          },
-          {
-            type: "doc",
-            docId: "inventory-validation/index",
-            position: 'left',
-            label: "Inventory Validation",
+            label: 'Bonsai UI',
           },
         ],
       },
       footer: {
         style: 'dark',
-      // No current need for footer containing the same navigation links as menu is fixed up top
-      /*
+        // No current need for footer containing the same navigation links as menu is fixed up top
+        /*
         links: [
           {
             title: 'Docs',
@@ -151,38 +145,47 @@ const config = {
         defaultMode: 'light',
         disableSwitch: false,
         respectPrefersColorScheme: true,
-      }
+      },
     }),
 
   plugins: [
     [
-      "docusaurus-plugin-openapi-docs",
+      'docusaurus-plugin-openapi-docs',
       {
-        id: "openapi",
-        docsPluginId: "plugin-content-docs",
+        id: 'openapi',
+        docsPluginId: 'plugin-content-docs',
         config: {
           products: {
-            specPath: "spec/products.json",
-            outputDir: "docs/api/products",
+            specPath: 'spec/products.json',
+            outputDir: 'docs/api/products',
             sidebarOptions: {
-              categoryLinkSource: "info",
+              categoryLinkSource: 'info',
             },
-            downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/products.json",
+            downloadUrl:
+              'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/products.json',
           },
           orders: {
-            specPath: "spec/orders.json",
-            outputDir: "docs/api/orders",
+            specPath: 'spec/orders.json',
+            outputDir: 'docs/api/orders',
             sidebarOptions: {
-              categoryLinkSource: "info",
+              categoryLinkSource: 'info',
             },
-            downloadUrl: "https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json",
+            downloadUrl: 'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/orders.json',
+          },
+          carts: {
+            specPath: 'spec/carts.json',
+            outputDir: 'docs/api/carts',
+            sidebarOptions: {
+              categoryLinkSource: 'info',
+            },
+            downloadUrl: 'https://raw.githubusercontent.com/ShopBonsai/docs/main/spec/carts.json',
           },
         },
       },
     ],
   ],
 
-  themes: ["docusaurus-theme-openapi-docs"],
+  themes: ['docusaurus-theme-openapi-docs'],
 };
 
 module.exports = config;

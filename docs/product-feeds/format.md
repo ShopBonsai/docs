@@ -84,8 +84,12 @@ Variant’s regular price, including currency. Example: `125 USD`.
 
 > **optional**
 
-Variant’s sale price, if the variant is on sale. Includes currency. Example: `150 USD`.
-
+Variant’s price before discount, if the variant is on sale. Includes currency. Example: `150 USD`.
+:::note Example
+If a product is currently being sold for $100, but its previous price was $150, then in the feed it will be displayed as:
+- `price: 100 USD`
+- `sale_price: 150 USD`
+:::
 ## `google_product_category`
 
 > **required**
@@ -169,3 +173,10 @@ stock keeping unit (sku) is `null` unless provided by the merchant.
 > **optional**
 
 Some items are final sale (i.e. highly discounted products); we set it to true whenever this information is provided by the merchant.
+
+
+## `are_taxes_included_in_price`
+
+> **optional**
+
+If the price of the product is inclusive of taxes.
