@@ -96,16 +96,53 @@ const sidebars = {
               label: "v2",
               items: [
                 {
-                  type: "doc",
-                  id: "api/orders/order-status",
+                  type: "category",
                   label: "Order Status",
-                  className: "api-method get",
+                  items: [
+                    {
+                      type: "doc",
+                      id: "api/orders/order-status-by-public-id",
+                      label: "By public id",
+                      className: "api-method get",
+                    },
+                    {
+                      type: "doc",
+                      id: "api/orders/order-status-by-external-order-id",
+                      label: "By external order id",
+                      className: "api-method get",
+                    },
+                    {
+                      type: "doc",
+                      id: "api/orders/order-status-by-public-id-deprecated",
+                      label: "By public id",
+                      className: "api-method get",
+                    },
+                  ]
+
                 },
                 {
-                  type: "doc",
-                  id: "api/orders/order-refunds",
-                  label: "Order Refunds",
-                  className: "api-method get",
+                  type: "category",
+                  label: "Refunds",
+                  items: [
+                    {
+                      type: "doc",
+                      id: "api/orders/order-refunds-by-public-id",
+                      label: "By public id",
+                      className: "api-method get",
+                    },
+                    {
+                      type: "doc",
+                      id: "api/orders/order-refunds-by-external-order-id",
+                      label: "By external order id",
+                      className: "api-method get",
+                    },
+                    {
+                      type: "doc",
+                      id: "api/orders/order-refunds-by-public-id-deprecated",
+                      label: "By public id",
+                      className: "api-method get",
+                    },
+                  ]
                 },
               ],
             },
