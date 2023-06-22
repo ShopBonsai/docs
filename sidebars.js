@@ -142,7 +142,7 @@ const sidebars = {
                   items: [
                     {
                       type: "doc",
-                      id: "api/orders/order-status-by-public-id",
+                      id: "api/orders/order-status-by-id",
                       label: "By public id",
                       className: "api-method get",
                     },
@@ -150,12 +150,6 @@ const sidebars = {
                       type: "doc",
                       id: "api/orders/order-status-by-external-order-id",
                       label: "By external order id",
-                      className: "api-method get",
-                    },
-                    {
-                      type: "doc",
-                      id: "api/orders/order-status-by-public-id-deprecated",
-                      label: "By public id",
                       className: "api-method get",
                     },
                   ]
@@ -167,7 +161,7 @@ const sidebars = {
                   items: [
                     {
                       type: "doc",
-                      id: "api/orders/order-refunds-by-public-id",
+                      id: "api/orders/order-refunds-by-id",
                       label: "By public id",
                       className: "api-method get",
                     },
@@ -175,12 +169,6 @@ const sidebars = {
                       type: "doc",
                       id: "api/orders/order-refunds-by-external-order-id",
                       label: "By external order id",
-                      className: "api-method get",
-                    },
-                    {
-                      type: "doc",
-                      id: "api/orders/order-refunds-by-public-id-deprecated",
-                      label: "By public id",
                       className: "api-method get",
                     },
                   ]

@@ -31,6 +31,7 @@ OpenAPI documentation will be specified in `.json` files (see spec folder). Run 
 ### How to update the spec
 - [Orders API README](https://github.com/ShopBonsai/bonsai/tree/master/services/orders/api#readme)
 - [Products API README](https://github.com/ShopBonsai/bonsai/blob/master/services/products/api/README.md)
+- [Carts API README](https://github.com/ShopBonsai/bonsai/blob/master/services/carts/README.md)
 
 ## Deployment
 
