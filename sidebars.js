@@ -137,16 +137,41 @@ const sidebars = {
               label: 'v2',
               items: [
                 {
-                  type: 'doc',
-                  id: 'api/orders/order-status',
-                  label: 'Order Status',
-                  className: 'api-method get',
+                  type: "category",
+                  label: "Order Status",
+                  items: [
+                    {
+                      type: "doc",
+                      id: "api/orders/order-status-by-id",
+                      label: "By public id",
+                      className: "api-method get",
+                    },
+                    {
+                      type: "doc",
+                      id: "api/orders/order-status-by-external-order-id",
+                      label: "By external order id",
+                      className: "api-method get",
+                    },
+                  ]
+
                 },
                 {
-                  type: 'doc',
-                  id: 'api/orders/order-refunds',
-                  label: 'Order Refunds',
-                  className: 'api-method get',
+                  type: "category",
+                  label: "Refunds",
+                  items: [
+                    {
+                      type: "doc",
+                      id: "api/orders/order-refunds-by-id",
+                      label: "By public id",
+                      className: "api-method get",
+                    },
+                    {
+                      type: "doc",
+                      id: "api/orders/order-refunds-by-external-order-id",
+                      label: "By external order id",
+                      className: "api-method get",
+                    },
+                  ]
                 },
               ],
             },

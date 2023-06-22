@@ -76,6 +76,11 @@ one error will be returned.
   }
 }
 ```
+## `DUPLICATE_EXTERNAL_ORDER`
+
+| Code | Reason |
+|------|--------|
+| `DUPLICATE_EXTERNAL_ORDER` | Order with the same external order id already exists |
 
 ## `PRODUCT_DOES_NOT_EXIST`
 
