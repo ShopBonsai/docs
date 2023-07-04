@@ -79,6 +79,15 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
 </body>
 ```
 
+#### Script data attributes
+
+| Data attribute               | Value                                                                                | Description                                     | Required |
+| :--------------------------- | :----------------------------------------------------------------------------------- | :---------------------------------------------- | :------- |
+| `src`                        | `https://ui.getbonsai.com/index.js` _or_ `https://staging-ui.getbonsai.com/index.js` | Bonsai Checkout Javascript URL                  | ✅       |
+| `data-bonsai-partner-id`     | `YOUR_API_KEY`                                                                       | Authenticates your account with Bonsai services | ✅       |
+| `data-bonsai-btn-background` | `#000000`                                                                            | A color for the button fill                     | ❌       |
+| `data-bonsai-btn-text`       | `#ffffff`                                                                            | A color for the button font color               | ❌       |
+
 ### Step 3: Create cart
 
 In order to start the checkout process, you need to create a cart first.
