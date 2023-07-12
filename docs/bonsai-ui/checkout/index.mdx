@@ -26,36 +26,34 @@ You can obtain the `order` information after a successful checkout through _call
 
 `Checkout` app reads the following query parameters from the URL:
 
-| Name        | Value           | Description                                                  | Required |
-| :---------- | :-------------- | :----------------------------------------------------------- | :------- |
-| `bonsai`    | `checkout_ID`   | Starts checkout process using provided cart ID               | Yes      |
-| `onSuccess` | `yourSuccessFn` | A _name_ of callback function that will be called on success | No       |
+| Name     | Value         | Description                                    | Required |
+| :------- | :------------ | :--------------------------------------------- | :------- |
+| `bonsai` | `checkout_ID` | Starts checkout process using provided cart ID | Yes      |
 
 :::info Example
 https://your.domain.com/checkout?bonsai=checkout_abcdef
-
-https://your.domain.com/checkout?bonsai=checkout_abcdef&onSuccess=yourSuccessFn
 :::
 
 `bonsai` parameter is the only required parameter, and it should be provided with a `cart id` that you want to check out.
 
 ### Callbacks
 
-Callbacks are optional, and you can use them to obtain `order` information after a successful checkout, or an `error` in case of a failure.
-These functions must be assigned to `window` object and called with `order` or `error` object as their first argument.
+Callbacks are optional, and you can use them to obtain `order` information after a successful checkout.
+These functions must be provided to the `init` function (further details in _[step 3 section](#step-3-configure-bonsai-checkout)_).
 
 :::info Example
 
 ```javascript
-window.yourSuccessFn = function (order) {
-  // do something with order
+function handleOrder (order) {
+  // do something with the order
 };
+
+bonsai.init({
+  onSuccess: handleOrder,
+  ...
+});
 ```
 
-:::
-
-:::caution
-The success callback function name must match the provided one in the `onSuccess` query parameter.
 :::
 
 ### Step 1: Create a page
@@ -75,21 +73,62 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
 
 <body>
   <!-- Bonsai Checkout JS -->
-  <script data-bonsai-partner-id="YOUR_API_KEY" src="https://ui.getbonsai.com/index.js"></script>
+  <script type="text/javascript" src="https://ui.getbonsai.com/index.js"></script>
 </body>
+```
+
+### Step 3: Configure Bonsai Checkout
+
+```html title="checkout.html"
+<!-- as defined in the previous step -->
+<!-- <script type="text/javascript" src="https://ui.getbonsai.com/index.js"></script> -->
+<script type="text/javascript">
+  // Extract bonsai object from window
+  var bonsai = window.__BONSAI__;
+
+  // Initialize bonsai with configuration options
+  bonsai.init({
+    accountId: 'ckhm921rg000101mfhkwi0379',
+    onSuccess: (order) => console.log({ order }),
+    cartInfoMessage: 'Custom message displayed on the cart page',
+    orderSuccessMessage: 'Custom message displayed on the order success page',
+  });
+</script>
+```
+
+#### Configuration options
+
+```typescript
+type Config = {
+  /* REQUIRED: */
+
+  /* Authenticates your account with Bonsai services */
+  accountId: string;
+
+  /* OPTIONAL */
+
+  /* A callback that will be invoked on checkout success */
+  onSuccess?: (order: Order) => void;
+  /* A color for the button fill */
+  buttonBackground?: string;
+  /* A color for the button font color */
+  buttonTextColor?: string;
+  /* A custom google font override */
+  font?: string;
+  /* A custom message displayed on the cart page */
+  cartInfoMessage?: string;
+  /* A custom message displayed on the order success page */
+  orderSuccessMessage?: string;
+};
 ```
 
 #### Script data attributes
 
-| Data attribute               | Value                                                                                | Description                                     | Required |
-| :--------------------------- | :----------------------------------------------------------------------------------- | :---------------------------------------------- | :------- |
-| `src`                        | `https://ui.getbonsai.com/index.js` _or_ `https://staging-ui.getbonsai.com/index.js` | Bonsai Checkout Javascript URL                  | ✅       |
-| `data-bonsai-partner-id`     | `YOUR_API_KEY`                                                                       | Authenticates your account with Bonsai services | ✅       |
-| `data-bonsai-btn-background` | `#000000`                                                                            | A color for the button fill                     | ❌       |
-| `data-bonsai-btn-text`       | `#ffffff`                                                                            | A color for the button font color               | ❌       |
-| `data-bonsai-google-font`    | `Jost`                                                                               | A custom google font override                   | ❌       |
+| Data attribute | Value                                                                                | Description                    | Required |
+| :------------- | :----------------------------------------------------------------------------------- | :----------------------------- | :------- |
+| `src`          | `https://ui.getbonsai.com/index.js` _or_ `https://staging-ui.getbonsai.com/index.js` | Bonsai Checkout Javascript URL | ✅       |
 
-### Step 3: Create cart
+### Step 4: Create cart
 
 In order to start the checkout process, you need to create a cart first.
 You can do this by using `Bonsai Carts API`
@@ -117,14 +156,14 @@ curl -L -X POST 'https://api.shopbonsai.ca/carts/v1/submit' \
 You can find more information about how to create and update carts using the `Bonsai Carts API` [here](/docs/api/carts/carts-api).
 :::
 
-### Step 4: Redirect to checkout
+### Step 5: Redirect to checkout
 
 After you have created a cart, and obtained a `cart id`, you can redirect the user to the `Checkout page`.
 
-You will need to add a `bonsai` query parameter to the `Checkout page` URL, with the `cart id` as its value, and optionally the name of success handler.
+You will need to add a `bonsai` query parameter to the `Checkout page` URL, with the `cart id` as its value.
 
 :::info Example
-https://your.domain.com/checkout?bonsai=checkout_ID&onSuccess=mySuccessHandler
+https://your.domain.com/checkout?bonsai=checkout_ID
 :::
 
 ## Hosted
