@@ -86,13 +86,18 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
   // Extract bonsai object from window
   var bonsai = window.__BONSAI__;
 
+
+  function customOrderSuccessMessage({ email }) {
+    return `Thank you! You will receive a confirmation email with your order details shortly. Your account has been created using ${email}.`;
+  }
+
   // Initialize bonsai with configuration options
   bonsai.init({
     accountId: '<API_KEY_VALUE>',
     onSuccess: (order) => console.log({ order }),
     onShippingSubmit: (shipping) => console.log({ shipping }),
-    cartInfoMessage: 'Custom message displayed on the cart page',
-    orderSuccessMessage: 'Custom message displayed on the order success page',
+    customInfoMessage: 'Custom message displayed on the cart page',
+    customOrderSuccessMessage
   });
 </script>
 ```
@@ -119,9 +124,12 @@ type Config = {
   /* A custom google font override */
   font?: string;
   /* A custom message displayed on the cart page */
-  cartInfoMessage?: string;
-  /* A custom message displayed on the order success page */
-  orderSuccessMessage?: string;
+  customInfoMessage?: string;
+  /* A custom message displayed on the order success page. `Shipping` data is provided as an argument
+   * to the function, so you can get access to the shipping information. If `null` is returned, the
+   * default message will be displayed.
+   */
+  customOrderSuccessMessage?: (shipping: Shipping) => string | null;
 };
 ```
 
