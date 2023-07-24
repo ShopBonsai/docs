@@ -130,6 +130,8 @@ type Config = {
    * default message will be displayed.
    */
   customOrderSuccessMessage?: (shipping: Shipping) => string | null;
+  /* If provided, the checkout header image will link to the provided URL */
+  originUrl?: string;
 };
 ```
 
