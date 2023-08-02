@@ -86,7 +86,6 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
   // Extract bonsai object from window
   var bonsai = window.__BONSAI__;
 
-
   function customOrderSuccessMessage({ email }) {
     return `Thank you! You will receive a confirmation email with your order details shortly. Your account has been created using ${email}.`;
   }
@@ -97,7 +96,7 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
     onSuccess: (order) => console.log({ order }),
     onShippingSubmit: (shipping) => console.log({ shipping }),
     customInfoMessage: 'Custom message displayed on the cart page',
-    customOrderSuccessMessage
+    customOrderSuccessMessage,
   });
 </script>
 ```
@@ -132,6 +131,8 @@ type Config = {
   customOrderSuccessMessage?: (shipping: Shipping) => string | null;
   /* If provided, the checkout header image will link to the provided URL */
   originUrl?: string;
+  /* ID of the order provided to Bonsai by the party who placed the order - should be unique per order if passed. */
+  externalOrderId?: string;
 };
 ```
 
