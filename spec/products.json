@@ -61,7 +61,7 @@
             "schema": {
               "properties": {
                 "data": {
-                  "$ref": "#/definitions/edu0zwkg7Result"
+                  "$ref": "#/definitions/el80f64j1Result"
                 }
               },
               "type": "object"
@@ -250,7 +250,7 @@
       },
       "description": "Unknown error"
     },
-    "edu0zwkg7Result": {
+    "el80f64j1Result": {
       "type": "object",
       "properties": {
         "data": {
@@ -507,7 +507,8 @@
                     },
                     "isFinalSale": {
                       "type": "boolean",
-                      "description": "Final sale flag",
+                      "nullable": true,
+                      "description": "Final sale flag if known. Null if unknown",
                       "example": true
                     },
                     "gtin": {
