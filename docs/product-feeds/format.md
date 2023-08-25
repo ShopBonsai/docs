@@ -180,3 +180,10 @@ Some items are final sale (i.e. highly discounted products); we set it to true w
 > **optional**
 
 If the price of the product is inclusive of taxes.
+
+
+## `product_slug`
+
+> **optional**
+
+URL-friendly value based on the product’s name. It’s guaranteed to be unique per merchant, and it will never change. It can be used as a slug in the URL for a specific PDP, instead of ids. Limited to 255 characters. Example: `gwen-lace-trim-silk-camisole-ac3cb58d`
