@@ -101,6 +101,23 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
 </script>
 ```
 
+#### Checkout types
+
+Bonsai Checkout supports 2 checkout types: Single product and Multi product.
+You can set it using the `checkoutType` (further details in _[step 3 section](#step-3-configure-bonsai-checkout)_).
+
+##### Single product
+
+Bonsai UI can run in single product mode, which means that it will display a single product with no cart support.
+`productId` and `variantId` are required for this mode, and the application will automatically create a cart for you,
+containing the provided product. This `cartId` will be re-used for future checkouts, until the cart is deleted after
+successful checkout.
+
+##### Multi product
+
+Multi product mode is the default mode, and it supports multiple products and variants.
+It requires a cart ID, which you need to create using the `Bonsai Carts API`.
+
 #### Configuration options
 
 ```typescript
@@ -110,12 +127,30 @@ type Config = {
   /* Authenticates your account with Bonsai services */
   accountId: string;
 
+  /* The type of checkout.
+   *
+   * - `single-product` - checkout for a single product with no cart support
+   *    - `productId` - product ID
+   *    - `variantId` - variant ID
+   *
+   * -  `multi-product` - checkout for multiple products, using regular cart
+   *    - `cartId` - cart ID
+   */
+  checkoutType: 'single-product' | 'multi-product';
+
+  /* single-product checkout options */
+  productId: string;
+  variantId: string;
+
+  /* multi-product checkout options */
+  cartId: string;
+
   /* OPTIONAL */
 
   /* A callback that will be invoked on checkout success */
   onSuccess?: (order: Order) => void;
   /* A callback that will be invoked when user submits shipping information */
-  onShippingSubmit?: (shipping: Shipping) => void;
+  onShippingSubmit?: (context: ShippingContext) => void;
   /* A color for the button fill */
   buttonBackground?: string;
   /* A color for the button font color */
@@ -124,15 +159,32 @@ type Config = {
   font?: string;
   /* A custom message displayed on the cart page */
   customInfoMessage?: string;
-  /* A custom message displayed on the order success page. `Shipping` data is provided as an argument
-   * to the function, so you can get access to the shipping information. If `null` is returned, the
+  /* A custom message displayed on the order success page. `ShippingContext` data is provided as an argument
+   * to the function, so you can get access to the ShippingContext information. If `null` is returned, the
    * default message will be displayed.
    */
-  customOrderSuccessMessage?: (shipping: Shipping) => string | null;
+  customOrderSuccessMessage?: (context: ShippingContext) => string | null;
   /* If provided, the checkout header image will link to the provided URL */
   originUrl?: string;
   /* ID of the order provided to Bonsai by the party who placed the order - should be unique per order if passed. */
   externalOrderId?: string;
+};
+
+type ShippingContext = {
+  cartId: string;
+  shipping: {
+    address: {
+      address1: string;
+      address2?: string;
+      city: string;
+      country: string;
+      firstName: string;
+      lastName: string;
+      zip: string;
+    };
+    email: string;
+    phone: string;
+  };
 };
 ```
 
