@@ -164,6 +164,10 @@ type Config = {
    * default message will be displayed.
    */
   customOrderSuccessMessage?: (context: ShippingContext) => string | null;
+  /* A custom link displayed on the order success page. If not provided, the link will not be displayed. */
+  customOrderSuccessLink?: string;
+  /* A custom link text displayed on the order success page. If not provided, the link will not be displayed. */
+  customOrderSuccessLinkText?: string;
   /* If provided, the checkout header image will link to the provided URL */
   originUrl?: string;
   /* ID of the order provided to Bonsai by the party who placed the order - should be unique per order if passed. */
