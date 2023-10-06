@@ -139,7 +139,7 @@ This standard flow represents an order from submission to Bonsai till products b
 
 ---
 
-## PAYMENT SUCCESSFUL
+## payment succesful
 
 - **Description:** Payment for the order was successful.
 
@@ -149,7 +149,7 @@ An order that was submitted successfully to Bonsai.
 
 ---
 
-## SENT TO MERCHANT
+## sent to merchant
 
 - **Description:** This status indicates that the order information has been sent to the merchant for further processing.
 
@@ -159,7 +159,7 @@ An order that was submitted successfully to Bonsai, was submitted to a merchant,
 
 ---
 
-## PARTIALLY FULFILLED
+## Partially Fulfilled
 
 - **Description:** Order that has had product shipping information added to it for some of the products.
 
@@ -169,7 +169,7 @@ An order that was submitted successfully to Bonsai, was submitted to a merchant,
 
 ---
 
-## FULFILLED
+## fulfilled
 
 - **Description:** Order that has had product shipping information added to it.
 
@@ -180,7 +180,7 @@ An order that was submitted successfully to Bonsai, was submitted to a merchant,
 ---
 
 
-## CANCELLED
+## cancelled
 
 - **Description:** This status indicates that the order has been cancelled.
 
@@ -190,7 +190,7 @@ An order that was submitted to Bonsai, but later cancelled by the customer. Thes
 
 ---
 
-## FAILED (PAYMENT)
+## failed (payment)
 
 - **Description:** Payment verification for the order has failed.
 
@@ -200,7 +200,7 @@ An order that was submitted to Bonsai with payment information that we were unab
 
 ---
 
-## FAILED (MERCHANT)
+## failed (merchant)
 
 - **Description:** Sending the order to the merchant has failed.
 
@@ -210,7 +210,7 @@ An order that was submitted to Bonsai with products from a merchant we have an a
 
 ---
 
-## FAILED (UNKNOWN)
+## failed (unknown)
 
 - **Description:** There was an unknown issue while processing.
 
