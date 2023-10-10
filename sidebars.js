@@ -142,6 +142,10 @@ const sidebars = {
                   items: [
                     {
                       type: "doc",
+                      id: "api/orders/order-fulfillment-statuses",
+                    },
+                    {
+                      type: "doc",
                       id: "api/orders/order-status-by-id",
                       label: "By public id",
                       className: "api-method get",
