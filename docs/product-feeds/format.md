@@ -187,3 +187,30 @@ If the price of the product is inclusive of taxes.
 > **optional**
 
 URL-friendly value based on the product’s name. It’s guaranteed to be unique per merchant, and it will never change. It can be used as a slug in the URL for a specific PDP, instead of ids. Limited to 255 characters. Example: `gwen-lace-trim-silk-camisole-ac3cb58d`
+
+## `age_group`
+
+> **optional**
+
+Categorizes product by age. 
+These are the supported values for this attribute:
+
+1. `newborn`
+
+   0-3 months old. Newborn sizes are often identified by the age range in months (0–3) or just “newborn.”
+
+1. `infant`
+
+   3–12 months old. Infant sizes are often identified by the age range in months (3–12).
+
+1. `toddler`
+
+   1–5 years old. Toddler sizes are often identified by the age range in months (12–24) or years (1–5).
+
+1. `kids`
+   
+   5–13 years old. Children's sizes are often identified by the age range in years (5-13).
+
+1. `adult`
+
+   Typically teens or older (13 years old or more). All sizes within this age group have been manufactured to fit an adult or teen.
