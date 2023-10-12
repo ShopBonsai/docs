@@ -269,6 +269,30 @@ type Item = {
 };
 ```
 
+##### Example
+
+```typescript
+bonsai.init({
+  ...config, // the rest of the configuration
+  bonsaiEvents: {
+    version: 'v1',
+    onBonsaiEvent: ({ tag, event }) => {
+      switch (tag) {
+        case 'payment_info_entered':
+          console.log('Payment info entered', event);
+          break;
+        case 'shipping_info_entered':
+          console.log('Shipping info entered', event);
+          break;
+        case 'order_completed':
+          console.log('Order completed', event);
+          break;
+      }
+    },
+  },
+});
+```
+
 #### Script data attributes
 
 | Data attribute | Value                                                                                | Description                    | Required |
