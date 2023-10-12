@@ -151,6 +151,16 @@ type Config = {
   onSuccess?: (order: Order) => void;
   /* A callback that will be invoked when user submits shipping information */
   onShippingSubmit?: (context: ShippingContext) => void;
+
+  /* A callback that will be invoked when user submits payment information */
+  bonsaiEvents?: {
+    /* A version of the Bonsai events. This allows us to make breaking changes
+     * to the events without breaking your integration. */
+    version: 'v1';
+    /* A callback that will be invoked when a Bonsai event has been emitted. */
+    onBonsaiEvent: (event: BonsaiEvent) => void; // More details in "Bonsai Events" section below
+  };
+
   /* A color for the button fill */
   buttonBackground?: string;
   /* A color for the button font color */
@@ -189,6 +199,73 @@ type ShippingContext = {
     email: string;
     phone: string;
   };
+};
+```
+
+#### Bonsai Events
+
+##### Configuration
+
+Bonsai UI emits events during various stages of the checkout process. You can listen to these events by providing a `bonsaiEvents` object to the configuration.
+
+```typescript
+bonsaiEvents: {
+  version: 'v1';
+  onBonsaiEvent: (event: BonsaiEvent) => void;
+};
+```
+
+A `bonsaiEvents` object expects a `version` and an `onBonsaiEvent` callback.
+
+A `version` field is used to ensure that the events emitted by Bonsai UI are compatible with your integration.
+
+_Please note, additional fields are not considered breaking changes, and will not result in a version bump. Only changes to existing fields will result in a version bump._
+
+##### Usage
+
+Provided `onBonsaiEvent` callback will be invoked when a Bonsai event has been emitted.
+Each event is tagged with a `tag` property, which you can use to distinguish between different events.
+
+```typescript
+type BonsaiEvent =
+  | {
+      tag: 'payment_info_entered';
+      event: {
+        currency: string;
+        cartSubtotal: number;
+        items: Item[];
+      };
+    }
+  | {
+      tag: 'shipping_info_entered';
+      event: {
+        currency: string;
+        cartSubtotal: number;
+        items: Item[];
+      };
+    }
+  | {
+      tag: 'order_completed';
+      event: {
+        currency: string;
+        orderId: string;
+        orderSubtotal: number;
+        orderShipping: number;
+        orderSubtotalTax: number;
+        orderDuties: number;
+        items: Item[];
+      };
+    };
+
+type Item = {
+  productId: string;
+  variantId: string;
+  quantity: number;
+  productName: string;
+  brandName: string;
+  merchantName: string;
+  price: number;
+  compareAtPrice?: number;
 };
 ```
 
