@@ -219,7 +219,7 @@ A `bonsaiEvents` object expects a `version` and an `onBonsaiEvent` callback.
 
 A `version` field is used to ensure that the events emitted by Bonsai UI are compatible with your integration.
 
-_Please note, additional fields are not considered breaking changes, and will not result in a version bump. Only changes to existing fields will result in a version bump._
+_Please note that additional fields are not considered breaking changes, and will not result in a version bump. Likewise, additional events are also not considered a breaking change. Only changes to existing fields will result in a version bump._
 
 ##### Usage
 
@@ -229,7 +229,7 @@ Each event is tagged with a `tag` property, which you can use to distinguish bet
 ```typescript
 type BonsaiEvent =
   | {
-      tag: 'payment_info_entered';
+      tag: 'shipping_info_entered';
       event: {
         currency: string;
         cartSubtotal: number;
@@ -237,7 +237,7 @@ type BonsaiEvent =
       };
     }
   | {
-      tag: 'shipping_info_entered';
+      tag: 'payment_info_entered';
       event: {
         currency: string;
         cartSubtotal: number;
@@ -269,6 +269,14 @@ type Item = {
 };
 ```
 
+The events are sent in the following order:
+
+| Event tag               | Description                                                                                              |
+| :---------------------- | :------------------------------------------------------------------------------------------------------- |
+| `shipping_info_entered` | Shipping information has been successfuly entered, and the user has clicked "Continue to payment" button |
+| `payment_info_entered`  | Payment information has been successfuly entered, and the user has clicked "Submit order" button         |
+| `order_completed`       | Order has been completed, and the user was redirected to Order Success page                              |
+
 ##### Example
 
 ```typescript
@@ -278,11 +286,11 @@ bonsai.init({
     version: 'v1',
     onBonsaiEvent: ({ tag, event }) => {
       switch (tag) {
-        case 'payment_info_entered':
-          console.log('Payment info entered', event);
-          break;
         case 'shipping_info_entered':
           console.log('Shipping info entered', event);
+          break;
+        case 'payment_info_entered':
+          console.log('Payment info entered', event);
           break;
         case 'order_completed':
           console.log('Order completed', event);
