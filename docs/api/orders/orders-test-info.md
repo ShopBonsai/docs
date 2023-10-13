@@ -18,7 +18,7 @@ In live mode with prompt cancellation, a partner can manually test orders using 
 
 1. Make a call to our submist orders api using our API key.
 2. Add "+bonsai" to the customer's email for identification..
-3. Orders will be refunded and included in reporting or Beam.
+3. Orders will be refunded and not included in reporting or Beam.
 
 > Note: This mode is fit for a one-time manual order placement in live mode.
 
