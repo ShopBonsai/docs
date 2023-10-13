@@ -6,6 +6,7 @@ hide_title: true
 toc_max_heading_level: 3
 toc_min_heading_level: 2
 ---
+
 # Error Responses
 
 All error responses have HTTP status code `4xx` or `5xx`. The response body contains `errors` field.

@@ -130,6 +130,10 @@ const sidebars = {
                   type: 'doc',
                   id: 'api/orders/orders-error-responses',
                 },
+                {
+                  type: 'doc',
+                  id: 'api/orders/orders-live-testing',
+                },
               ],
             },
             {
