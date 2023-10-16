@@ -220,10 +220,10 @@
         "parameters": [
           {
             "in": "body",
-            "name": "va7063xj1Input",
+            "name": "ecy5uttjeInput",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/va7063xj1Input"
+              "$ref": "#/definitions/ecy5uttjeInput"
             }
           },
           {
@@ -2348,11 +2348,6 @@
               "description": "The two-letter code (ISO 3166-1 format) for the country of the shipping address.",
               "example": "US"
             },
-            "name": {
-              "type": "string",
-              "description": "Full name.",
-              "example": "Eddy Bonsai"
-            },
             "province": {
               "type": "string",
               "nullable": true,
@@ -2478,11 +2473,6 @@
               "type": "string",
               "description": "The two-letter code (ISO 3166-1 format) for the country of the shipping address.",
               "example": "US"
-            },
-            "name": {
-              "type": "string",
-              "description": "Full name.",
-              "example": "Eddy Bonsai"
             },
             "province": {
               "type": "string",
@@ -2660,7 +2650,7 @@
         }
       }
     },
-    "va7063xj1Input": {
+    "ecy5uttjeInput": {
       "type": "object",
       "required": [
         "method",
