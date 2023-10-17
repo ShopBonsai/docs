@@ -10,21 +10,11 @@ toc_min_heading_level: 2
 
 ## Introduction
 
-Partners can test orders using our API in different scenarios. This document outlines the procedures for testing orders in live mode with prompt cancellation and test mode.
-
-## Live Mode with Prompt Cancellation
-
-In live mode with prompt cancellation, a partner can manually test orders using our API. Operations will go through as usual, but the orders will be filtered out from all reporting and Beam.
-
-1. Make a call to our submist orders api using our API key.
-2. Add "+bonsai" to the customer's email for identification..
-3. Orders will be refunded and not included in reporting or Beam.
-
-> Note: This mode is fit for a one-time manual order placement in live mode.
+Partners can test orders using our API in different scenarios. This document outlines the procedures for testing orders in test mode.
 
 ## Test Mode
 
-In test mode, all orders are treated as test orders. This means they will have the attribute `isTest: true` and will use the test Stripe API key, and provide a mock tax calucaltions.
+In this mode, all orders are treated as test orders. This means that payment won't be taken and orders won't be fulfilled.
 
 ### Using Bonsai Test in Customer Shipping Info:
 
