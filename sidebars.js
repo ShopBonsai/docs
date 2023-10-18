@@ -141,6 +141,18 @@ const sidebars = {
               label: 'v2',
               items: [
                 {
+                  type: 'doc',
+                  id: 'api/orders/submit-pending-orders',
+                  label: 'Submit Pending Orders',
+                  className: 'api-method post',
+                },
+                {
+                  type: 'doc',
+                  id: 'api/orders/submit-order-payment',
+                  label: 'Submit Order Payment',
+                  className: 'api-method post',
+                },
+                {
                   type: "category",
                   label: "Order Status",
                   items: [
