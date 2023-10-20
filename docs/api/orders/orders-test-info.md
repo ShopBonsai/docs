@@ -19,8 +19,8 @@ In this mode, all orders are treated as test orders. This means that payment won
 ### Using Bonsai Test in Customer Shipping Info:
 
 1. Make a call to our submit orders api using our API key.
-2. Set "bonsai" to the customer's first name in the shipping address.
-3. Set "test" to the customer's last name in the shipping address.
+2. Set "bonsai" as the customer's first name in the shipping address.
+3. Set "test" as the customer's last name in the shipping address.
 4. Order should be in test mode.
 5. All operations are available, and the flow is normal.
 
