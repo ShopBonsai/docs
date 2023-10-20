@@ -128,11 +128,11 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'api/orders/orders-error-responses',
+                  id: 'api/orders/orders-live-testing',
                 },
                 {
                   type: 'doc',
-                  id: 'api/orders/orders-live-testing',
+                  id: 'api/orders/orders-error-responses',
                 },
               ],
             },
