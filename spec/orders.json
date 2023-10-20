@@ -141,7 +141,7 @@
           }
         },
         "summary": "Submit Orders",
-        "description": "Submits an order to Bonsai for processing. Be careful as these orders will be processed unless Bonsai gets contacted to cancel! - To submit orders in Test Mode Read our [Test Orders Guide](https://docs.shopbonsai.ca/docs/api/orders/orders-live-testing)"
+        "description": "Submits an order to Bonsai for processing. Be careful as these orders will be processed unless Bonsai gets contacted to cancel! - To submit orders in Test Mode, please read our [Test Orders Guide](https://docs.shopbonsai.ca/docs/api/orders/orders-live-testing)"
       }
     },
     "/v2/submit": {
