@@ -41,6 +41,28 @@ https://your.domain.com/checkout?bonsai=checkout_abcdef
 Callbacks are optional, and you can use them to obtain `order` information after a successful checkout.
 These functions must be provided to the `init` function (further details in _[step 3 section](#step-3-configure-bonsai-checkout)_).
 
+:::info Example
+
+```javascript
+function handleOrder (order) {
+  // do something with the order
+};
+
+bonsai.init({
+  // ...
+  bonsaiEvents: {
+    version: 'v1',
+    onBonsaiEvent: ({ tag, event }) => {
+      switch (tag) {
+        case 'order_completed':
+          handleOrder(event);
+          break;
+      }
+    },
+  },
+  // ...
+});
+```
 :::
 
 ### Step 1: Create a page
@@ -80,12 +102,15 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
   // Initialize bonsai with configuration options
   bonsai.init({
     accountId: '<API_KEY_VALUE>',
-    onBonsaiEvent: ({ tag, event }) => {
-      switch (tag) {
-        case 'order_completed':
-          console.log('Order completed', event);
-          break;
-      }
+    bonsaiEvents: {
+      version: 'v1',
+      onBonsaiEvent: ({ tag, event }) => {
+        switch (tag) {
+          case 'order_completed':
+            console.log('Order completed', event);
+            break;
+        }
+      },
     },
     customOrderSuccessMessage,
   });
