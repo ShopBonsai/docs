@@ -49,11 +49,20 @@ function handleOrder (order) {
 };
 
 bonsai.init({
-  onSuccess: handleOrder,
-  ...
+  // ...
+  bonsaiEvents: {
+    version: 'v1',
+    onBonsaiEvent: ({ tag, event }) => {
+      switch (tag) {
+        case 'order_completed':
+          handleOrder(event);
+          break;
+      }
+    },
+  },
+  // ...
 });
 ```
-
 :::
 
 ### Step 1: Create a page
@@ -93,9 +102,17 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
   // Initialize bonsai with configuration options
   bonsai.init({
     accountId: '<API_KEY_VALUE>',
-    onSuccess: (order) => console.log({ order }),
-    onShippingSubmit: (shipping) => console.log({ shipping }),
     customInfoMessage: 'Custom message displayed on the cart page',
+    bonsaiEvents: {
+      version: 'v1',
+      onBonsaiEvent: ({ tag, event }) => {
+        switch (tag) {
+          case 'order_completed':
+            console.log('Order completed', event);
+            break;
+        }
+      },
+    },
     customOrderSuccessMessage,
   });
 </script>
@@ -147,9 +164,9 @@ type Config = {
 
   /* OPTIONAL */
 
-  /* A callback that will be invoked on checkout success */
+  /* Deprecated: Instead, please use onBonsaiEvent with "order_completed" tag. */
   onSuccess?: (order: Order) => void;
-  /* A callback that will be invoked when user submits shipping information */
+  /* Deprecated: Instead, please use onBonsaiEvent with "shipping_info_entered" tag. */
   onShippingSubmit?: (context: ShippingContext) => void;
 
   /* A callback that will be invoked when user submits payment information */
@@ -231,14 +248,17 @@ type BonsaiEvent =
   | {
       tag: 'shipping_info_entered';
       event: {
+        cartId: string;
         currency: string;
         cartSubtotal: number;
         items: Item[];
+        shipping: Shipping;
       };
     }
   | {
       tag: 'payment_info_entered';
       event: {
+        cartId: string;
         currency: string;
         cartSubtotal: number;
         items: Item[];
@@ -247,12 +267,14 @@ type BonsaiEvent =
   | {
       tag: 'order_completed';
       event: {
+        cartId: string;
         currency: string;
         orderId: string;
         orderSubtotal: number;
         orderShipping: number;
         orderSubtotalTax: number;
         orderDuties: number;
+        orderTotalCustomerCharge: number;
         items: Item[];
       };
     };
@@ -266,6 +288,22 @@ type Item = {
   merchantName: string;
   price: number;
   compareAtPrice?: number;
+};
+
+type Shipping = {
+  address: Address;
+  email: string;
+  phone: string;
+};
+
+type Address = {
+  address1: string;
+  address2?: string;
+  city: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  zip: string;
 };
 ```
 
@@ -348,3 +386,10 @@ https://your.domain.com/checkout?bonsai=checkout_ID
 ## Hosted
 
 Coming soon...
+
+## Changelog
+
+- October 26, 2023
+  - Additional fields added to all `BonsaiEvent` types.
+  - `onShippingSubmit` and `onSuccess` callbacks are deprecated.
+  - `bonsaiEvents` supports the same functionality, and should be used instead.
