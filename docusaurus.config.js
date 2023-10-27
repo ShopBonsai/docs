@@ -106,6 +106,12 @@ const config = {
             position: 'left',
             label: 'Bonsai UI',
           },
+          {
+            type: 'doc',
+            docId: 'data/index',
+            position: 'left',
+            label: 'Data',
+          },
         ],
       },
       footer: {
