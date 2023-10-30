@@ -8,48 +8,105 @@ Bonsai offers various CSV data exports to help you keep track of events, orders,
 
 ## How to Access Data Exports
 
-To access these data exports, you need to reach out to your point of contact at Bonsai. Depending on your business and technical setup, not all export types may be available. For more details on which exports are accessible for your account, see the [Available Exports](#available-exports) section.
+To access these data exports, you need to reach out to your point of contact at Bonsai. Depending on your integration type with Bonsai, not all export types may be available. For more details on which exports are applicable for you, see the [Available Exports](#available-exports) section.
 
 ## Prerequisites
 
-To benefit from Bonsai's data exports, ensure you're processing orders or traffic with your live API keys. Please note that test orders and refunds are filtered out even if placed with live API keys.
+To benefit from Bonsai's data exports, ensure you're either using [Bonsai UI](docs/bonsai-ui/introduction) or processing orders through [the Orders API](/docs/api/orders/orders-api) and are using your live API keys. However, [test orders and refunds](/docs/api/orders/orders-live-testing) are filtered out from orders, line items, and refunds exports even if placed with live API keys.
 
 ## Cadence 
 
-Exports are either available once every 24 hours or every 8 hours. In either case, data is lagged by 8 hours. To illustrate: meaning that data available at 16:00 UTC will cover the period from 00:00 to 08:00 UTC.
+Exports are either available once every 24 hours (default) or every 8 hours. To select a cadence, please specify with your point of contact at Bonsai. In either case, data is lagged by 8 hours, i.e., data made available at 16:00 UTC will cover the period from 00:00 to 08:00 UTC for the same day.
 
-### Destinations
+## Destinations
 
-- S3 bucket provided by Bonsai (default/preferred)
-- GCP bucket provided by Bonsai
-- Email
+There are three data export destinations: S3 (default/preferred), GCS, and email. You can choose to have one or multiple destinations for the same exports simultaneously. 
 
-### Authorization
+If you choose either S3 or GCS bucket as the export destination, the bucket name will be supplied to you after you confirm the destination.
 
-- **AWS**: Use the same AWS keys as described [here](/docs/product-feeds/getting-started).
-- **GCP**: Activate a service account with `gcloud auth activate-service-account --key-file=your-service-account.json`.
-- **Email**: Ensure access to the designated email account.
+### S3 bucket
 
-### Data Retention
+An S3 bucket provided to you by Bonsai. This is the default/preferred destination.
 
-Data in these buckets is retained for 3 months by default. Contractual exceptions may apply. For longer-term storage, pull the data into your own systems.
+#### Authorization
+
+You should use the same AWS keys as described [here](/docs/product-feeds/getting-started).
+
+#### Access
+
+To access the data in the bucket, you can use the AWS CLI or any SDK of your choice. Here is an example command for how to access your bucket data using the CLI:
+
+```zsh
+aws s3 cp 's3://prod-data-export-myaccount/v5/orders/orders_2023-10-26T00-08-28.csv' ./my-orders.csv
+```
+
+### GCP Bucket
+
+A GCS bucket provided to you by Bonsai.
+
+#### Authorization
+
+If you require this destination type, Bonsai will provide you with a service account that will have read access into this bucket. You can activate the service account with a command like:
+
+```zsh
+gcloud auth activate-service-account --key-file=myserviceaccount.json
+```
+
+#### Access
+
+To access the data in the bucket, you can use the GCP CLI or any SDK of your choice. Here is an example command for how to access your bucket data using the CLI:
+
+```zsh
+gsutil cp gs://prod-data-export-myaccount/v5/orders/orders_2023-10-26T00-08-28.csv ./my-orders.csv
+```
+
+### Email
+
+Exports sent directly to one or more email addresses of your choice.
+
+#### Authorization
+
+Please keep in mind that this integration sends the data to the email as plaintext attachments. As such, anyone with access to the email you provided will have access to the data exports. If this is a security concern to you, please consider the S3 or GCS destinations, instead.
+
+#### Access
+
+The exports will be available in your inbox directly.
+
+## Data Retention
+
+Data in the S3 and GCS buckets is retained for 3 months. Contractual exceptions may apply. For longer-term storage, pull the data into your own systems.
+
+## Versioning
+
+Versioning of data exports is implemented to protect your integration from breaking changes. Breaking changes are defined as one of the following:
+
+- A change in the definition or format for an existing export field
+- A change in the ordering of export fields
+- The removal of an export field
+- A change in the grain associated with an export (i.e. the definition of what each line in the export represents)
+
+Please note that a new field could be appended as a new column in existing exports without this being considered a breaking change. As such, please be sure that your integration does not break if there are unexpected fields available in the export that were not previously there.
+
+Breaking and non-breaking changes will be updated in the [changelog](#changelog). Any significant changes will be communicated to you ahead of time.
+
+### Current Version
+
+The latest version of exports is `v5`. This version is reflected in the file path associated with the exports. If a new version is released, the path will change. For example: orders may continue to be exported in the path with the prefix `v5/orders` with the old `v5` format, while new `v6` orders will be exported with the prefix `v6/orders`.
 
 ## Available Exports
 
-We offer different types of exports that cater to various needs. Here's a quick rundown:
-
-| Export Type   | Applicable To             |
-| :------------ | :------------------------ |
-| Events        | Bonsai UI clients         |
-| Line Items    | API and Bonsai UI clients |
-| Orders        | API and Bonsai UI clients |
-| Refunds       | API and Bonsai UI clients |
+| Export Type   | Applicable To             | File Path (latest version)                       | File Name (example)                |
+| :------------ | :------------------------ | :----------------------------------------------- | :--------------------------------- |
+| Events        | Bonsai UI clients         | v5/events/events_YYYY-MM-DDTHH-mm-ss.csv         | events_2023-10-26T00-08-21.csv     |
+| Line Items    | API and Bonsai UI clients | v5/line-items/line-items_YYYY-MM-DDTHH-mm-ss.csv | line-items_2023-10-26T00-08-24.csv |
+| Orders        | API and Bonsai UI clients | v5/orders/orders_YYYY-MM-DDTHH-mm-ss.csv         | orders_2023-10-26T00-08-28.csv     |
+| Refunds       | API and Bonsai UI clients | v5/refunds/refunds_YYYY-MM-DDTHH-mm-ss.csv       | refunds_2023-10-26T00-08-31.csv    |
 
 Note: Catalog-only accounts will not have access to any exports.
 
-## Events Export
+### Events Export
 
-The Events export provides detailed insights into specific user interactions within the Bonsai UI. Below are the event types you can expect in this export and their respective fields.
+The Events export provides basic insights into specific user interactions within the Bonsai UI. Below are the event types you can expect in this export and their respective fields.
 
 <details>
   <summary>Events export example</summary>
@@ -66,27 +123,27 @@ Event Time,Event,Cart ID<br></br>
 </details>
 
 
-### Event Types and Descriptions
+#### Event Types and Descriptions
 
-| Event Type           | Description                                                                                     |
-| :------------------- | :---------------------------------------------------------------------------------------------- |
-| Add to Cart          | User adds a product to their cart. Not available in all versions of Bonsai UI                   |
-| Cart View            | User views their cart or single product                                                         |
-| Initiate Checkout    | User begins checkout with a cart or single product                                              |
-| Submit Shipping Info | Shipping information successfully submitted; user moves forward to payment information step     |
-| Place Order          | Payment information successfully sent                                                           |
-| Order Success        | Order completes successfully                                                                    |
-| Order Error          | Something goes wrong after successfully sending payment information                             |
+| Event Type           | Description                                                                                         |
+| :------------------- | :-------------------------------------------------------------------------------------------------- |
+| Add to Cart          | User adds a product to their cart. Not available in all versions of Bonsai UI                       |
+| Cart View            | User views their cart or single product                                                             |
+| Initiate Checkout    | User begins checkout with a cart or single product                                                  |
+| Submit Shipping Info | Shipping information is successfully submitted; user moves forward to the payment information step  |
+| Place Order          | Payment information is successfully sent                                                            |
+| Order Success        | Order is completed successfully                                                                     |
+| Order Error          | Something goes wrong after successfully submitting payment information                              |
 
-### Event Fields
+#### Event Fields
 
-| Field                | Description                                                 |
-| :------------------- | :---------------------------------------------------------- |
-| Event Timestamp      | Time when the event occurred in UTC                         |
-| Event                | Type of the event (e.g., Add to Cart, Initiate Checkout)    |
-| Cart ID              | Unique identifier for the cart                              |
+| Field                | Description                                                                   |
+| :------------------- | :---------------------------------------------------------------------------- |
+| Event Timestamp      | Time when the event occurred in UTC, in ISO 8601 format                       |
+| Event                | Type of the event (e.g., Add to Cart, Initiate Checkout)                      |
+| Cart ID              | Unique identifier for the cart                                                |
 
-## Line Items Export
+### Line Items Export
 
 The Line Items export offers a detailed view of individual products sold in each order.
 
@@ -102,7 +159,7 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,clbdx2e2l0383011h2kzx8cjp,40
 </details>
 
 
-### Line Item Fields
+#### Line Item Fields
 
 | Field            | Description                                                         |
 | :--------------- | :------------------------------------------------------------------ |
@@ -115,10 +172,10 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,clbdx2e2l0383011h2kzx8cjp,40
 | Quantity Sold    | Number of units sold                                                |
 | Product Name     | Name of the product                                                 |
 | Merchant Name    | Name of the merchant                                                |
-| Order Timestamp  | Time when the order was placed in UTC                               |
+| Order Timestamp  | Time when the order was placed in UTC, in ISO 8601 format           |
 | Goods Without Tax| Cost of goods sold without tax                                      |
 
-## Orders Export
+### Orders Export
 
 The Orders export provides an overview of all orders processed.
 
@@ -132,7 +189,7 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,2023-10-25T14:31:21.000Z,$10
   </div>
 </details>
 
-### Orders Fields
+#### Orders Fields
 
 | Field                 | Description                                                                   |
 | :-------------------- | :---------------------------------------------------------------------------- |
@@ -140,15 +197,15 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,2023-10-25T14:31:21.000Z,$10
 | Order Number          | A human-readable order number                                                 |
 | External Order ID     | Identifier from an external system, if provided, otherwise "empty"            |
 | Cart ID               | Unique identifier for the cart related to this order, or "empty"              |
-| Order Timestamp       | Time the order was placed in UTC                                              |
+| Order Timestamp       | Time the order was placed in UTC, in ISO 8601 format                          |
 | Total Customer Charge | The total amount charged to the customer                                      |
 | Goods Without Tax     | Total price of the goods sold without tax                                     |
 | Goods Tax             | Tax charged on the goods                                                      |
 | Shipping Without Tax  | Cost of shipping, not including tax                                           |
 | Shipping Tax          | Tax on the shipping cost                                                      |
-| Duties                | Any import duties or tariffs applied to the order                             |
+| Duties                | Import duties or tariffs applied to the order                                 |
 
-## Refunds Export
+### Refunds Export
 
 The Refunds export provides individual refunds granted on individual orders and the reasons stated for these refunds. It is possible to have multiple refunds granted for a single order.
 
@@ -162,7 +219,7 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,R123,Customer Canceled,2023-
   </div>
 </details>
 
-### Refunds Fields
+#### Refunds Fields
 
 | Field                     | Description                                                                                        |
 | :------------------------ | :------------------------------------------------------------------------------------------------- |
@@ -172,10 +229,10 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,R123,Customer Canceled,2023-
 | Cart ID                   | Unique identifier for the cart related to the original order, or "empty"                           |
 | Refund ID                 | The unique identifier for the refund transaction                                                   |
 | Refund Reason             | Classification for the refund reason                                                               |
-| Refund Timestamp          | Time the refund was processed, usually in UTC                                                      |
+| Refund Timestamp          | Time the refund was processed in UTC, in ISO 8601 format                                           |
 | Refunded Goods Without Tax| The total amount of goods refunded, not including tax                                              |
 
-### Refund Reasons
+#### Refund Reasons
 
 Here are the common reasons for refunds:
 
@@ -185,3 +242,8 @@ Here are the common reasons for refunds:
 | Customer Returned | Customer returned the item and received a refund. |
 | Customer Canceled | Customer canceled the order before shipment.      |
 | Reimbursement     | Money returned for an approved claim or payment   |
+
+## Changelog
+
+- October 30, 2023
+  - Initial documentation for `v5` exports.
