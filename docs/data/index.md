@@ -16,15 +16,15 @@ To benefit from Bonsai's data exports, ensure you're either using [Bonsai UI](/d
 
 ## Cadence 
 
-Exports are either available once every 24 hours (default) or every 8 hours. To select a cadence, please specify with your point of contact at Bonsai. In either case, data is lagged by 8 hours, i.e., data made available at 16:00 UTC will cover the period from 00:00 to 08:00 UTC for the same day.
+Exports are available either once every 24 hours (default) or every 8 hours. To select a cadence, please specify your preference to your point of contact at Bonsai. In either case, data is lagged by 8 hours, i.e., data made available at 16:00 UTC will cover the period from 00:00 to 08:00 UTC for the same day.
 
 ## Destinations
 
 There are three data export destinations: S3 (default/preferred), GCS, and email. You can choose to have one or multiple destinations for the same exports simultaneously. 
 
-If you choose either S3 or GCS bucket as the export destination, the bucket name will be supplied to you after you confirm the destination.
+If you choose either S3 or GCS bucket as the export destination, the bucket name will be supplied to you after you confirm the destination type.
 
-### S3 bucket
+### S3 Bucket
 
 An S3 bucket provided to you by Bonsai. This is the default/preferred destination.
 
@@ -46,7 +46,7 @@ A GCS bucket provided to you by Bonsai.
 
 #### Authorization
 
-If you require this destination type, Bonsai will provide you with a service account that will have read access into this bucket. You can activate the service account with a command like:
+If you require this destination type, Bonsai will provide you with a service account that will have read access into this bucket. You can activate the service account using the CLI:
 
 ```zsh
 gcloud auth activate-service-account --key-file=myserviceaccount.json
@@ -87,7 +87,7 @@ Versioning of data exports is implemented to protect your integration from break
 
 Please note that a new field could be appended as a new column in existing exports without this being considered a breaking change. As such, please be sure that your integration does not break if there are unexpected fields available in the export that were not previously there.
 
-Breaking and non-breaking changes will be updated in the [changelog](#changelog). Any significant changes will be communicated to you ahead of time.
+Breaking and non-breaking changes will be updated in the [changelog](#changelog).
 
 ### Current Version
 
@@ -102,7 +102,7 @@ The latest version of exports is `v5`. This version is reflected in the file pat
 | Orders        | API and Bonsai UI clients | v5/orders/orders_YYYY-MM-DDTHH-mm-ss.csv         | orders_2023-10-26T00-08-28.csv     |
 | Refunds       | API and Bonsai UI clients | v5/refunds/refunds_YYYY-MM-DDTHH-mm-ss.csv       | refunds_2023-10-26T00-08-31.csv    |
 
-Note: Catalog-only accounts will not have access to any exports.
+**Note: Catalog-only accounts will not have access to any exports.**
 
 ### Events Export
 
@@ -189,7 +189,7 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,2023-10-25T14:31:21.000Z,$10
   </div>
 </details>
 
-#### Orders Fields
+#### Order Fields
 
 | Field                 | Description                                                                   |
 | :-------------------- | :---------------------------------------------------------------------------- |
@@ -219,7 +219,7 @@ clo925si20000azzodbeggfv7,1001,EXT1001,3aasunj099y9,R123,Customer Canceled,2023-
   </div>
 </details>
 
-#### Refunds Fields
+#### Refund Fields
 
 | Field                     | Description                                                                                        |
 | :------------------------ | :------------------------------------------------------------------------------------------------- |
