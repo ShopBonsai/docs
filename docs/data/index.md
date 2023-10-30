@@ -18,21 +18,15 @@ To benefit from Bonsai's data exports, ensure you're either using [Bonsai UI](/d
 
 Exports are available either once every 24 hours (default) or every 8 hours. To select a cadence, please specify your preference to your point of contact at Bonsai. In either case, data is lagged by 8 hours, i.e., data made available at 16:00 UTC will cover the period from 00:00 to 08:00 UTC for the same day.
 
-## Destinations
+## Destination
 
-There are three data export destinations: S3 (default/preferred), GCS, and email. You can choose to have one or multiple destinations for the same exports simultaneously. 
+The destination for these exports is an AWS S3 data bucket. The bucket name will be supplied to you after you request data exports.
 
-If you choose either S3 or GCS bucket as the export destination, the bucket name will be supplied to you after you confirm the destination type.
-
-### S3 Bucket
-
-An S3 bucket provided to you by Bonsai. This is the default/preferred destination.
-
-#### Authorization
+### Authorization
 
 You should use the same AWS keys as described [here](/docs/product-feeds/getting-started).
 
-#### Access
+### Access
 
 To access the data in the bucket, you can use the AWS CLI or any SDK of your choice. Here is an example command for how to access your bucket data using the CLI:
 
@@ -40,41 +34,9 @@ To access the data in the bucket, you can use the AWS CLI or any SDK of your cho
 aws s3 cp 's3://prod-data-export-myaccount/v5/orders/orders_2023-10-26T00-08-28.csv' ./my-orders.csv
 ```
 
-### GCP Bucket
-
-A GCS bucket provided to you by Bonsai.
-
-#### Authorization
-
-If you require this destination type, Bonsai will provide you with a service account that will have read access into this bucket. You can activate the service account using the CLI:
-
-```zsh
-gcloud auth activate-service-account --key-file=myserviceaccount.json
-```
-
-#### Access
-
-To access the data in the bucket, you can use the GCP CLI or any SDK of your choice. Here is an example command for how to access your bucket data using the CLI:
-
-```zsh
-gsutil cp gs://prod-data-export-myaccount/v5/orders/orders_2023-10-26T00-08-28.csv ./my-orders.csv
-```
-
-### Email
-
-Exports sent directly to one or more email addresses of your choice.
-
-#### Authorization
-
-Please keep in mind that this integration sends the data to the email as plaintext attachments. As such, anyone with access to the email you provided will have access to the data exports. If this is a security concern to you, please consider the S3 or GCS destinations, instead.
-
-#### Access
-
-The exports will be available in your inbox directly.
-
 ## Data Retention
 
-Data in the S3 and GCS buckets is retained for 3 months. Contractual exceptions may apply. For longer-term storage, pull the data into your own systems.
+Data in the S3 bucket is retained for 3 months. Contractual exceptions may apply. For longer-term storage, pull the data into your own systems.
 
 ## Versioning
 
