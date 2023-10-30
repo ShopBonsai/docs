@@ -12,7 +12,7 @@ To access these data exports, you need to reach out to your point of contact at 
 
 ## Prerequisites
 
-To benefit from Bonsai's data exports, ensure you're either using [Bonsai UI](docs/bonsai-ui/introduction) or processing orders through [the Orders API](/docs/api/orders/orders-api) and are using your live API keys. However, [test orders and refunds](/docs/api/orders/orders-live-testing) are filtered out from orders, line items, and refunds exports even if placed with live API keys.
+To benefit from Bonsai's data exports, ensure you're either using [Bonsai UI](/docs/bonsai-ui/introduction) or processing orders through [the Orders API](/docs/api/orders/orders-api) and are using your live API keys. However, [test orders and refunds](/docs/api/orders/orders-live-testing) are filtered out from orders, line items, and refunds exports even if placed with live API keys.
 
 ## Cadence 
 
