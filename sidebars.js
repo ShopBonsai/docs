@@ -82,6 +82,12 @@ const sidebars = {
             },
             {
               type: 'doc',
+              id: 'api/carts/set-cart',
+              label: 'Set Cart',
+              className: 'api-method patch',
+            },
+            {
+              type: 'doc',
               id: 'api/carts/submit-cart',
               label: 'Submit Cart',
               className: 'api-method post',
