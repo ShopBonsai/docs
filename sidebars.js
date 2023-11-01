@@ -229,6 +229,11 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'doc',
+      id: 'data/index',
+      label: 'Data',
+    },
   ],
 };
 
