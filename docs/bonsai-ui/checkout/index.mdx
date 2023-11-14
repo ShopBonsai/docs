@@ -52,10 +52,13 @@ bonsai.init({
   // ...
   bonsaiEvents: {
     version: 'v1',
-    onBonsaiEvent: ({ tag, event }) => {
+    onBonsaiEvent: ({ tag, event, data }) => {
       switch (tag) {
         case 'order_completed':
           handleOrder(event);
+          break;
+        case 'product_unavailable':
+          console.log('Product unavailable', data);
           break;
       }
     },
