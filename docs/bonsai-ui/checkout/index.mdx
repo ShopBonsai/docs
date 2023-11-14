@@ -52,10 +52,13 @@ bonsai.init({
   // ...
   bonsaiEvents: {
     version: 'v1',
-    onBonsaiEvent: ({ tag, event }) => {
+    onBonsaiEvent: ({ tag, event, data }) => {
       switch (tag) {
         case 'order_completed':
           handleOrder(event);
+          break;
+        case 'product_unavailable':
+          console.log('Product unavailable', data);
           break;
       }
     },
@@ -283,7 +286,22 @@ type BonsaiEvent =
         orderTotalCustomerCharge: number;
         items: Item[];
       };
-    };
+    }
+  | { tag: 'product_unavailable'; data: { productId: string; variantId: string }[] }
+  | { tag: 'variant_does_not_exist'; data: { productId: string; variantId: string }[] }
+  | { tag: 'product_does_not_exist'; data: { productId: string; variantId: string }[] }
+  | { tag: 'products_price_change'; data: { productId: string; variantId: string }[] }
+  | { tag: 'international_shipping_error'; data: { productId: string; variantId: string }[] }
+  | { tag: 'invalid_input' }
+  | { tag: 'tax_error' }
+  | { tag: 'taxes_or_duties_error' }
+  | { tag: 'province_unrecognized' }
+  | { tag: 'province_not_found' }
+  | { tag: 'payment_method_not_supported' }
+  | { tag: 'payment_required' }
+  | { tag: 'out_of_stock'; data: { productId: string; variantId: string }[] }
+  | { tag: 'insufficient_inventory'; data: { productId: string; variantId: string }[] }
+  | { tag: 'other_error' };
 
 type Item = {
   productId: string;
@@ -316,11 +334,26 @@ type Address = {
 
 The events are sent in the following order:
 
-| Event tag               | Description                                                                                              |
-| :---------------------- | :------------------------------------------------------------------------------------------------------- |
-| `shipping_info_entered` | Shipping information has been successfuly entered, and the user has clicked "Continue to payment" button |
-| `payment_info_entered`  | Payment information has been successfuly entered, and the user has clicked "Submit order" button         |
-| `order_completed`       | Order has been completed, and the user was redirected to Order Success page                              |
+| Event tag                      | Description                                                                                              |
+| :----------------------------- | :------------------------------------------------------------------------------------------------------- |
+| `shipping_info_entered`        | Shipping information has been successfuly entered, and the user has clicked "Continue to payment" button |
+| `payment_info_entered`         | Payment information has been successfuly entered, and the user has clicked "Submit order" button         |
+| `order_completed`              | Order has been completed, and the user was redirected to Order Success page                              |
+| `product_unavailable`          | One or more products are unavailable                                                                     |
+| `variant_does_not_exist`       | One or more variants do not exist                                                                        |
+| `product_does_not_exist`       | One or more products do not exist                                                                        |
+| `products_price_change`        | One or more products have changed price                                                                  |
+| `international_shipping_error` | International shipping is not available for one or more products                                         |
+| `invalid_input`                | Invalid input has been provided                                                                          |
+| `tax_error`                    | An error has occured during tax calculation                                                              |
+| `taxes_or_duties_error`        | An error has occured during taxes or duties calculation                                                  |
+| `province_unrecognized`        | Province is not recognized                                                                               |
+| `province_not_found`           | Province is not found                                                                                    |
+| `payment_method_not_supported` | Payment method is not supported                                                                          |
+| `payment_required`             | Payment is required                                                                                      |
+| `out_of_stock`                 | One or more products are out of stock                                                                    |
+| `insufficient_inventory`       | One or more products have insufficient inventory                                                         |
+| `other_error`                  | An error has occured during the checkout process                                                         |
 
 ##### Example
 
@@ -396,6 +429,8 @@ Coming soon...
 
 ## Changelog
 
+- November 14, 2023
+  - Additional `BonsaiEvent` types
 - November 6, 2023
   - Added `province` to `shipping_info_entered` `BonsaiEvent`. 
 - October 26, 2023
