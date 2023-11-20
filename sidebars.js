@@ -223,9 +223,19 @@ const sidebars = {
       },
       items: [
         {
-          type: 'doc',
-          id: 'bonsai-ui/checkout/index',
           label: 'Bonsai Checkout',
+          type: 'category',
+          link: {
+            type: 'doc',
+            id: 'bonsai-ui/checkout/index',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'bonsai-ui/checkout/events',
+              label: 'Events',
+            },
+          ],
         },
       ],
     },
