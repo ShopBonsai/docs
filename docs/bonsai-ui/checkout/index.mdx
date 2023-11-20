@@ -108,11 +108,15 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
     customInfoMessage: 'Custom message displayed on the cart page',
     bonsaiEvents: {
       version: 'v1',
-      onBonsaiEvent: ({ tag, event }) => {
+      onBonsaiEvent: ({ tag, event, data }) => {
         switch (tag) {
           case 'order_completed':
             console.log('Order completed', event);
             break;
+          case 'product_unavailable':
+            console.log('Product unavailable', data);
+            break;
+          // ...
         }
       },
     },
@@ -120,6 +124,11 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
   });
 </script>
 ```
+
+:::info
+
+For more details on `bonsaiEvents` please refer to the [Events page](/docs/bonsai-ui/checkout/events).
+:::
 
 #### Checkout types
 

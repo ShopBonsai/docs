@@ -45,8 +45,8 @@ _Please note that additional fields are not considered breaking changes, and wil
 | `out_of_stock`                 | One or more products are out of stock                                                                    |
 | `insufficient_inventory`       | One or more products have insufficient inventory                                                         |
 | `other_error`                  | An error has occured during the checkout process                                                         |
-
-
+| `express_checkout_mounted`     | Express Checkout button has been rendered                                                                |
+| `express_checkout_begin`       | User has clicked on the Express Checkout button                                                          |
 
 ## Usage
 
@@ -86,6 +86,7 @@ type BonsaiEvent =
         orderDuties: number;
         orderTotalCustomerCharge: number;
         items: Item[];
+        paymentType: 'card' | 'googlePay' | 'applePay';
       };
     }
   | { tag: 'product_unavailable'; data: { productId: string; variantId: string }[] }
@@ -102,7 +103,14 @@ type BonsaiEvent =
   | { tag: 'payment_required' }
   | { tag: 'out_of_stock'; data: { productId: string; variantId: string }[] }
   | { tag: 'insufficient_inventory'; data: { productId: string; variantId: string }[] }
-  | { tag: 'other_error' };
+  | { tag: 'other_error' }
+  | { 
+      tag: 'express_checkout_mounted'; 
+      data: { paymentType: 'googlePay' | 'applePay' }
+    }
+  | { tag: 'express_checkout_begin'; 
+      data: { paymentType: 'googlePay' | 'applePay' }
+    };
 
 type Item = {
   productId: string;
