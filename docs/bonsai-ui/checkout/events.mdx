@@ -86,7 +86,7 @@ type BonsaiEvent =
         orderDuties: number;
         orderTotalCustomerCharge: number;
         items: Item[];
-        paymentType: 'card' | 'googlePay' | 'applePay';
+        paymentMethod: 'card' | 'googlePay' | 'applePay';
       };
     }
   | { tag: 'product_unavailable'; data: { productId: string; variantId: string }[] }
@@ -106,10 +106,10 @@ type BonsaiEvent =
   | { tag: 'other_error' }
   | { 
       tag: 'express_checkout_mounted'; 
-      data: { paymentType: 'googlePay' | 'applePay' }
+      data: { paymentMethod: 'googlePay' | 'applePay' }
     }
   | { tag: 'express_checkout_begin'; 
-      data: { paymentType: 'googlePay' | 'applePay' }
+      data: { paymentMethod: 'googlePay' | 'applePay' }
     };
 
 type Item = {
