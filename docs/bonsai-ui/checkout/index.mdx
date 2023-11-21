@@ -108,11 +108,15 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
     customInfoMessage: 'Custom message displayed on the cart page',
     bonsaiEvents: {
       version: 'v1',
-      onBonsaiEvent: ({ tag, event }) => {
+      onBonsaiEvent: ({ tag, event, data }) => {
         switch (tag) {
           case 'order_completed':
             console.log('Order completed', event);
             break;
+          case 'product_unavailable':
+            console.log('Product unavailable', data);
+            break;
+          // ...
         }
       },
     },
@@ -120,6 +124,11 @@ Add the Bonsai Checkout dependencies to `Checkout page`:
   });
 </script>
 ```
+
+:::info
+
+For more details on `bonsaiEvents` please refer to the [Events page](/docs/bonsai-ui/checkout/events).
+:::
 
 #### Checkout types
 
@@ -178,7 +187,7 @@ type Config = {
      * to the events without breaking your integration. */
     version: 'v1';
     /* A callback that will be invoked when a Bonsai event has been emitted. */
-    onBonsaiEvent: (event: BonsaiEvent) => void; // More details in "Bonsai Events" section below
+    onBonsaiEvent: (event: BonsaiEvent) => void; // More details in "Events" page
   };
 
   /* A color for the button fill */
@@ -226,157 +235,6 @@ type ShippingContext = {
     phone: string;
   };
 };
-```
-
-#### Bonsai Events
-
-##### Configuration
-
-Bonsai UI emits events during various stages of the checkout process. You can listen to these events by providing a `bonsaiEvents` object to the configuration.
-
-```typescript
-bonsaiEvents: {
-  version: 'v1';
-  onBonsaiEvent: (event: BonsaiEvent) => void;
-};
-```
-
-A `bonsaiEvents` object expects a `version` and an `onBonsaiEvent` callback.
-
-A `version` field is used to ensure that the events emitted by Bonsai UI are compatible with your integration.
-
-_Please note that additional fields are not considered breaking changes, and will not result in a version bump. Likewise, additional events are also not considered a breaking change. Only changes to existing fields will result in a version bump._
-
-##### Usage
-
-Provided `onBonsaiEvent` callback will be invoked when a Bonsai event has been emitted.
-Each event is tagged with a `tag` property, which you can use to distinguish between different events.
-
-```typescript
-type BonsaiEvent =
-  | {
-      tag: 'shipping_info_entered';
-      event: {
-        cartId: string;
-        currency: string;
-        cartSubtotal: number;
-        items: Item[];
-        shipping: Shipping;
-      };
-    }
-  | {
-      tag: 'payment_info_entered';
-      event: {
-        cartId: string;
-        currency: string;
-        cartSubtotal: number;
-        items: Item[];
-      };
-    }
-  | {
-      tag: 'order_completed';
-      event: {
-        cartId: string;
-        currency: string;
-        orderId: string;
-        orderSubtotal: number;
-        orderShipping: number;
-        orderSubtotalTax: number;
-        orderDuties: number;
-        orderTotalCustomerCharge: number;
-        items: Item[];
-      };
-    }
-  | { tag: 'product_unavailable'; data: { productId: string; variantId: string }[] }
-  | { tag: 'variant_does_not_exist'; data: { productId: string; variantId: string }[] }
-  | { tag: 'product_does_not_exist'; data: { productId: string; variantId: string }[] }
-  | { tag: 'products_price_change'; data: { productId: string; variantId: string }[] }
-  | { tag: 'international_shipping_error'; data: { productId: string; variantId: string }[] }
-  | { tag: 'invalid_input' }
-  | { tag: 'tax_error' }
-  | { tag: 'taxes_or_duties_error' }
-  | { tag: 'province_unrecognized' }
-  | { tag: 'province_not_found' }
-  | { tag: 'payment_method_not_supported' }
-  | { tag: 'payment_required' }
-  | { tag: 'out_of_stock'; data: { productId: string; variantId: string }[] }
-  | { tag: 'insufficient_inventory'; data: { productId: string; variantId: string }[] }
-  | { tag: 'other_error' };
-
-type Item = {
-  productId: string;
-  variantId: string;
-  quantity: number;
-  productName: string;
-  brandName: string;
-  merchantName: string;
-  price: number;
-  compareAtPrice?: number;
-};
-
-type Shipping = {
-  address: Address;
-  email: string;
-  phone: string;
-};
-
-type Address = {
-  address1: string;
-  address2?: string;
-  city: string;
-  province: string;
-  country: string;
-  firstName: string;
-  lastName: string;
-  zip: string;
-};
-```
-
-The events are sent in the following order:
-
-| Event tag                      | Description                                                                                              |
-| :----------------------------- | :------------------------------------------------------------------------------------------------------- |
-| `shipping_info_entered`        | Shipping information has been successfuly entered, and the user has clicked "Continue to payment" button |
-| `payment_info_entered`         | Payment information has been successfuly entered, and the user has clicked "Submit order" button         |
-| `order_completed`              | Order has been completed, and the user was redirected to Order Success page                              |
-| `product_unavailable`          | One or more products are unavailable                                                                     |
-| `variant_does_not_exist`       | One or more variants do not exist                                                                        |
-| `product_does_not_exist`       | One or more products do not exist                                                                        |
-| `products_price_change`        | One or more products have changed price                                                                  |
-| `international_shipping_error` | International shipping is not available for one or more products                                         |
-| `invalid_input`                | Invalid input has been provided                                                                          |
-| `tax_error`                    | An error has occured during tax calculation                                                              |
-| `taxes_or_duties_error`        | An error has occured during taxes or duties calculation                                                  |
-| `province_unrecognized`        | Province is not recognized                                                                               |
-| `province_not_found`           | Province is not found                                                                                    |
-| `payment_method_not_supported` | Payment method is not supported                                                                          |
-| `payment_required`             | Payment is required                                                                                      |
-| `out_of_stock`                 | One or more products are out of stock                                                                    |
-| `insufficient_inventory`       | One or more products have insufficient inventory                                                         |
-| `other_error`                  | An error has occured during the checkout process                                                         |
-
-##### Example
-
-```typescript
-bonsai.init({
-  ...config, // the rest of the configuration
-  bonsaiEvents: {
-    version: 'v1',
-    onBonsaiEvent: ({ tag, event }) => {
-      switch (tag) {
-        case 'shipping_info_entered':
-          console.log('Shipping info entered', event);
-          break;
-        case 'payment_info_entered':
-          console.log('Payment info entered', event);
-          break;
-        case 'order_completed':
-          console.log('Order completed', event);
-          break;
-      }
-    },
-  },
-});
 ```
 
 #### Script data attributes
@@ -429,6 +287,9 @@ Coming soon...
 
 ## Changelog
 
+- November 21, 2023
+  - Addition of ApplePay/GooglePay events
+  - Events extracted to separate page
 - November 14, 2023
   - Additional `BonsaiEvent` types
 - November 6, 2023

@@ -159,45 +159,44 @@ const sidebars = {
                   className: 'api-method post',
                 },
                 {
-                  type: "category",
-                  label: "Order Status",
+                  type: 'category',
+                  label: 'Order Status',
                   items: [
                     {
-                      type: "doc",
-                      id: "api/orders/order-fulfillment-statuses",
+                      type: 'doc',
+                      id: 'api/orders/order-fulfillment-statuses',
                     },
                     {
-                      type: "doc",
-                      id: "api/orders/order-status-by-id",
-                      label: "By public id",
-                      className: "api-method get",
+                      type: 'doc',
+                      id: 'api/orders/order-status-by-id',
+                      label: 'By public id',
+                      className: 'api-method get',
                     },
                     {
-                      type: "doc",
-                      id: "api/orders/order-status-by-external-order-id",
-                      label: "By external order id",
-                      className: "api-method get",
+                      type: 'doc',
+                      id: 'api/orders/order-status-by-external-order-id',
+                      label: 'By external order id',
+                      className: 'api-method get',
                     },
-                  ]
-
+                  ],
                 },
                 {
-                  type: "category",
-                  label: "Refunds",
+                  type: 'category',
+                  label: 'Refunds',
                   items: [
                     {
-                      type: "doc",
-                      id: "api/orders/order-refunds-by-id",
-                      label: "By public id",
-                      className: "api-method get",
+                      type: 'doc',
+                      id: 'api/orders/order-refunds-by-id',
+                      label: 'By public id',
+                      className: 'api-method get',
                     },
                     {
-                      type: "doc",
-                      id: "api/orders/order-refunds-by-external-order-id",
-                      label: "By external order id",
-                      className: "api-method get",
+                      type: 'doc',
+                      id: 'api/orders/order-refunds-by-external-order-id',
+                      label: 'By external order id',
+                      className: 'api-method get',
                     },
-                  ]
+                  ],
                 },
               ],
             },
@@ -224,14 +223,19 @@ const sidebars = {
       },
       items: [
         {
-          type: 'doc',
-          id: 'bonsai-ui/checkout/index',
           label: 'Bonsai Checkout',
-        },
-        {
-          type: 'doc',
-          id: 'bonsai-ui/express-checkout/index',
-          label: 'Express Checkout',
+          type: 'category',
+          link: {
+            type: 'doc',
+            id: 'bonsai-ui/checkout/index',
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'bonsai-ui/checkout/events',
+              label: 'Events',
+            },
+          ],
         },
       ],
     },
