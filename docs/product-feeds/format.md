@@ -10,7 +10,7 @@ sidebar_position: 4
 
 > **required**
 
-Variant ID. Each variant within a feed has a unique ID. This ID is used to identify the variant in
+Variant ID. This ID is used to identify the variant in
 the feed and in the API.
 
 ## `item_group_id`
@@ -25,7 +25,7 @@ identify the product in the feed and in the API.
 > **required**
 
 Affiliate product ID. Variants belonging to the same product have the same `affiliate_item_group_id`.
-This field is unique to each product per feed. And it is assigned by the merchant. You can use
+This field is assigned by the merchant. You can use
 this field to map products from our feeds to the same products from your own database.
 
 ## `title`
@@ -57,7 +57,7 @@ A single image URL representing the product or variant. Different variants with 
 
 > **optional**
 
-Either a single image URL, or a comma-separated list of image URLs.
+Either a single image URL, or a comma-separated list of image URLs. Different variants with the same `item_group_id` may share `additional_image_link` values.
 
 ## `availability`
 

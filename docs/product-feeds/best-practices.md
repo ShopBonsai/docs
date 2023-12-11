@@ -32,4 +32,4 @@ Currently, we keep out-of-stock products in our feeds. You can use the `availabi
 
 ## Product Removal
 
-We remove variants from the feeds if the merchant removed them or they are no longer up to our standards.
+We immediately remove variants from the feeds if they are no longer up to our standards or would break an export. Otherwise if a merchant removes a product we remove the product with some delay to allow partners a chance to ingest an update with the product marked as out of stock. We recommend building a feed ingestion system that will handle removed products.
