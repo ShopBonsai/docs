@@ -73,7 +73,7 @@ To see more details, head over to the [feed format reference](/docs/product-feed
 
 So what do you need to do with this data? You can use it to create and update products in your application. Existing CSV ingestion services can import products depending on your technology to avoid manually integrating with our feeds.
 
-For example, if you're using Shopify, you can use a 3rd part service such as [Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export) to import a feed into your application automatically.
+For example, if you're using Shopify, you can use a 3rd party service such as [Skyvia](https://skyvia.com/data-integration/shopify-csv-file-import-and-export) to import a feed into your application automatically.
 
 Using a custom-built application, you can use a service like [Feedonomics](https://feedonomics.com/) to import your feeds. If these are not an option, you can write a service to import a feed into your application since CSV is a widely supported format.
 
